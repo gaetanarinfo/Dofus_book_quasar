@@ -1,0 +1,41 @@
+.dofus {
+    background: url('../background/1023606.jpg');
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+@font-face {
+    font-family: bebas;
+    src: url('../css/fonts/BebasNeue.otf');
+}
+
+.font-bebas {
+    font-family: 'bebas', sans-serif;
+    letter-spacing: 3px !important;
+}
+
+form {
+    background-color: #ffffff42;
+    padding: 0px 63px 28px 50px;
+    margin-top: 30px !important;
+    border-radius: 5px;
+    color: white;
+}
+
+.q-field__messages>div {
+    word-break: break-word;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    color: white;
+    font-weight: 700;
+}
+
+.q-field__marginal {
+    color: rgb(255 251 251 / 61%) !important;
+}
+
+.text-negative {
+    color: #650610 !important;
+    color: #650610 !important;
+}
