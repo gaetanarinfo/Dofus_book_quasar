@@ -3,10 +3,22 @@
     <router-view />
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from '@vue/composition-api';
 
-export default defineComponent({
+<script>
+import { mapActions, mapMutations } from 'vuex'
+
+export default {
   name: 'App',
-});
+  methods: {
+    checkAuth () {
+      this.handleAuthStateChange()
+      setTimeout(this.checkAuth, 2500)
+    },
+    ...mapActions('user', ['handleAuthStateChange']),
+    ...mapMutations('user', ['setLoggedIn'])
+  },
+  mounted () {
+    this.checkAuth()
+  }
+}
 </script>

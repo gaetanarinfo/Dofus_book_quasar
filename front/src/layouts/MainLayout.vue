@@ -32,6 +32,28 @@
         >
           Menu de navigation
         </q-item-label>
+
+    <q-item v-if='loggedIn === false' clickable v-ripple to="/login">
+              <q-item-section avatar>
+                <q-icon name="person" color="pink" />
+              </q-item-section>
+
+              <q-item-section>
+                Se Connecter
+              </q-item-section>
+            </q-item>
+
+            <q-item v-if='loggedIn === true' clickable v-ripple @click='logout()'>
+              <q-item-section avatar>
+                <q-icon name="mail" color="blue"/>
+              </q-item-section>
+
+              <q-item-section>
+                Logout
+              </q-item-section>
+            </q-item>
+
+
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
@@ -39,6 +61,8 @@
         />
       </q-list>
     </q-drawer>
+
+        
 
     <q-page-container>
       <router-view />
@@ -89,10 +113,14 @@ const linksData = [
 ];
 
 import { defineComponent, ref } from '@vue/composition-api';
+import { mapState } from 'vuex'
 
 export default defineComponent({
   name: 'MainLayout',
-  components: { EssentialLink },
+  components: { EssentialLink },  
+  computed: {
+    ...mapState('user', ['loggedIn'])
+  },
   setup() {
     const leftDrawerOpen = ref(false);
     const essentialLinks = ref(linksData);

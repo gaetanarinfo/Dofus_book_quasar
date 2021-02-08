@@ -1,4 +1,5 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt'),
+    jwt = require('jsonwebtoken')
 
 /*
  * Import Module
@@ -26,6 +27,8 @@ module.exports = {
     // Methode de connexion push
     push: async(req, res) => {
 
+        const sess = req.session
+
         let sql = `SELECT * from users WHERE email = "${req.body.email}"`;
         let values = [
             req.body.email,
@@ -48,12 +51,28 @@ module.exports = {
 
                         if (same) {
 
-                            console.log('Bonjour : ' + req.session.lastname + ' ' + req.session.firstname);
+                            const payload = {
+                                email: r.email
+                            }
 
-                            res.json({
-                                status: 200,
-                                listUser: getUser
+                            let token = jwt.sign(payload, 'token', {
+                                expiresIn: 1440
                             })
+
+                            console.log('OK 1')
+                            sess.status = r.status
+                            console.log(req.session)
+
+                            res.send({
+                                sess,
+                                token
+                            })
+
+                            // res.json({
+                            //     status: 200,
+                            //     listUser: 'Pas le bon mot de passe',
+                            //     message: sess
+                            // })
 
                         } else {
                             res.json({
@@ -70,14 +89,15 @@ module.exports = {
     },
     // Method Post
     post: async(req, res) => {
-        let sql = `INSERT INTO users (lastname,firstname,email,password) values(?)`;
+        let sql = `INSERT INTO users (lastname,firstname,email,password,status) values(?)`;
 
         bcrypt.hash(req.body.password, 10, (error, encrypted) => {
             values = [
                 req.body.lastname,
                 req.body.firstname,
                 req.body.email,
-                req.body.password = encrypted
+                req.body.password = encrypted,
+                'user'
             ];
 
             db.query(sql, [values], function(err, data, fields) {

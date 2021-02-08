@@ -32,18 +32,10 @@
       
     </q-form>
 
-    <modalUser
-      v-if='modalUser'
-      :modal.sync='modalUser'
-      :data='user'
-      @closeModalUser='closeModal()'
-    />
-
   </div>
 </template>
 
 <script>
-import modalUser from '../components/modal/modalUser'
 import { mapActions } from 'vuex'
 
 export default {
@@ -55,13 +47,8 @@ export default {
       password: '',
       isPwd: true,
       accept: false
-      },
-      modalUser: false,
-      user: null
+      }
     }
-  },
-  components: {
-    modalUser
   },
   methods: {
     formLoginUser() {
@@ -76,12 +63,11 @@ export default {
       }
       else {
         this.loginUser(this.form)
-        this.showModalUser(this.form)
         this.$q.notify({
           color: 'green-5',
           textColor: 'white',
           icon: 'cloud_done',
-          message: 'Connexion réussi !'
+          message: `Welcome ${this.form.email}`
         })
       }  
        
@@ -92,16 +78,6 @@ export default {
       this.form.accept = false
     },
     ...mapActions('user', ['loginUser']),
-    showModalUser (data) {
-      this.user = data
-      this.modalUser = true
-    },
-    closeModal () {
-      this.modalUser = false
-    }
-  },
-  props: {
-    listUser: Array
   }
 }
 </script>

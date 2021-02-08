@@ -1,12 +1,17 @@
 import axios from 'axios'
 
 const state = {
-    listUser: []
+    listUser: [],
+    loggedIn: false,
+    token: null
 }
 
 const mutations = {
     setListUser(state, value) {
         state.listUser = value
+    },
+    setLoggedIn(state, value) {
+        state.loggedIn = value
     }
 }
 
@@ -61,21 +66,34 @@ const actions = {
                 commit('setListUser', res.data.listUser)
             })
     },
-    loginUser({ commit }, payload) {
+    loginUser({}, payload) {
+        console.log('Auth Login')
         const p = payload
         axios
             .post('http://127.0.0.1:4000/userLog', {
                 email: p.email,
                 password: p.password
             })
-            .then(res => {
-                console.log(res.data.listUser);
-                commit('setListUser', res.data.listUser)
+            .then((res) => {
+                console.log(res)
             })
             .catch((err) => {
                 console.log(err)
             })
     },
+    handleAuthStateChange({ commit }) {
+        axios
+            .get('http://127.0.0.1:4000/session')
+            .then((res) => {
+                const sess = res.data.sess
+                console.log(sess)
+
+                if (sess.status === 'user') {
+                    console.log('sess user')
+                    commit('setLoggedIn', true)
+                }
+            })
+    }
 }
 
 const getters = {}

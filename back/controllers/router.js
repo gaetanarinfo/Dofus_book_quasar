@@ -7,7 +7,8 @@ const express = require('express'),
 /*
  * Controller
  *************/
-const userController = require('./userController')
+const userController = require('./userController'),
+    SessionController = require('./SessionController')
 
 /*
  * Router
@@ -26,6 +27,9 @@ router.route('/user/:id')
 
 router.route('/userLog')
     .post(userController.push)
+
+router.route('/session')
+    .get(SessionController.get)
 
 /***********
  * / Router
