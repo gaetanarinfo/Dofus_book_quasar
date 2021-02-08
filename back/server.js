@@ -25,7 +25,7 @@ app.use(cors({
 db = mysql.createConnection({
     host: 'localhost',
     user: 'gaetan',
-    password: 'test123456',
+    password: '123456',
     database: 'dofus'
 });
 

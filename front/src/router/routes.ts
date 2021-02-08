@@ -6,6 +6,7 @@ const routes: RouteConfig[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
+      { path: 'crud', component: () => import('pages/Crud.vue') }
     ]
    },
   {
@@ -34,6 +35,13 @@ const routes: RouteConfig[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Register.vue') }
+    ]
+  },
+  {
+    path: '/user',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', name: 'PageUser', component: () => import('pages/User.vue'), props: true }
     ]
   },
 

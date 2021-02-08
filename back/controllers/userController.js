@@ -7,7 +7,7 @@
  *************/
 module.exports = {
     // Method Get
-    get: async (req, res) => {
+    get: async(req, res) => {
         // Variable de récupération de tout les users
         let sql = `SELECT * FROM users`;
         db.query(sql, (error, data, fields) => {
@@ -20,14 +20,14 @@ module.exports = {
         })
     },
     // Method Post
-    post: async (req, res) => {
-        let sql = `INSERT INTO users (name,email,mobile) values(?)`;
+    post: async(req, res) => {
+        let sql = `INSERT INTO users (name,email,password) values(?)`;
         let values = [
             req.body.name,
             req.body.email,
-            req.body.mobile
+            req.body.password
         ];
-        db.query(sql, [values], function (err, data, fields) {
+        db.query(sql, [values], function(err, data, fields) {
             if (err) throw err;
             let sql = `SELECT * FROM users`;
             db.query(sql, (error, dataRes, fields) => {
@@ -44,11 +44,11 @@ module.exports = {
     editOne: (req, res) => {
         let sql = `UPDATE users 
                    SET name = '${req.body.name}',
-                       mobile = '${req.body.mobile}',
                        email = '${req.body.email}'
+                       password = '${req.body.password}',
                    WHERE id = '${req.params.id}';`
 
-        db.query(sql, function (err, edit, fields) {
+        db.query(sql, function(err, edit, fields) {
             if (err) throw err;
             let sql = `SELECT * FROM users`;
             console.log(edit)
@@ -68,7 +68,7 @@ module.exports = {
         let values = [
             req.params.id
         ];
-        db.query(sql, [values], function (err, del, fields) {
+        db.query(sql, [values], function(err, del, fields) {
             if (err) throw err;
             let sql = `SELECT * FROM users`;
             db.query(sql, (error, data, fields) => {
@@ -84,7 +84,7 @@ module.exports = {
     // Method Delete All
     deleteAll: (req, res) => {
         let sql = `DELETE FROM users`;
-        db.query(sql, function (err, data, fields) {
+        db.query(sql, function(err, data, fields) {
             if (err) throw err;
             let sql = `SELECT * FROM users`;
             db.query(sql, (error, data, fields) => {
