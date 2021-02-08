@@ -5,6 +5,7 @@
 const
     express = require('express'),
     app = express(),
+    expressSession = require('express-session'),
     mysql = require('mysql'),
     bodyParser = require('body-parser'),
     methodOverride = require('method-override'),
@@ -17,7 +18,7 @@ app.use(methodOverride('_method'))
 // Cors
 app.use(cors({
     origin: ['http://localhost:8080'],
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    methods: ['GET', 'PUSH', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
 
@@ -41,8 +42,26 @@ app.use(express.static('public'));
 // Body Parser qui nous permet de parser des data d'une req a une autre
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-    extended: false
+    extended: true
 }));
+
+// Module App gestion des cookies
+app.set('trust proxy', 1) // trust first proxy
+app.use(expressSession({
+    secret: 'labelleauboisdormanssursonarbreperché',
+    name: 'dofus-book',
+    saveUninitialized: false,
+    resave: false,
+    cookie: {
+        path: '/',
+        maxAge: 1000000
+    }
+}))
+
+app.use('*', (req, res, next) => {
+    res.locals.users = req.session.userId
+    next()
+})
 
 // Router
 const ROUTER = require('./controllers/router')

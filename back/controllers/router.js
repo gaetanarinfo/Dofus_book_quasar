@@ -24,6 +24,9 @@ router.route('/user/:id')
     .put(userController.editOne)
     .delete(userController.deleteOne)
 
+router.route('/userLog')
+    .post(userController.push)
+
 /***********
  * / Router
  */

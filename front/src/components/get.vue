@@ -12,7 +12,7 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ user.name }}</q-item-label>
+          <q-item-label>{{ user.lastname }} {{ user.firstname }}</q-item-label>
           <q-item-label caption lines="1">{{ user.email }}</q-item-label>
         </q-item-section>
 

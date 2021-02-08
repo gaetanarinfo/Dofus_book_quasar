@@ -10,7 +10,7 @@
         <headerUser :data='$props.data' />
 
         <q-item v-if="this.delete" class="column col-md-12 col-12 text-center">
-          <p class="text-h6">Êtes-vous sur de vouloir supprimer <u>{{ $props.data.name }}</u> ?</p>
+          <p class="text-h6">Êtes-vous sur de vouloir supprimer <u>{{ $props.data.lastname }}</u> ?</p>
           <q-btn label='Annuler' class="col-md-4 q-mt-md bg-warning text-primary"
             rounded icon="close" clickable @click="$emit('closeModalUser')" />
           <q-btn label='Confirmer' class="col-md-4 q-mt-md bg-primary text-warning"

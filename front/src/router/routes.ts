@@ -44,6 +44,13 @@ const routes: RouteConfig[] = [
       { path: '', name: 'PageUser', component: () => import('pages/User.vue'), props: true }
     ]
   },
+  {
+    path: '/userLog',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', name: 'PageUserLog', component: () => import('pages/UserLog.vue'), props: true }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

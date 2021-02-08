@@ -8,13 +8,6 @@
 
         <q-input class='col-md-4 col-12 col-xs-12 q-pa-xs'
           rounded v-model="form.email" label="Email" />
-        <q-input class='col-md-4 col-12 col-xs-12 q-pa-xs'
-          rounded v-model="form.lastname" label="Name" />
-        <q-input class='col-md-4 col-12 col-xs-12 q-pa-xs'
-          rounded v-model="form.firstname" label="Firstname" />  
-
-        <q-btn label='Submit'
-          type='submit' class="col-md-4 q-mt-md bg-grey-10 text-primary" rounded />
 
       </div>
     </q-form>
@@ -31,9 +24,6 @@ export default {
   data () {
     return {
       form: {
-        id: this.user.id,
-        lastname: this.user.lastname,
-        firstname : this.user.firstname,
         email: this.user.email
       }
     }

@@ -18,10 +18,9 @@
         <div class="column absolute-left text-center" style="max-width: 80%">
           <div class="text-grey-12" style="max-width: 70%; min-width: 50%;">
             <p class="text-h4 text-bold q-pa-none">
-              <u>{{ data.name }}</u>
+              <u>{{ data.lastname + data.firstname }}</u>
             </p>
             <p class="q-pa-xs">{{ data.email }}</p>
-            <p class="text-h6 q-pa-xs">{{ data.password }}</p>
           </div>
         </div>
 

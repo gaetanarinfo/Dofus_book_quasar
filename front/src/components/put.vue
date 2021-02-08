@@ -7,7 +7,7 @@
       <q-item v-for="user in listUser"
         :key="user.id" class="q-my-sm"
         clickable  v-ripple
-        :to='{ name: "PageUser", params: { user } }'
+        :to='{ name: "PageUserLog", params: { user } }'
       >
         <q-item-section avatar>
           <q-avatar color="primary" text-color="white">
@@ -16,7 +16,7 @@
         </q-item-section>
 
         <q-item-section>
-          <q-item-label>{{ user.name }}</q-item-label>
+          <q-item-label>{{ user.lastname }}</q-item-label>
           <q-item-label caption lines="1">{{ user.email }}</q-item-label>
         </q-item-section>
 
