@@ -60,6 +60,7 @@ module.exports = {
                             })
 
                             console.log('OK 1')
+                            sess.userId = r.id
                             sess.status = r.status
                             console.log(req.session)
 
