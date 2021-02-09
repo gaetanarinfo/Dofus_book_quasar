@@ -1,64 +1,84 @@
-/**
- * Store Auth
- *
- *************/
-
 import axios from 'axios'
 
 const state = {
+    listUser: [],
     loggedIn: false,
-    adminIn: false,
-    verifiedIn: false,
     token: null
 }
 
 const mutations = {
+    setListUser(state, value) {
+        state.listUser = value
+    },
     setLoggedIn(state, value) {
         state.loggedIn = value
     }
 }
 
 const actions = {
-    // eslint-disable-next-line no-empty-pattern
-    registerUser({}, payload) {
-        console.log('Auth Register')
-        console.log(this.formRegister)
+    getListUser({ commit }) {
+        console.log('Get List User')
         axios
-            .post('http://127.0.0.1:4000/register', {
-                email: payload.email,
-                password: payload.password
+            .get('http://127.0.0.1:4000/user')
+            .then(res => {
+                commit('setListUser', res.data.listUser)
             })
-            .then((res) => {
-                console.log(res.payload)
+    },
+    // eslint-disable-next-line no-empty-pattern
+    createUser({ commit }, payload) {
+        const p = payload
+        axios
+            .post('http://127.0.0.1:4000/user', {
+                lastname: p.lastname,
+                firstname: p.firstname,
+                password: p.password,
+                email: p.email
+            })
+            .then(res => {
+                commit('setListUser', res.data.listUser)
             })
             .catch((err) => {
                 console.log(err)
             })
     },
     // eslint-disable-next-line no-empty-pattern
+    editOneUser({ commit }, payload) {
+        const p = payload
+        axios
+            .put('http://127.0.0.1:4000/user/' + p.id, {
+                lastname: p.lastname,
+                firstname: p.firstname,
+                password: p.password,
+                email: p.email
+            })
+            .then(res => {
+                commit('setListUser', res.data.listUser)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    },
+    // eslint-disable-next-line no-empty-pattern
+    deleteOneUser({ commit }, payload) {
+        axios
+            .delete(`http://127.0.0.1:4000/user/${payload}`)
+            .then(res => {
+                commit('setListUser', res.data.listUser)
+            })
+    },
     loginUser({}, payload) {
         console.log('Auth Login')
+        const p = payload
         axios
             .post('http://127.0.0.1:4000/userLog', {
-                email: payload.email,
-                password: payload.password
+                email: p.email,
+                password: p.password
             })
             .then((res) => {
                 console.log(res)
             })
             .catch((err) => {
                 console.log(err)
-            })
-    },
-    logoutUser({ commit }) {
-        console.log('Auth Logout')
-        axios
-            .get('http://127.0.0.1:4000/logout')
-            .then((res) => {
-                localStorage.removeItem('sess', null)
-                commit('setLoggedIn', false)
-                console.log('session User')
-                this.$router.replace('/')
             })
     },
     handleAuthStateChange({ commit }) {
@@ -68,7 +88,7 @@ const actions = {
                 const sess = res.data.sess
                 console.log(sess)
 
-                if (sess.status == 'user') {
+                if (sess.status === 'user') {
                     console.log('sess user')
                     commit('setLoggedIn', true)
                 }
