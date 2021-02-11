@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt'),
-    jwt = require('jsonwebtoken')
+    jwt = require('jsonwebtoken'),
+    User = require('../database/models/users')
 
 /*
  * Import Module
@@ -9,111 +10,69 @@ const bcrypt = require('bcrypt'),
  * Controller
  *************/
 module.exports = {
-    // Method Get
     get: async(req, res) => {
-        // Variable de récupération de tout les users
-        let sql = `SELECT * FROM users`;
-        db.query(sql, (error, data, fields) => {
-            if (error) throw error;
-            res.json({
-                status: 200,
-                listUser: data,
-                message: "users lists retrieved successfully"
-            })
-
-            console.log(res);
-        })
+        const dbUser = await User.find({})
+        res.json(dbUser)
     },
     // Methode de connexion push
-    push: async(req, res) => {
+    post: async(req, res) => {
+        let userAuth = await User.findOne({ email: req.body.email })
+            // const dbUserID = await User.find({})
 
-        const sess = req.session
+        if (!userAuth) {
+            console.log('pas ds la db')
+            res.redirect('/login')
+        } else {
+            const { email, password } = req.body
+                // , dbUser = await User.find({})
+                // L'on déclare la récupération de notre req.session pour pouvoir lui attribuer notre function
+                // Par la suite
+                // eslint-disable-next-line comma-style
+                , sess = req.session
 
-        let sql = `SELECT * from users WHERE email = "${req.body.email}"`;
-        let values = [
-            req.body.email,
-            req.body.password
-        ];
+            console.log(req.body)
 
-        db.query(sql, values, function(err, getUser) {
-            if (err) throw err;
+            User.findOne({ email }, (err, User) => {
+                if (err) {
+                    console.log(err)
 
-            getUser.forEach(r => {
+                    // eslint-disable-next-line padded-blocks
+                } else if (User) {
+                    console.log(req.body);
+                    // eslint-disable-next-line padded-blocks
 
-                if (r.email != req.body.email) {
-                    res.json({
-                        status: 200,
-                        listUser: 'Pas le bon email'
+                    const payload = {
+                        _id: User._id,
+                        email: User.email
+                    }
+                    let token = jwt.sign(payload, 'token', {
+                        expiresIn: 1440
+                    })
+                    console.log('OK 1')
+                    sess.email = User.email
+                    sess.status = User.status
+                    sess.userId = User._id
+                    sess.token = token
+                    console.log(req.session)
+
+                    res.send({
+                        sess,
+                        token
                     })
                 } else {
-
-                    bcrypt.compare(req.body.password, r.password, (error, same) => {
-
-                        if (same) {
-
-                            const payload = {
-                                email: r.email
-                            }
-
-                            let token = jwt.sign(payload, 'token', {
-                                expiresIn: 1440
-                            })
-
-                            console.log('OK 1')
-                            sess.userId = r.id
-                            sess.status = r.status
-                            console.log(req.session)
-
-                            res.send({
-                                sess,
-                                token
-                            })
-
-                            // res.json({
-                            //     status: 200,
-                            //     listUser: 'Pas le bon mot de passe',
-                            //     message: sess
-                            // })
-
-                        } else {
-                            res.json({
-                                status: 200,
-                                listUser: 'Pas le bon mot de passe'
-                            })
-                        }
-
-                    })
-
+                    console.log(err)
                 }
-            });
-        })
+
+            })
+        }
     },
     // Method Post
-    post: async(req, res) => {
-        let sql = `INSERT INTO users (lastname,firstname,email,password,status) values(?)`;
-
-        bcrypt.hash(req.body.password, 10, (error, encrypted) => {
-            values = [
-                req.body.lastname,
-                req.body.firstname,
-                req.body.email,
-                req.body.password = encrypted,
-                'user'
-            ];
-
-            db.query(sql, [values], function(err, data, fields) {
-                if (err) throw err;
-                let sql = `SELECT * FROM users`;
-                db.query(sql, (error, dataRes, fields) => {
-                    if (error) throw error;
-                    res.json({
-                        status: 200,
-                        listUser: dataRes,
-                        message: "Add Customer successfully"
-                    })
-                })
-            })
+    register: async(req, res, next) => {
+        // const dbUser = await User.find({})
+        User.create({
+            ...req.body
         })
+        next()
     },
     // Method Edit One User
     editOne: (req, res) => {

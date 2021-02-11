@@ -16,8 +16,7 @@ const userController = require('./userController'),
 
 // Article
 router.route('/user')
-    .get(userController.get)
-    .post(userController.post)
+    .post(userController.register)
     .delete(userController.deleteAll)
 
 // Article ID
@@ -25,8 +24,8 @@ router.route('/user/:id')
     .put(userController.editOne)
     .delete(userController.deleteOne)
 
-router.route('/userLog')
-    .post(userController.push)
+router.route('/login')
+    .post(userController.post)
 
 router.route('/session')
     .get(SessionController.get)

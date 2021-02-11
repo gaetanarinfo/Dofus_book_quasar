@@ -38,6 +38,8 @@ import qboot_Bootcompositionapi from 'boot/composition-api'
 
 import qboot_Bootaxios from 'boot/axios'
 
+import qboot_Bootrouterauth from 'boot/router-auth'
+
 
 
 
@@ -75,7 +77,7 @@ async function start () {
   }
 
   const urlPath = window.location.href.replace(window.location.origin, '')
-  const bootFiles = [qboot_Bootcompositionapi,qboot_Bootaxios]
+  const bootFiles = [qboot_Bootcompositionapi,qboot_Bootaxios,qboot_Bootrouterauth]
 
   for (let i = 0; hasRedirected === false && i < bootFiles.length; i++) {
     if (typeof bootFiles[i] !== 'function') {

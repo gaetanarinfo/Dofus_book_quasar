@@ -119,7 +119,7 @@ export default defineComponent({
   name: 'MainLayout',
   components: { EssentialLink },  
   computed: {
-    ...mapState('user', ['loggedIn'])
+    ...mapState('auth', ['loggedIn'])
   },
   setup() {
     const leftDrawerOpen = ref(false);
