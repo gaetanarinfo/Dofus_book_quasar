@@ -19,8 +19,11 @@ const MongoStore = require('connect-mongo'),
 // Package de configuration sécurisé pour le portfolio
 require('dotenv').config()
 
-// Module pour le lancement de la BDD
-require('./database/db')
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', req.header('origin'))
+    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
+    next()
+})
 
 // Cors
 app.use(cors({
@@ -28,12 +31,6 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
-
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', req.header('origin'))
-    res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept')
-    next()
-})
 
 // Express Static (Permet de pointer un dossier static sur une URL)
 // Exemple: le chemin /assets nous donnera accès au dossier public
@@ -45,14 +42,16 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+// Module pour le lancement de la BDD
+require('./database/db')
+
 // Module App gestion des cookies
-app.set('trust proxy', 1) // trust first proxy
 app.use(expressSession({
     secret: 'labelleauboisdormanssursonarbreperché',
-    name: 'dofus-book',
+    name: 'dofus',
     saveUninitialized: false,
     secure: false,
-    resave: true,
+    resave: false,
     cookie: {
         path: '/',
         maxAge: 1000000
@@ -64,6 +63,12 @@ app.use(expressSession({
 
 // cookieParser should be above session
 app.use(cookieParser())
+
+// App.use * est un middleware pour proteger la partie Administration ou bien cacher un bouton pour le visiteur
+app.use('*', (req, res, next) => {
+    res.locals.users = req.session.userId
+    next()
+})
 
 // Router
 const ROUTER = require('./controllers/router')

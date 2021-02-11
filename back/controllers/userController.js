@@ -11,8 +11,12 @@ const bcrypt = require('bcrypt'),
  *************/
 module.exports = {
     get: async(req, res) => {
-        const dbUser = await User.find({})
-        res.json(dbUser)
+        const sess = req.session
+        console.log('server session controller /session')
+        console.log(sess)
+        res.send({
+            sess
+        })
     },
     // Methode de connexion push
     post: async(req, res) => {
@@ -30,9 +34,7 @@ module.exports = {
                 // eslint-disable-next-line comma-style
                 , sess = req.session
 
-            console.log(req.body)
-
-            User.findOne({ email }, (err, User) => {
+            User.findOne({ email, password }, (err, User) => {
                 if (err) {
                     console.log(err)
 

@@ -72,17 +72,7 @@ module.exports = configure(function( /* ctx */ ) {
         devServer: {
             https: false,
             port: 8080,
-            open: true,
-            proxy: {
-                // proxy all requests starting with /api to jsonplaceholder
-                '/api': {
-                    target: 'http://localhost:8000',
-                    changeOrigin: true,
-                    pathRewrite: {
-                        '^/api': ''
-                    }
-                }
-            }
+            open: true
         },
 
         // https://quasar.dev/quasar-cli/quasar-conf-js#Property%3A-framework
@@ -107,7 +97,9 @@ module.exports = configure(function( /* ctx */ ) {
 
             // Quasar plugins
             plugins: [
-                'Notify'
+                'Notify',
+                'LocalStorage',
+                'SessionStorage'
             ]
         },
 

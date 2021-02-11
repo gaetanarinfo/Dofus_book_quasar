@@ -36,7 +36,7 @@ const actions = {
             })
     },
     // eslint-disable-next-line no-empty-pattern
-    loginUser({}, payload) {
+    loginUser({ commit }, payload) {
         console.log('Auth Login')
         axios
             .post('http://127.0.0.1:8000/login', {
@@ -44,7 +44,20 @@ const actions = {
                 password: payload.password
             })
             .then((res) => {
-                console.log(res)
+
+                console.log(res);
+                axios
+                    .get('http://127.0.0.1:8000/login')
+                    .then((ress) => {
+                        const sess = ress.data.sess
+                        console.log(sess.status)
+
+                        if (sess.status === 'user') {
+                            console.log('sess user')
+                            commit('setLoggedIn', true)
+                        }
+                    })
+
             })
             .catch((err) => {
                 console.log(err)
@@ -61,19 +74,6 @@ const actions = {
                 this.$router.replace('/')
             })
     },
-    handleAuthStateChange({ commit }) {
-        axios
-            .get('http://127.0.0.1:8000/session')
-            .then((res) => {
-                const sess = res.data.sess
-                console.log(sess.status)
-
-                if (sess.status === 'user') {
-                    console.log('sess user')
-                    commit('setLoggedIn', true)
-                }
-            })
-    }
 }
 
 const getters = {}
