@@ -15,14 +15,8 @@ const userController = require('./userController'),
  ***********/
 
 // Article
-router.route('/user')
+router.route('/register')
     .post(userController.register)
-    .delete(userController.deleteAll)
-
-// Article ID
-router.route('/user/:id')
-    .put(userController.editOne)
-    .delete(userController.deleteOne)
 
 router.route('/login')
     .post(userController.post)

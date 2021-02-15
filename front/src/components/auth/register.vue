@@ -15,6 +15,11 @@
 
       </q-input>
 
+       <q-input v-model="form.pseudo" filled type="text"  hint="Pseudo valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter ton pseudo']">
+
+      </q-input>
+
+
        <q-input v-model="form.email" filled type="email"  hint="Email valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter une adresse email valide']">
         <template v-slot:prepend>
           <q-icon name="mail" />
@@ -55,6 +60,7 @@ export default {
         firstname: '',
         password: '',
         email: '',
+        pseudo: '',
         isPwd: true,
 
         accept: false
@@ -72,7 +78,7 @@ export default {
         })
       }
       else {
-        this.createUser(this.form)
+        this.registerUser(this.form)
         this.$q.notify({
           color: 'green-5',
           textColor: 'white',
@@ -85,10 +91,11 @@ export default {
       this.form.lastname = null
       this.form.firstname = null
       this.form.email = null
+      this.form.pseudo = null
       this.form.password = null
       this.form.accept = false
     },
-    ...mapActions('auth', ['createUser'])
+    ...mapActions('auth', ['registerUser'])
   }
 }
 </script>

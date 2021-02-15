@@ -17,6 +17,10 @@ const UsersShema = new mongoose.Schema({
         type: String,
         unique: true
     },
+    pseudo: {
+        type: String,
+        unique: true
+    },
     password: {
         type: String
     },

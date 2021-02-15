@@ -4,8 +4,6 @@ const jwt = require('jsonwebtoken'),
 module.exports = {
     get: async(req, res) => {
 
-        //console.log(req.params.token);
-
         jwt.verify(req.body.token, process.env.JWT_TOKEN, (err, token) => {
             if (err) res.json('Token non Valid')
             else {

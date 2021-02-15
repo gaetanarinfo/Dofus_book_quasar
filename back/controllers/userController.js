@@ -36,21 +36,23 @@ module.exports = {
 
                     const payload = {
                         _id: User._id,
-                        email: User.email
+                        email: User.email,
+                        pseudo: User.pseudo
                     }
                     let token = jwt.sign(payload, 'token', {
                         expiresIn: 1440
                     })
-                    console.log('OK 1')
+
+                    // console.log('OK 1')
                     sess.email = User.email
                     sess.status = User.status
+                    sess.pseudo = User.pseudo
                     sess.userId = User._id
                     sess.token = token
-                    console.log(req.session)
 
                     res.send({
-                        sess,
-                        token
+                        token,
+                        sess
                     })
                 } else {
                     console.log(err)
@@ -66,63 +68,5 @@ module.exports = {
             ...req.body
         })
         next()
-    },
-    // Method Edit One User
-    editOne: (req, res) => {
-        let sql = `UPDATE users 
-                   SET lastname = '${req.body.lastname}',
-                        firstname = '${req.body.firstname}',
-                       email = '${req.body.email}'
-                       password = '${req.body.password}',
-                   WHERE id = '${req.params.id}';`
-
-        db.query(sql, function(err, edit, fields) {
-            if (err) throw err;
-            let sql = `SELECT * FROM users`;
-            console.log(edit)
-            db.query(sql, (error, data, fields) => {
-                if (error) throw error;
-                res.json({
-                    status: 200,
-                    listUser: data,
-                    message: "Update Customer successfully"
-                })
-            })
-        })
-    },
-    // Method Delete One
-    deleteOne: (req, res) => {
-        let sql = `DELETE FROM users  WHERE id = ?`;
-        let values = [
-            req.params.id
-        ];
-        db.query(sql, [values], function(err, del, fields) {
-            if (err) throw err;
-            let sql = `SELECT * FROM users`;
-            db.query(sql, (error, data, fields) => {
-                if (error) throw error;
-                res.json({
-                    status: 200,
-                    listUser: data,
-                    message: "Delete Customer successfully"
-                })
-            })
-        })
-    },
-    // Method Delete All
-    deleteAll: (req, res) => {
-        let sql = `DELETE FROM users`;
-        db.query(sql, function(err, data, fields) {
-            if (err) throw err;
-            let sql = `SELECT * FROM users`;
-            db.query(sql, (error, data, fields) => {
-                if (error) throw error;
-                res.json({
-                    status: 200,
-                    dbArticle: data,
-                    message: "Delete All Customer successfully"
-                })
-            })
-        })
     }
 }
