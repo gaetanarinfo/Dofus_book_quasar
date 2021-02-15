@@ -9,5 +9,7 @@ declare module 'vue/types/vue' {
 
 export default boot(({ Vue }) => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-  Vue.prototype.$axios = axios;
+  axios.defaults.baseURL = 'http://127.0.0.1:8000'
+  axios.defaults.withCredentials = true
+  Vue.prototype.$axios = axios
 });

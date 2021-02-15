@@ -10,14 +10,6 @@ const bcrypt = require('bcrypt'),
  * Controller
  *************/
 module.exports = {
-    get: async(req, res) => {
-        const sess = req.session
-        console.log('server session controller /session')
-        console.log(sess)
-        res.send({
-            sess
-        })
-    },
     // Methode de connexion push
     post: async(req, res) => {
         let userAuth = await User.findOne({ email: req.body.email })
@@ -40,7 +32,6 @@ module.exports = {
 
                     // eslint-disable-next-line padded-blocks
                 } else if (User) {
-                    console.log(req.body);
                     // eslint-disable-next-line padded-blocks
 
                     const payload = {

@@ -45,15 +45,15 @@ const actions = {
             })
             .then((res) => {
 
-                console.log(res);
+                // Modif --> 15/02/2021
+                localStorage.setItem('status', res.data.sess.status)
+
                 axios
                     .get('http://127.0.0.1:8000/login')
                     .then((ress) => {
-                        const sess = ress.data.sess
-                        console.log(sess.status)
+                        const sess = localStorage.getItem('status')
 
-                        if (sess.status === 'user') {
-                            console.log('sess user')
+                        if (sess === 'user') {
                             commit('setLoggedIn', true)
                         }
                     })
@@ -85,3 +85,23 @@ export default {
     actions,
     getters
 }
+
+// handleAuthStateChange({ commit }) {
+
+//     const token = localStorage.getItem('token')
+
+//     console.log('token : ' + token);
+
+//     axios
+//         .get('http://127.0.0.1:8000/session/', { token })
+//         .then((res) => {
+
+//             console.log(res.data.email);
+
+//             const sess = localStorage.getItem('status')
+
+//             if (sess === 'user') {
+//                 commit('setLoggedIn', true)
+//             }
+//         })
+// },

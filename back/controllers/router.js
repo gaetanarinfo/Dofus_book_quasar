@@ -26,7 +26,9 @@ router.route('/user/:id')
 
 router.route('/login')
     .post(userController.post)
-    .get(userController.get)
+
+router.route('/session')
+    .get(SessionController.get)
 
 /***********
  * / Router

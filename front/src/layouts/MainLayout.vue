@@ -33,7 +33,7 @@
           Menu de navigation
         </q-item-label>
 
-    <q-item v-if='loggedIn === false' clickable v-ripple to="/login">
+            <q-item v-if='loggedIn === false' clickable v-ripple to="/login">
               <q-item-section avatar>
                 <q-icon name="person" color="pink" />
               </q-item-section>
@@ -119,7 +119,7 @@ export default defineComponent({
   name: 'MainLayout',
   components: { EssentialLink },  
   computed: {
-    ...mapState('auth', ['loggedIn'])
+    ...mapState('auth', ['loggedIn', 'LoggedInEmail'])
   },
   setup() {
     const leftDrawerOpen = ref(false);
