@@ -35,7 +35,7 @@
 
             <q-item v-if='loggedIn === false' clickable v-ripple to="/login">
               <q-item-section avatar>
-                <q-icon name="person" color="pink" />
+                <q-icon name="login" color="green-8" />
               </q-item-section>
 
               <q-item-section>
@@ -43,13 +43,23 @@
               </q-item-section>
             </q-item>
 
-            <q-item v-if='loggedIn === true' clickable v-ripple @click='logout()'>
+            <q-item v-if='loggedIn === false' clickable v-ripple to="/register">
               <q-item-section avatar>
-                <q-icon name="mail" color="blue"/>
+                <q-icon name="account_box" color="blue" />
               </q-item-section>
 
               <q-item-section>
-                Logout
+                Crée un compte
+              </q-item-section>
+            </q-item>
+
+            <q-item v-if='loggedIn === true' clickable v-ripple @click='logout()'>
+              <q-item-section avatar>
+                <q-icon name="logout" color="red"/>
+              </q-item-section>
+
+              <q-item-section>
+                Déconnexion
               </q-item-section>
             </q-item>
 
@@ -93,18 +103,6 @@ const linksData = [
     link: '#/download'
   },
   {
-    title: 'Connexion',
-    caption: "Connexion à l'espace membre",
-    icon: 'login',
-    link: '#/login'
-  },
-  {
-    title: 'Inscription',
-    caption: "Inscrit toi et profite de diverse avanatage",
-    icon: 'account_circle',
-    link: '#/register'
-  },
-  {
     title: 'Contact',
     caption: 'Contactez-moi',
     icon: 'alternate_email',
@@ -113,13 +111,19 @@ const linksData = [
 ];
 
 import { defineComponent, ref } from '@vue/composition-api';
-import { mapState } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default defineComponent({
   name: 'MainLayout',
+  methods: {
+    logout () {
+      this.logoutUser()
+    },
+    ...mapActions('auth', ['logoutUser'])
+  },
   components: { EssentialLink },  
   computed: {
-    ...mapState('auth', ['loggedIn', 'LoggedInEmail'])
+    ...mapState('auth', ['loggedIn'])
   },
   setup() {
     const leftDrawerOpen = ref(false);

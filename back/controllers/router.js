@@ -21,6 +21,9 @@ router.route('/register')
 router.route('/login')
     .post(userController.post)
 
+router.route('/password_reset')
+    .post(userController.passwordReset)
+
 router.route('/session')
     .get(SessionController.get)
 

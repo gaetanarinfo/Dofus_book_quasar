@@ -24,11 +24,14 @@ form {
 }
 
 .q-field__messages>div {
+    display: block;
+    position: relative;
     word-break: break-word;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    color: white;
+    color: #232323;
     font-weight: 700;
+    line-height: 7px;
 }
 
 .q-field__marginal {

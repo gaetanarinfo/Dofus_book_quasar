@@ -13,8 +13,6 @@ module.exports = {
                     status: User.status
                 })
 
-                console.log(token);
-
                 res.send({ token })
             }
         })

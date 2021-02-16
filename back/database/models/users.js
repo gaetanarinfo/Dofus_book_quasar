@@ -25,14 +25,24 @@ const UsersShema = new mongoose.Schema({
         type: String
     },
     status: {
-        type: String
+        type: String,
+        default: "user"
+    },
+    isBanned: {
+        type: Boolean,
+        default: false
     }
-
 });
 
 UsersShema.pre('save', function(next) {
 
-    next()
+    const users = this
+
+    // On hash le mot de passe avec un force 10 pour mieux sécuriser le mot de passe
+    bcrypt.hash(users.password, 10, (error, encrypted) => {
+        users.password = encrypted
+        next()
+    })
 
 })
 

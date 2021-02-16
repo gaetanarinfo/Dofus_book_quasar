@@ -1,20 +1,20 @@
 <template>
   <q-page class="q-pa-md">
 
-     <login v-if='loggedIn === false'></login>
+     <password v-if='loggedIn === false'></password>
 
   </q-page>
 </template>
 
 <script>
-import login from '../components/auth/login'
+import password from '../components/auth/password_reset'
 import { mapActions, mapState } from 'vuex'
 
 
 export default {
   data () {
     return {
-      tab: 'login'
+      tab: 'password'
     }
   },
   methods: {
@@ -29,7 +29,7 @@ export default {
 
   },
   components: {
-    login
+    password
   },
   mounted () {
     this.checkAuth()

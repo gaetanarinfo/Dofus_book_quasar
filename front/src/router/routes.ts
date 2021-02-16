@@ -7,7 +7,8 @@ const routes: RouteConfig[] = [
     children: [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/login', name: 'Login', component: () => import('pages/Login.vue') },
-      { path: '/register', name: 'Register', component: () => import('pages/Register.vue') }
+      { path: '/register', name: 'Register', component: () => import('pages/Register.vue') },
+      { path: '/password_reset', name: 'Password Reset', component: () => import('pages/Password_Reset.vue') }
     ]
    },
   {

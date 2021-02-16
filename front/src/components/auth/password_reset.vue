@@ -3,7 +3,7 @@
 
     <q-form class='q-pa-md' @submit='login' @reset="onReset">
 
-    <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white">Connexion à l'espace membre</div>
+    <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white">Mot de passe oublié</div>
 
     <div class="col-sm-9 text-center text-white"><img src="images/dofus_logo.png" style="width: 279px;"></div>
 
@@ -13,22 +13,11 @@
         </template>
       </q-input>
 
-       <q-input v-model="formLogin.password" filled :type="isPwd ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un mot de passe valide']">
-        <template v-slot:append>
-          <q-icon
-            :name="isPwd ? 'visibility_off' : 'visibility'"
-            class="cursor-pointer"
-            @click="isPwd = !isPwd"
-          />
-        </template>
-      </q-input>
-
       <q-toggle v-model="accept" label="J'accepte la licence et les termes" />
 
       <div>
         <q-btn color="deep-orange" type="submit" glossy label="Valider"/>
         <q-btn label="Effacer" type="reset" color="red" glossy class="q-ml-sm" />
-        <q-btn type="a" href="#/password_reset" glossy label="Mot de passe oublié" push color="orange-6" class="q-ml-sm" />
       </div>
       
     </q-form>
@@ -38,17 +27,14 @@
 
 <script>
 import { mapActions, mapMutations } from 'vuex'
-import { SessionStorage } from 'quasar'
 
 export default {
   name: 'login',
   data () {
     return {
       accept : false,
-      isPwd: true,
       formLogin : {
-        email: '',
-        password: '',
+        email: ''
       }
     }
   },
@@ -64,16 +50,15 @@ export default {
         })
       }
       else {
-        this.loginUser(this.formLogin)
+        this.resetPasswordUser(this.formLogin)
       }  
        
     },
     onReset () {
       this.formLogin.email = null
-      this.formLogin.password = null
       this.accept = false
     },
-    ...mapActions('auth', ['loginUser'])
+    ...mapActions('auth', ['resetPasswordUser'])
   }
 }
 </script>

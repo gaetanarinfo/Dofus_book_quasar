@@ -26,7 +26,7 @@
         </template>
       </q-input>
 
-       <q-input v-model="form.password" filled :type="form.isPwd ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un mot de passe valide']">
+       <q-input v-model="form.password" filled :type="form.isPwd ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 9 || 'Merci d\'enter un mot de passe valide avec 8 caractères et 2 caractères spéciaux']">
         <template v-slot:append>
           <q-icon
             :name="form.isPwd ? 'visibility_off' : 'visibility'"
@@ -69,6 +69,11 @@ export default {
   },
   methods: {
     formCreateUser () {
+
+      var pwdRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*].*[!@#\$%\^&\*])(?=.{8,})");
+
+    if(this.form.password.match(pwdRegex)) 
+    { 
       if (this.form.accept !== true) {
         this.$q.notify({
           color: 'red-5',
@@ -79,13 +84,20 @@ export default {
       }
       else {
         this.registerUser(this.form)
-        this.$q.notify({
-          color: 'green-5',
-          textColor: 'white',
-          icon: 'cloud_done',
-          message: 'Ton inscription est pris en compte !'
-        })
       }
+      return true;
+    }
+    else
+    { 
+      this.$q.notify({
+          color: 'red-5',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Le mot de passe ne correspond pas aux conditions !'
+        })
+      return false;
+    }
+
     },
     onReset () {
       this.form.lastname = null
