@@ -5,7 +5,9 @@ const bcrypt = require('bcrypt'),
     jwt = require('jsonwebtoken'),
     User = require('../../database/models/users'),
     nodemailer = require('nodemailer'),
-    templateNewUser = require('../../template/templateNewUser')
+    templateNewUser = require('../../template/templateNewUser'),
+    templateRecoverPassword = require('../../template/templateRecoverPassword'),
+    randtoken = require('rand-token')
 
 // Déclaration de notre transporter
 // C'est en quelque sorte notre connexion à notre boite mail
@@ -80,22 +82,6 @@ module.exports = {
                                 sess.userId = User._id
                                 sess.token = token
 
-                                const { email, pseudo } = sess
-
-                                // On déclare une constante (Template de l'email)
-                                templateNewUser(email, pseudo)
-                                const mailOptions = templateNewUser(email, pseudo)
-
-                                // On demande à notre transporter d'envoyer notre mail
-                                transporter.sendMail(mailOptions, (err, info) => {
-                                    if (err) console.log(err)
-                                    else {
-                                        // req.flash('success', 'Un e-mail vient de vous être envoyé sur ' + user + ' !')
-                                        // req.session.success = req.flash('success')
-                                        // res.redirect('/')
-                                    }
-                                })
-
                                 res.send({
                                     token,
                                     sess
@@ -165,6 +151,22 @@ module.exports = {
 
                     } else {
 
+                        const { lastname, firstname, email, pseudo } = req.body
+
+                        // On déclare une constante (Template de l'email)
+                        templateNewUser(lastname, firstname, email, pseudo)
+                        const mailOptions = templateNewUser(lastname, firstname, email, pseudo)
+
+                        // On demande à notre transporter d'envoyer notre mail
+                        transporter.sendMail(mailOptions, (err, info) => {
+                            if (err) console.log(err)
+                            else {
+                                // req.flash('success', 'Un e-mail vient de vous être envoyé sur ' + user + ' !')
+                                // req.session.success = req.flash('success')
+                                // res.redirect('/')
+                            }
+                        })
+
                         User.create({
                             ...req.body
                         })
@@ -177,23 +179,5 @@ module.exports = {
             }
 
         })
-    },
-    // Method Post
-    passwordReset: async(req, res, next) => {
-
-        const { email } = req.body;
-
-        User.findOne({ email }, (error, userEmail) => {
-
-            if (userEmail) {
-
-                console.log('Email trouvé');
-
-            } else {
-                console.log('Email pas trouvé');
-            }
-
-        })
-
     }
 }

@@ -8,7 +8,8 @@ const express = require('express'),
  * Controller
  *************/
 const userController = require('./users/userController'),
-    SessionController = require('./users/SessionController')
+    SessionController = require('./users/SessionController'),
+    resetpasswordController = require('./users/resetpasswordController')
 
 /*
  * Router
@@ -22,10 +23,16 @@ router.route('/login')
     .post(userController.post)
 
 router.route('/password_reset')
-    .post(userController.passwordReset)
+    .post(resetpasswordController.passwordReset)
 
 router.route('/session')
     .get(SessionController.get)
+
+// Routes reset password
+router.route('/reset_password/:token')
+    .get(resetpasswordController.get)
+// router.route('/reset_password/:token')
+//     .post(resetpasswordController.post)
 
 /***********
  * / Router

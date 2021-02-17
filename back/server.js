@@ -43,7 +43,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Module pour le lancement de la BDD
-require('./database/db')
+require('./api/database/db')
 
 // Module App gestion des cookies
 app.use(expressSession({
@@ -71,7 +71,7 @@ app.use('*', (req, res, next) => {
 })
 
 // Router
-const ROUTER = require('./controllers/router')
+const ROUTER = require('./api/controllers/router')
 app.use(ROUTER)
 
 // Page Err 404

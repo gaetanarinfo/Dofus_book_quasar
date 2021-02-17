@@ -2,7 +2,8 @@
  * Import Module
  ****************/
 const mongoose = require('mongoose'),
-    bcrypt = require('bcrypt')
+    bcrypt = require('bcrypt'),
+    randtoken = require('rand-token')
 
 // MongoDb Collection Model Users
 const UsersShema = new mongoose.Schema({
@@ -23,6 +24,10 @@ const UsersShema = new mongoose.Schema({
     },
     password: {
         type: String
+    },
+    token: {
+        type: String,
+        default: randtoken.generate(30)
     },
     status: {
         type: String,

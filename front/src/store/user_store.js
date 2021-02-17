@@ -198,7 +198,13 @@ const actions = {
             })
             .then((res) => {
 
-                const err = res.data.error
+                const err = res.data.error,
+                    succ = res.data.success,
+                    email = res.data.emailPWD,
+                    token = res.data.tokenPWD
+
+                localStorage.setItem('tokenPWD', token)     
+                localStorage.setItem('email', email)  
 
                 // User empty
                 if(err === true){
@@ -208,24 +214,35 @@ const actions = {
                     message: "Le compte n'éxiste pas !"})
                 }
 
-                // if (sess === 'user') {
+                if(succ === true){
+                    Notify.create({color: 'green-5',
+                    textColor: 'white',
+                    icon: 'check',
+                    message: "Un e-mail a été envoyé pour réinitialiser ton mot de passe !"})
+                }
 
-                //     Notify.create({color: 'green-5',
-                //     textColor: 'white',
-                //     icon: 'check',
-                //     message: `Bienvenue ${res.data.sess.pseudo}`})
-
-                //     setTimeout(function(){ 
-                //         commit('setLoggedIn', true)
-                //         document.location.href = "/";
-                //     }, 2000);
-
-                // }    
+                
 
             })
             .catch((err) => {
 
 
+            })
+    },
+    recoverPasswordUser({ commit }) {
+
+        const token = localStorage.getItem('tokenPWD')
+
+        axios
+            .get('/reset_password/', { token })
+            .then((res) => {
+
+                if(token){
+                    console.log('test');
+                }else{
+                    document.location.href = "/";
+                }
+                
             })
     },
 }

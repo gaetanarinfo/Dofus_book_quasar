@@ -8,7 +8,8 @@ const routes: RouteConfig[] = [
       { path: '', component: () => import('pages/Index.vue') },
       { path: '/login', name: 'Login', component: () => import('pages/Login.vue') },
       { path: '/register', name: 'Register', component: () => import('pages/Register.vue') },
-      { path: '/password_reset', name: 'Password Reset', component: () => import('pages/Password_Reset.vue') }
+      { path: '/password_reset', name: 'Password Reset', component: () => import('pages/Password_Reset.vue') },
+      { path: '/reset_password/:token', name: 'Reset Password', component: () => import('pages/Reset_Password.vue') }
     ]
    },
   {
