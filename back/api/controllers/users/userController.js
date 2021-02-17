@@ -1,10 +1,23 @@
-const bcrypt = require('bcrypt'),
-    jwt = require('jsonwebtoken'),
-    User = require('../database/models/users')
-
 /*
  * Import Module
  ****************/
+const bcrypt = require('bcrypt'),
+    jwt = require('jsonwebtoken'),
+    User = require('../../database/models/users'),
+    nodemailer = require('nodemailer'),
+    templateNewUser = require('../../template/templateNewUser')
+
+// Déclaration de notre transporter
+// C'est en quelque sorte notre connexion à notre boite mail
+transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
+    auth: {
+        user: process.env.USER_MAILER, // Env utilisateur
+        pass: process.env.PASSWORD_MAILER, // Env password
+    }
+})
 
 /*
  * Controller
@@ -66,6 +79,22 @@ module.exports = {
                                 sess.pseudo = User.pseudo
                                 sess.userId = User._id
                                 sess.token = token
+
+                                const { email, pseudo } = sess
+
+                                // On déclare une constante (Template de l'email)
+                                templateNewUser(email, pseudo)
+                                const mailOptions = templateNewUser(email, pseudo)
+
+                                // On demande à notre transporter d'envoyer notre mail
+                                transporter.sendMail(mailOptions, (err, info) => {
+                                    if (err) console.log(err)
+                                    else {
+                                        // req.flash('success', 'Un e-mail vient de vous être envoyé sur ' + user + ' !')
+                                        // req.session.success = req.flash('success')
+                                        // res.redirect('/')
+                                    }
+                                })
 
                                 res.send({
                                     token,

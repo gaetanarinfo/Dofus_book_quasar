@@ -7,8 +7,8 @@ const express = require('express'),
 /*
  * Controller
  *************/
-const userController = require('./userController'),
-    SessionController = require('./SessionController')
+const userController = require('./users/userController'),
+    SessionController = require('./users/SessionController')
 
 /*
  * Router
