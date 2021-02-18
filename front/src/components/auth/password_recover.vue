@@ -17,6 +17,16 @@
         </template>
       </q-input>
 
+      <q-input v-model="formLogin.password_confirm" filled :type="isPwd2 ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un mot de passe valide']">
+        <template v-slot:append>
+          <q-icon
+            :name="isPwd2 ? 'visibility_off' : 'visibility'"
+            class="cursor-pointer"
+            @click="isPwd2 = !isPwd2"
+          />
+        </template>
+      </q-input>
+
       <q-toggle v-model="accept" label="J'accepte la licence et les termes" />
 
       <div>
@@ -38,36 +48,64 @@ export default {
     return {
       accept : false,
       isPwd: true,
+      isPwd2: true,
       formLogin : {
         password: '',
+        password_confirm: ''
       }
     }
   },
   methods: {
     login() {
 
-      if (this.accept !== true) {
+      var pwdRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
+
+      if(this.formLogin.password.match(pwdRegex) || this.formLogin.password_confirm.match(pwdRegex)) 
+      { 
+
+        if (this.formLogin.password === this.formLogin.password_confirm) { 
+
+        if (this.accept !== true) {
+          this.$q.notify({
+            color: 'red-5',
+            textColor: 'white',
+            icon: 'warning',
+            message: 'Tu doit d\'abord accepter la licence et les conditions'
+          })
+        }
+        else {
+          this.recoverPasswordUserConfirm(this.formLogin) 
+        }  
+        }else{
+              this.$q.notify({
+              color: 'red-5',
+              textColor: 'white',
+              icon: 'warning',
+              message: 'Les mots de passe ne correspondent pas !'
+            })
+          }
+        
+      }else{
         this.$q.notify({
           color: 'red-5',
           textColor: 'white',
           icon: 'warning',
-          message: 'Tu doit d\'abord accepter la licence et les conditions'
+          message: 'Le mot de passe ne correspond pas aux conditions !'
         })
+      return false;
       }
-      else {
-        this.resetPasswordUser(this.formLogin)
-      }  
        
     },
     onReset () {
       this.formLogin.password = null
+      this.formLogin.password_confirm = null
       this.accept = false
     },
+    ...mapActions('auth', ['recoverPasswordUserConfirm']),
     checkAuth () {
       this.recoverPasswordUser()
       setTimeout(this.checkAuth, 2500)
     },
-    // ...mapActions('auth', ['AMODIFIER'])
     ...mapActions('auth', ['recoverPasswordUser'])
   },
   mounted () {

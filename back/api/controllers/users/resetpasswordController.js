@@ -2,10 +2,8 @@
  * Import Module
  ****************/
 const bcrypt = require('bcrypt'),
-    jwt = require('jsonwebtoken'),
     User = require('../../database/models/users'),
     nodemailer = require('nodemailer'),
-    templateNewUser = require('../../template/templateNewUser'),
     templateRecoverPassword = require('../../template/templateRecoverPassword'),
     randtoken = require('rand-token')
 
@@ -56,13 +54,13 @@ module.exports = {
 
                 let success = true,
                     tokenPWD = token
-                    emailPWD = email
+                emailPWD = email
 
-                    res.json({
-                        success,
-                        tokenPWD,
-                        emailPWD
-                    })
+                res.json({
+                    success,
+                    tokenPWD,
+                    emailPWD
+                })
 
             } else {
 
@@ -76,8 +74,6 @@ module.exports = {
 
         const token = req.session.tokenPWD,
             email = req.session.email;
-
-        console.log(req.session);    
 
         // Si la clé token et l'adresse email est vide on redirige vers l'accueil
         if (tokenPWD == '' || email == '') {
@@ -112,4 +108,56 @@ module.exports = {
 
         }
     },
+    // Methode post pour réinitialiser un nouveau mot de passe
+    post: (req, res) => {
+
+        // Déclaration des constantes
+        const token = req.body.tokenPWD,
+            email = req.body.email,
+            password = req.body.password,
+            password_confirm = req.body.password_confirm
+
+        console.log(token, email, password, password_confirm);
+
+        // On recherche l'utilisateur dans la BDD
+        User.findOne({ 'token': token, 'email': email }, (err, user) => {
+            if (err) return res.redirect('/') // Si erreur on redirige
+
+            // On compare la mot de passe (Si il fait plus de 9 caractères)
+            if (password.length > 9) {
+
+                // On comparant les 2 mots de passe
+                if (password == password_confirm) {
+
+                    // On crypt le mot de passe
+                    bcrypt.hash(req.body.password, 10, (error, encrypted) => {
+                        User.findOneAndUpdate({ 'token': token, 'email': email }, {
+                            password: encrypted,
+                            token: randtoken.generate(30)
+                        }, (error) => {});
+                    })
+
+                    let success = true
+
+                    res.json({
+                        success
+                    })
+
+                } else {
+                    let error = true
+
+                    res.json({
+                        error
+                    })
+                }
+            } else {
+                let error2 = true
+
+                res.json({
+                    error2
+                })
+            }
+
+        })
+    }
 }

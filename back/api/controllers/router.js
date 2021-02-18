@@ -31,8 +31,8 @@ router.route('/session')
 // Routes reset password
 router.route('/reset_password/:token')
     .get(resetpasswordController.get)
-// router.route('/reset_password/:token')
-//     .post(resetpasswordController.post)
+router.route('/reset_password')
+    .post(resetpasswordController.post)
 
 /***********
  * / Router

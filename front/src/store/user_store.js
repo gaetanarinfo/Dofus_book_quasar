@@ -35,30 +35,36 @@ const actions = {
                     err2 = res.data.error2
 
                 // User email exist
-                if(err === true){
+                if (err === true) {
 
-                    Notify.create({color: 'red-5',
-                    textColor: 'white',
-                    icon: 'warning',
-                    message: "L'adresse email éxiste déjà !"})
-
-                }else{
-
-                    if(err2 === true){
-
-                        Notify.create({color: 'red-5',
+                    Notify.create({
+                        color: 'red-5',
                         textColor: 'white',
                         icon: 'warning',
-                        message: "Le pseudo éxiste déjà !"})
+                        message: "L'adresse email éxiste déjà !"
+                    })
 
-                    }else{
+                } else {
 
-                         Notify.create({color: 'green-5',
-                        textColor: 'white',
-                        icon: 'check',
-                        message: 'Ton inscription est pris en compte !'})
+                    if (err2 === true) {
 
-                        setTimeout(function(){ 
+                        Notify.create({
+                            color: 'red-5',
+                            textColor: 'white',
+                            icon: 'warning',
+                            message: "Le pseudo éxiste déjà !"
+                        })
+
+                    } else {
+
+                        Notify.create({
+                            color: 'green-5',
+                            textColor: 'white',
+                            icon: 'check',
+                            message: 'Ton inscription est pris en compte !'
+                        })
+
+                        setTimeout(function() {
                             document.location.href = "/#/login";
                         }, 2000);
 
@@ -85,27 +91,33 @@ const actions = {
                     err3 = res.data.error3
 
                 // User empty
-                if(err === true){
-                    Notify.create({color: 'red-5',
-                    textColor: 'white',
-                    icon: 'warning',
-                    message: "Ton compte n'éxiste pas !"})
+                if (err === true) {
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Ton compte n'éxiste pas !"
+                    })
                 }
 
                 // User banni
-                if(err2 === true){
-                    Notify.create({color: 'red-5',
-                    textColor: 'white',
-                    icon: 'warning',
-                    message: "Ton compte à été banni !"})
+                if (err2 === true) {
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Ton compte à été banni !"
+                    })
                 }
 
                 // User banni
-                if(err3 === true){
-                    Notify.create({color: 'red-5',
-                    textColor: 'white',
-                    icon: 'warning',
-                    message: "Le mot de passe ne correspond pas !"})
+                if (err3 === true) {
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Le mot de passe ne correspond pas !"
+                    })
                 }
 
                 // Modif --> 15/02/2021
@@ -118,17 +130,19 @@ const actions = {
 
                 if (sess === 'user') {
 
-                    Notify.create({color: 'green-5',
-                    textColor: 'white',
-                    icon: 'check',
-                    message: `Bienvenue ${res.data.sess.pseudo}`})
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: `Bienvenue ${res.data.sess.pseudo}`
+                    })
 
-                    setTimeout(function(){ 
+                    setTimeout(function() {
                         commit('setLoggedIn', true)
                         document.location.href = "/";
                     }, 2000);
 
-                }    
+                }
 
             })
             .catch((err) => {
@@ -174,25 +188,27 @@ const actions = {
             .get('/logout')
             .then((res) => {
 
-                Notify.create({color: 'green-5',
+                Notify.create({
+                    color: 'green-5',
                     textColor: 'white',
                     icon: 'cloud_done',
-                    message: `Merci de ta visite ${localStorage.getItem('pseudo')} à bientôt !`})
+                    message: `Merci de ta visite ${localStorage.getItem('pseudo')} à bientôt !`
+                })
 
-                setTimeout(function(){ 
-                        localStorage.removeItem('sess', null)
-                        localStorage.removeItem('token', null)
-                        localStorage.removeItem('status', null)
-                        localStorage.removeItem('email', null)
-                        localStorage.removeItem('pseudo', null)
+                setTimeout(function() {
+                    localStorage.removeItem('sess', null)
+                    localStorage.removeItem('token', null)
+                    localStorage.removeItem('status', null)
+                    localStorage.removeItem('email', null)
+                    localStorage.removeItem('pseudo', null)
 
-                        commit('setLoggedIn', false)
-                        document.location.href = "/";
+                    commit('setLoggedIn', false)
+                    document.location.href = "/";
                 }, 2000);
             })
     },
     resetPasswordUser({ commit }, payload) {
-         axios
+        axios
             .post('/password_reset', {
                 email: payload.email
             })
@@ -203,25 +219,29 @@ const actions = {
                     email = res.data.emailPWD,
                     token = res.data.tokenPWD
 
-                localStorage.setItem('tokenPWD', token)     
-                localStorage.setItem('email', email)  
+                localStorage.setItem('tokenPWD', token)
+                localStorage.setItem('email', email)
 
                 // User empty
-                if(err === true){
-                    Notify.create({color: 'red-5',
-                    textColor: 'white',
-                    icon: 'warning',
-                    message: "Le compte n'éxiste pas !"})
+                if (err === true) {
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Le compte n'éxiste pas !"
+                    })
                 }
 
-                if(succ === true){
-                    Notify.create({color: 'green-5',
-                    textColor: 'white',
-                    icon: 'check',
-                    message: "Un e-mail a été envoyé pour réinitialiser ton mot de passe !"})
+                if (succ === true) {
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: "Un e-mail a été envoyé pour réinitialiser ton mot de passe !"
+                    })
                 }
 
-                
+
 
             })
             .catch((err) => {
@@ -237,12 +257,77 @@ const actions = {
             .get('/reset_password/', { token })
             .then((res) => {
 
-                if(token){
-                    console.log('test');
-                }else{
+                if (token) {
+                    //console.log('Le token est bon');
+                } else {
                     document.location.href = "/";
                 }
-                
+
+            })
+    },
+    recoverPasswordUserConfirm({ commit }, payload) {
+
+        const token = localStorage.getItem('tokenPWD')
+
+        axios
+            .post('/reset_password/', {
+                tokenPWD: token,
+                email: localStorage.getItem('email'),
+                password: payload.password,
+                password_confirm: payload.password_confirm
+            })
+            .then((res) => {
+
+                const err = res.data.error,
+                    err2 = res.data.error2,
+                    succ = res.data.success
+
+                // User email exist
+                if (err === true) {
+
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Les mots de passe ne correspondent pas !"
+                    })
+
+                } else {
+
+                    if (err2 === true) {
+
+                        Notify.create({
+                            color: 'red-5',
+                            textColor: 'white',
+                            icon: 'warning',
+                            message: "Le mot de passe doit faire plus de 8 caractères !"
+                        })
+
+                    } else {
+
+                        if (succ === true) {
+                            Notify.create({
+                                color: 'green-5',
+                                textColor: 'white',
+                                icon: 'check',
+                                message: 'Le mot de passe est désormais changé !'
+                            })
+
+                            localStorage.removeItem('tokenPWD')
+                            localStorage.removeItem('email')
+
+                            setTimeout(function() {
+                                document.location.href = "/#/login";
+                            }, 2000);
+
+                        }
+
+                    }
+
+                }
+
+            }).catch((err) => {
+                //console.log(err)
             })
     },
 }

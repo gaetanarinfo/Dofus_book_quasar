@@ -70,7 +70,7 @@ export default {
   methods: {
     formCreateUser () {
 
-      var pwdRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*].*[!@#\$%\^&\*])(?=.{8,})");
+      var pwdRegex = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})");
 
     if(this.form.password.match(pwdRegex)) 
     { 
