@@ -117,8 +117,6 @@ module.exports = {
             password = req.body.password,
             password_confirm = req.body.password_confirm
 
-        console.log(token, email, password, password_confirm);
-
         // On recherche l'utilisateur dans la BDD
         User.findOne({ 'token': token, 'email': email }, (err, user) => {
             if (err) return res.redirect('/') // Si erreur on redirige
