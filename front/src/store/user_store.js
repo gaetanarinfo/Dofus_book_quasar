@@ -9,12 +9,16 @@ import { Notify } from 'quasar'
 const state = {
     loggedIn: false,
     logged: false,
+    listUser: [],
     token: null
 }
 
 const mutations = {
     setLoggedIn(state, value) {
         state.loggedIn = value
+    },
+    setEmailUser(state, value) {
+        state.listUser = value
     }
 }
 
@@ -179,7 +183,7 @@ const actions = {
                 if (sess === 'user') {
 
                     commit('setLoggedIn', true)
-                    document.location.href = "/";
+
                 }
             })
     },
@@ -328,6 +332,19 @@ const actions = {
 
             }).catch((err) => {
                 //console.log(err)
+            })
+    },
+    loggedDataUser({ commit }) {
+
+        const token = localStorage.getItem('token')
+
+        axios
+            .get('/profil/', { token })
+            .then((res) => {
+
+                const email = localStorage.getItem('email')
+
+                commit('setEmailUser', email)
             })
     },
 }

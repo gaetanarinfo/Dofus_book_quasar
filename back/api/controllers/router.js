@@ -11,6 +11,12 @@ const userController = require('./users/userController'),
     SessionController = require('./users/SessionController'),
     resetpasswordController = require('./users/resetpasswordController')
 
+
+/*
+ * Middleware
+ *************/
+const auth = require('../middleware/auth')
+
 /*
  * Router
  ***********/
@@ -33,6 +39,9 @@ router.route('/reset_password/:token')
     .get(resetpasswordController.get)
 router.route('/reset_password')
     .post(resetpasswordController.post)
+
+router.route('/profil')
+    .post(userController.getProfil)
 
 /***********
  * / Router

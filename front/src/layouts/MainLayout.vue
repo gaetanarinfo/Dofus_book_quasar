@@ -53,6 +53,16 @@
               </q-item-section>
             </q-item>
 
+            <q-item v-if='loggedIn === true' clickable v-ripple to="/profil">
+              <q-item-section avatar>
+                <q-icon name="user" color="green"/>
+              </q-item-section>
+
+              <q-item-section>
+                Mon profil
+              </q-item-section>
+            </q-item>  
+
             <q-item v-if='loggedIn === true' clickable v-ripple @click='logout()'>
               <q-item-section avatar>
                 <q-icon name="logout" color="red"/>

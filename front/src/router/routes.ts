@@ -26,6 +26,13 @@ const routes: RouteConfig[] = [
       { path: '', component: () => import('pages/Download.vue') }
     ]
   },
+  {
+    path: '/profil',
+    component: () => import('layouts/MainLayout.vue'),
+    children: [
+      { path: '', name: 'Profil', component: () => import('pages/Profile.vue'), props: true }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

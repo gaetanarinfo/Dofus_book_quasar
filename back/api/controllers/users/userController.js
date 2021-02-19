@@ -179,5 +179,21 @@ module.exports = {
             }
 
         })
+    },
+    getProfil: (req, res) => {
+
+        jwt.verify(req.body.token, process.env.JWT_TOKEN, (err, token) => {
+            if (err) res.json('Token non Valid')
+            else {
+
+                const token = jwt.sign({
+                    email: User.email,
+                    status: User.status
+                })
+
+                res.send({ token })
+            }
+        })
+
     }
 }
