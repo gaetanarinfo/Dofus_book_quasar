@@ -9,16 +9,12 @@ import { Notify } from 'quasar'
 const state = {
     loggedIn: false,
     logged: false,
-    listUser: [],
     token: null
 }
 
 const mutations = {
     setLoggedIn(state, value) {
         state.loggedIn = value
-    },
-    setEmailUser(state, value) {
-        state.listUser = value
     }
 }
 
@@ -125,10 +121,14 @@ const actions = {
                 }
 
                 // Modif --> 15/02/2021
-                localStorage.setItem('token', res.data.sess.token)
                 localStorage.setItem('status', res.data.sess.status)
                 localStorage.setItem('email', res.data.sess.email)
+                localStorage.setItem('userId', res.data.sess._id)
                 localStorage.setItem('pseudo', res.data.sess.pseudo)
+                localStorage.setItem('lastname', res.data.sess.lastname)
+                localStorage.setItem('firstname', res.data.sess.firstname)
+                localStorage.setItem('avatar', res.data.sess.avatar)
+                localStorage.setItem('token', res.data.token)
 
                 const sess = localStorage.getItem('status')
 
@@ -203,8 +203,12 @@ const actions = {
                     localStorage.removeItem('sess', null)
                     localStorage.removeItem('token', null)
                     localStorage.removeItem('status', null)
+                    localStorage.removeItem('userId', null)
                     localStorage.removeItem('email', null)
                     localStorage.removeItem('pseudo', null)
+                    localStorage.removeItem('lastname', null)
+                    localStorage.removeItem('firstname', null)
+                    localStorage.removeItem('avatar', null)
 
                     commit('setLoggedIn', false)
                     document.location.href = "/";
@@ -336,17 +340,84 @@ const actions = {
     },
     loggedDataUser({ commit }) {
 
-        const token = localStorage.getItem('token')
+        const userToken = localStorage.getItem('token')
 
         axios
-            .get('/profil/', { token })
+            .get('/profil/' + userToken)
             .then((res) => {
 
-                const email = localStorage.getItem('email')
+                const email = localStorage.getItem('email'),
+                    pseudo = localStorage.getItem('pseudo'),
+                    id = localStorage.getItem('userId'),
+                    avatar = localStorage.getItem('avatar'),
+                    lastname = localStorage.getItem('lastname'),
+                    firstname = localStorage.getItem('firstname')
 
-                commit('setEmailUser', email)
+                // Comparaison si l'user vient à modifier le localstorage
+                if (email != res.data.userEmail) {
+                    localStorage.setItem('email', res.data.userEmail)
+                } else if (pseudo != res.data.pseudo) {
+                    localStorage.setItem('pseudo', res.data.userPseudo)
+                } else if (id != res.data._id) {
+                    localStorage.setItem('userId', res.data._id)
+                } else if (avatar != res.data.avatar) {
+                    localStorage.setItem('avatar', res.data.avatar)
+                } else if (lastname != res.data.lastname) {
+                    localStorage.setItem('lastname', res.data.lastname)
+                } else if (firstname != res.data.firstname) {
+                    localStorage.setItem('firstname', res.data.firstname)
+                }
+
             })
     },
+    editUser({}, payload) {
+
+        const userId = localStorage.getItem('userId')
+
+        axios
+            .post('/profil_edit/' + userId, {
+                lastname: payload.lastname,
+                firstname: payload.firstname,
+                email: payload.email,
+                pseudo: payload.pseudo
+            })
+            .then((res) => {
+
+                const succ = res.data.success,
+                    err = res.data.error,
+                    userEmail = res.data.userEmail,
+                    userPseudo = res.data.userPseudo,
+                    userLastName = res.data.userLastName,
+                    userFirstName = res.data.userFirstName
+
+                // User email exist
+                if (err === true) {
+
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Une erreur est survenue !"
+                    })
+                }
+
+                if (succ === true) {
+
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: 'Ton profil à été modifier !'
+                    })
+
+                    localStorage.setItem('email', userEmail)
+                    localStorage.setItem('lastname', userLastName)
+                    localStorage.setItem('firstname', userFirstName)
+                    localStorage.setItem('pseudo', userPseudo)
+
+                }
+            })
+    }
 }
 
 const getters = {}

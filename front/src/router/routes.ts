@@ -28,7 +28,7 @@ const routes: RouteConfig[] = [
   },
   {
     path: '/profil',
-    component: () => import('layouts/MainLayout.vue'),
+    component: () => import('layouts/ProfilLayout.vue'),
     children: [
       { path: '', name: 'Profil', component: () => import('pages/Profile.vue'), props: true }
     ]

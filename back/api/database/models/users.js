@@ -29,6 +29,10 @@ const UsersShema = new mongoose.Schema({
         type: String,
         default: randtoken.generate(30)
     },
+    avatar: {
+        type: String,
+        dafault: "https://avatar.ankama.com/users/47223799.png"
+    },
     status: {
         type: String,
         default: "user"

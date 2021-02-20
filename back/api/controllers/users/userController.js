@@ -42,11 +42,6 @@ module.exports = {
 
         } else {
             const { email } = req.body
-                // , dbUser = await User.find({})
-                // L'on déclare la récupération de notre req.session pour pouvoir lui attribuer notre function
-                // Par la suite
-                // eslint-disable-next-line comma-style
-                , sess = req.session
 
             User.findOne({ email }, (err, User) => {
 
@@ -67,20 +62,21 @@ module.exports = {
 
                                 const payload = {
                                     _id: User._id,
+                                    status: User.status,
                                     email: User.email,
-                                    pseudo: User.pseudo
+                                    pseudo: User.pseudo,
+                                    lastname: User.lastname,
+                                    firstname: User.firstname,
+                                    avatar: User.avatar
                                 }
 
                                 let token = jwt.sign(payload, 'token', {
-                                    expiresIn: 1440
+                                    expiresIn: 60
                                 })
 
-                                // console.log('OK 1')
-                                sess.email = User.email
-                                sess.status = User.status
-                                sess.pseudo = User.pseudo
-                                sess.userId = User._id
-                                sess.token = token
+                                var decoded = jwt.decode(token, { complete: true });
+
+                                const sess = decoded.payload
 
                                 res.send({
                                     token,
@@ -182,18 +178,55 @@ module.exports = {
     },
     getProfil: (req, res) => {
 
-        jwt.verify(req.body.token, process.env.JWT_TOKEN, (err, token) => {
-            if (err) res.json('Token non Valid')
-            else {
+        // get the decoded payload and header
+        var decoded = jwt.decode(req.params.token, { complete: true });
 
-                const token = jwt.sign({
-                    email: User.email,
-                    status: User.status
+        const userEmail = decoded.payload.email,
+            userPseudo = decoded.payload.pseudo,
+            userLastName = decoded.payload.lastname,
+            userFirstName = decoded.payload.firstname,
+            userAvatar = decoded.payload.avatar,
+            userId = decoded.payload._id
+
+        res.send({ userEmail, userPseudo, userLastName, userFirstName, userAvatar, userId })
+
+    },
+    editProfil: async(req, res) => {
+
+        const id = req.params.id
+
+        User.findById({ _id: id }, (err, user) => {
+
+            if (user) {
+
+                const { email, pseudo, lastname, firstname } = req.body;
+
+                User.updateOne({ _id: id }, { email: email, pseudo: pseudo, lastname: lastname, firstname: firstname }, (err) => {
+
+                    if (err) {
+                        let error = true
+
+                        res.send({
+                            error
+                        })
+
+                    } else {
+
+                        let success = true
+
+                        res.send({
+                            success,
+                            userEmail: email,
+                            userPseudo: pseudo,
+                            userLastName: lastname,
+                            userFirstName: firstname
+                        })
+                    }
                 })
 
-                res.send({ token })
             }
+
         })
 
-    }
+    },
 }

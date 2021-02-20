@@ -9,8 +9,13 @@ module.exports = {
             else {
 
                 const token = jwt.sign({
+                    _id: User._id,
+                    status: User.status,
                     email: User.email,
-                    status: User.status
+                    pseudo: User.pseudo,
+                    lastname: User.lastname,
+                    firstname: User.firstname,
+                    avatar: User.avatar
                 })
 
                 res.send({ token })

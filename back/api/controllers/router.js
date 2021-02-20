@@ -40,8 +40,11 @@ router.route('/reset_password/:token')
 router.route('/reset_password')
     .post(resetpasswordController.post)
 
-router.route('/profil')
-    .post(userController.getProfil)
+router.route('/profil/:token')
+    .get(userController.getProfil)
+
+router.route('/profil_edit/:id')
+    .post(userController.editProfil)
 
 /***********
  * / Router
