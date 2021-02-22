@@ -35,10 +35,10 @@
       </thead>
       <tbody>
         <tr class="text-white" v-for="mail in listMail" :key="mail.id">
-          <td class="text-center">{{ mail.pseudo }}</td>
-          <td class="text-center">159</td>
-          <td class="text-center">6</td>
-          <td class="text-center">24</td>
+          <td class="text-center">{{ mail.author }}</td>
+          <td class="text-center">{{ mail.lastname }}</td>
+          <td class="text-center">{{ mail.firstname }}</td>
+          <td class="text-center">{{ mail.sujet }}</td>
           <td class="text-center"><q-btn dense round flat color="green-5" icon="check">
               <q-tooltip anchor="top middle" self="center middle">
                Voir le message
@@ -81,15 +81,13 @@ export default {
   },
     methods: { 
     checkAuth () {
-      this.getListMail()
       this.loggedDataUser()
       setTimeout(this.checkAuth, 2500)
     },
-    ...mapActions('auth', ['getListMail']),
     ...mapActions('auth', ['loggedDataUser'])
   },
-   computed: {
-    ...mapState('auth', ['listMail'])
-  },
+  props: {
+    listMail: Array
+  }
 }
 </script>

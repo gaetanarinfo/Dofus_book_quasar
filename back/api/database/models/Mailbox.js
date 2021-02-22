@@ -1,32 +1,29 @@
 /*
  * Import Module
  ****************/
-const mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    User = require('./users')
+const mongoose = require('mongoose')
 
 // MongoDb Collection Model Comment
 const MailboxShema = new mongoose.Schema({
 
     author: String,
+    recipient: String,
+    lastname: String,
+    firstname: String,
+    sujet: String,
     dateCreate: {
         type: Date,
         default: new Date()
     },
     avatar: String,
     content: {
-        type: String,
-        required: [true, ""],
-    },
-    userID: {
-        type: Schema.Types.ObjectId,
-        ref: 'users'
+        type: String
     }
 
 });
 
 // Déclaration du model comment dans mongodb
-const Mailbox = mongoose.model('mailbox', MailboxShema);
+const Mailbox = mongoose.model('mailboxs', MailboxShema);
 
 /*
  * Export Module

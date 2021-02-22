@@ -49,8 +49,11 @@ router.route('/profil_edit/:id')
 router.route('/profil_edit_avatar/:id')
     .post(userController.editProfilAvatar)
 
-router.route('/mailbox')
+router.route('/mailbox/:pseudo')
     .get(userController.mailbox)
+
+router.route('/mailbox/:id')
+    .post(userController.mailpost)
 
 /***********
  * / Router

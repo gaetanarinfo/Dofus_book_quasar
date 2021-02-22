@@ -1,19 +1,19 @@
 <template>
   <q-page class="q-pa-md">
 
-     <mailbox v-if='loggedIn === true' :listMail='listMail'></mailbox>
+     <send v-if='loggedIn === true'></send>
 
   </q-page>
 </template>
 
 <script>
-import mailbox from '../components/auth/mailbox'
+import send from '../components/auth/sendMail'
 import { mapActions, mapState } from 'vuex'
 
 export default {
   data () {
     return {
-      tab: 'mailbox'
+      tab: 'send'
     }
   },
   methods: {
@@ -21,19 +21,16 @@ export default {
       this.logged()
       setTimeout(this.checkAuth, 2500)
     },
-    ...mapActions('auth', ['logged']),
-    ...mapActions('auth', ['getListMail'])
+    ...mapActions('auth', ['logged'])
   },
   computed: {
-    ...mapState('auth', ['loggedIn']),
-    ...mapState('auth', ['listMail'])
+    ...mapState('auth', ['loggedIn'])
   },
   components: {
-    mailbox
+    send
   },
   mounted () {
     this.checkAuth()
-    this.getListMail()
   }
 }
 </script>

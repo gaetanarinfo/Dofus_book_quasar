@@ -423,13 +423,56 @@ const actions = {
             })
     },
     getListMail({ commit }) {
-        console.log('Get List Mail')
+
+        const pseudo = localStorage.getItem('pseudo')
+
         axios
-            .get('/mailbox')
+            .get('/mailbox/' + pseudo)
             .then(res => {
                 commit('setListMail', res.data.listMail)
             })
     },
+    sendMail({}, payload) {
+        const userId = localStorage.getItem('userId')
+
+        axios
+            .post('/mailbox/' + userId, {
+                lastname: payload.lastname,
+                firstname: payload.firstname,
+                sujet: payload.sujet,
+                author: payload.author,
+                avatar: payload.avatar,
+                content: payload.content,
+                recipient: payload.recipient
+            })
+            .then((res) => {
+
+                const succ = res.data.success,
+                    err = res.data.error
+
+                // User email exist
+                if (err === true) {
+
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Une erreur est survenue !"
+                    })
+                }
+
+                if (succ === true) {
+
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: 'Message envoyer !'
+                    })
+
+                }
+            })
+    }
 }
 
 const getters = {}

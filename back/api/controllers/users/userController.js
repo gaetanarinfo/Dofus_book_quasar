@@ -276,11 +276,13 @@ module.exports = {
     },
     mailbox: (req, res) => {
 
-        User.find()
-            .populate('mailbox')
+        Mailbox.findOne({ recipient: req.params.pseudo })
             .lean()
+            .sort('-dateCreate')
             .exec((err, data) => {
                 if (err) console.log(err)
+
+                console.log(data);
 
                 res.send({
                     listMail: data
@@ -289,4 +291,24 @@ module.exports = {
             })
 
     },
+    mailpost: (req, res) => {
+
+        Mailbox
+
+        console.log(req.body);
+
+        // On définit notre construction de Commentaire
+        const mailbox = new Mailbox({
+            ...req.body,
+            dateCreate: new Date()
+        })
+
+        mailbox.save((err) => {
+            if (err) {
+                res.send(err)
+            }
+        })
+
+
+    }
 }

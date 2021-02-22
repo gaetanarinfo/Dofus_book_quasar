@@ -3,9 +3,7 @@
  ****************/
 const mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
-    randtoken = require('rand-token'),
-    Schema = mongoose.Schema,
-    Mailbox = require('./Mailbox')
+    randtoken = require('rand-token')
 
 // MongoDb Collection Model Users
 const UsersShema = new mongoose.Schema({
@@ -46,10 +44,6 @@ const UsersShema = new mongoose.Schema({
     name: {
         type: String,
         default: 'default'
-    },
-    mailbox: {
-        type: Schema.Types.ObjectId,
-        ref: 'mailbox'
     }
 });
 

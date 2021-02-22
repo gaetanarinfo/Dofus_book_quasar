@@ -40,6 +40,13 @@ const routes: RouteConfig[] = [
       { path: '', name: 'Mailbox', component: () => import('pages/Profile_MailBox.vue') }
     ]
   },
+  {
+    path: '/send_mail',
+    component: () => import('layouts/ProfilLayout.vue'),
+    children: [
+      { path: '', name: 'SendMail', component: () => import('pages/Mailbox.vue') }
+    ]
+  },
 
   // Always leave this as last one,
   // but you can also remove it

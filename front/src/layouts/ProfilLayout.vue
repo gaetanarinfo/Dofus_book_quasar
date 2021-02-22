@@ -65,7 +65,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple to="/send_mail">
               <q-item-section avatar>
                 <q-icon name="send" color="green" />
               </q-item-section>
