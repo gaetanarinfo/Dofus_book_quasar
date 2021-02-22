@@ -9,7 +9,11 @@ const
     bodyParser = require('body-parser'),
     cookieParser = require('cookie-parser'),
     cors = require('cors'),
-    port = process.env.PORT || 8000;
+    port = process.env.PORT || 8000,
+    path = require('path'),
+    fs = require('fs'),
+    throttle = require('express-throttle-bandwidth'),
+    folder = path.join(__dirname, 'public/avatar')
 
 // Package de BDD gerer avec mongodb et atlas cloud et gestion des sessions
 const MongoStore = require('connect-mongo'),
@@ -31,6 +35,8 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }))
+
+app.use(throttle(1024 * 128)) // throttling bandwidth
 
 // Express Static (Permet de pointer un dossier static sur une URL)
 // Exemple: le chemin /assets nous donnera accès au dossier public
@@ -73,6 +79,10 @@ app.use('*', (req, res, next) => {
 // Router
 const ROUTER = require('./api/controllers/router')
 app.use(ROUTER)
+
+if (!fs.existsSync(folder)) {
+    fs.mkdirSync(folder)
+}
 
 // Page Err 404
 app.use((req, res) => {

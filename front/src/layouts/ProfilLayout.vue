@@ -1,7 +1,7 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="shadow-2 rounded-borders">
     <q-header elevated>
-      <q-toolbar>
+      <q-toolbar class="glossy" style="background-color: #C64F10;">
         <q-btn
           flat
           dense
@@ -16,6 +16,20 @@
         </q-toolbar-title>
 
         <div>Dofus Book v{{ $q.version }}</div>
+
+         <q-btn dense color="green-9" round icon="email" class="q-ml-md">
+      <q-badge color="deep-purple-9" floating>0</q-badge>
+       <q-tooltip anchor="bottom middle" self="center middle">
+                Boîte de réception
+                </q-tooltip>
+    </q-btn>
+
+     <q-btn dense color="blue-9" round icon="circle_notifications" class="q-ml-md">
+      <q-badge color="brown-10" floating>0</q-badge>
+       <q-tooltip anchor="bottom middle" self="center middle">
+               Notification(s)
+                </q-tooltip>
+    </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -24,8 +38,11 @@
         show-if-above
         :width="250"
         :breakpoint="400"
+        content-class="text-white"
+        content-style="background: rgb(62 59 58 / 39%) !important;"
+        elevated
       >
-        <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+        <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px;">
           <q-list padding>
 
               <q-item clickable v-ripple to="/">
@@ -38,7 +55,7 @@
               </q-item-section>
             </q-item> 
 
-            <q-item clickable v-ripple>
+            <q-item clickable v-ripple to="/profil_mailbox">
               <q-item-section avatar>
                 <q-icon name="inbox" color="brown"/>
               </q-item-section>
@@ -58,7 +75,7 @@
               </q-item-section>
             </q-item>
 
-               <q-item v-if='loggedIn === true' clickable v-ripple>
+               <q-item clickable v-ripple to="/profil">
               <q-item-section avatar>
                 <q-icon name="edit" color="blue"/>
               </q-item-section>
@@ -68,7 +85,7 @@
               </q-item-section>
             </q-item>
 
-           <q-item v-if='loggedIn === true' clickable v-ripple @click='logout()'>
+           <q-item clickable v-ripple @click='logout()'>
               <q-item-section avatar>
                 <q-icon name="logout" color="red"/>
               </q-item-section>

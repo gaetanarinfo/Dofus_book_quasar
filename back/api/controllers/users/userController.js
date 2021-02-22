@@ -4,10 +4,17 @@
 const bcrypt = require('bcrypt'),
     jwt = require('jsonwebtoken'),
     User = require('../../database/models/users'),
+    Mailbox = require('../../database/models/Mailbox'),
     nodemailer = require('nodemailer'),
     templateNewUser = require('../../template/templateNewUser'),
     templateRecoverPassword = require('../../template/templateRecoverPassword'),
-    randtoken = require('rand-token')
+    randtoken = require('rand-token'),
+    formidable = require('formidable'),
+    path = require('path'),
+    fs = require('fs'),
+    folder = path.join(__dirname, '../../../public/avatar')
+
+console.log(folder);
 
 // Déclaration de notre transporter
 // C'est en quelque sorte notre connexion à notre boite mail
@@ -227,6 +234,59 @@ module.exports = {
             }
 
         })
+
+    },
+    editProfilAvatar: (req, res) => {
+
+        const form = new formidable.IncomingForm()
+
+        form.uploadDir = folder
+
+        form.parse(req, (_, fields, files) => {
+
+            const t = JSON.stringify(files),
+                r = JSON.parse(t),
+                test = Object.keys(files),
+                valueArray = JSON.stringify(test),
+                resu = valueArray.replace(/["*+?^${}()|[\]\\]/g, ''),
+                resuAvatar = r[resu].path.slice(67),
+                id = req.params.id
+
+            User.findById({ _id: id }, (err, user) => {
+
+                if (user) {
+
+                    User.updateOne({ _id: id }, { avatar: process.env.URL_PUBLIC + 'avatar/' + resuAvatar, name: resuAvatar, }, (err) => {
+
+                        if (err) {
+
+
+                        } else {
+
+
+                        }
+                    })
+
+                }
+
+            })
+
+        })
+
+    },
+    mailbox: (req, res) => {
+
+        User.find()
+            .populate('mailbox')
+            .lean()
+            .exec((err, data) => {
+                if (err) console.log(err)
+
+                res.send({
+                    listMail: data
+                })
+
+            })
 
     },
 }

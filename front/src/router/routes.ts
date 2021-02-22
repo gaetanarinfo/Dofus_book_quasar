@@ -30,7 +30,14 @@ const routes: RouteConfig[] = [
     path: '/profil',
     component: () => import('layouts/ProfilLayout.vue'),
     children: [
-      { path: '', name: 'Profil', component: () => import('pages/Profile.vue'), props: true }
+      { path: '', name: 'Profil', component: () => import('pages/Profile.vue') }
+    ]
+  },
+  {
+    path: '/profil_mailbox',
+    component: () => import('layouts/ProfilLayout.vue'),
+    children: [
+      { path: '', name: 'Mailbox', component: () => import('pages/Profile_MailBox.vue') }
     ]
   },
 

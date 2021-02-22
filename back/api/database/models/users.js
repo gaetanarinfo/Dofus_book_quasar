@@ -3,7 +3,9 @@
  ****************/
 const mongoose = require('mongoose'),
     bcrypt = require('bcrypt'),
-    randtoken = require('rand-token')
+    randtoken = require('rand-token'),
+    Schema = mongoose.Schema,
+    Mailbox = require('./Mailbox')
 
 // MongoDb Collection Model Users
 const UsersShema = new mongoose.Schema({
@@ -29,10 +31,6 @@ const UsersShema = new mongoose.Schema({
         type: String,
         default: randtoken.generate(30)
     },
-    avatar: {
-        type: String,
-        dafault: "https://avatar.ankama.com/users/47223799.png"
-    },
     status: {
         type: String,
         default: "user"
@@ -40,6 +38,18 @@ const UsersShema = new mongoose.Schema({
     isBanned: {
         type: Boolean,
         default: false
+    },
+    avatar: {
+        type: String,
+        default: "https://avatar.ankama.com/users/47223799.png"
+    },
+    name: {
+        type: String,
+        default: 'default'
+    },
+    mailbox: {
+        type: Schema.Types.ObjectId,
+        ref: 'mailbox'
     }
 });
 

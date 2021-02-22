@@ -42,3 +42,26 @@ form {
     color: #650610 !important;
     color: #650610 !important;
 }
+
+.q-menu {
+    background: #ffffff30 !important;
+}
+
+.q-drawer {
+    background: #fff0 !important;
+}
+
+.q-item.q-router-link--active, .q-item--active {
+    color: #c0c1c1 !important;
+}
+.q-table__card {
+    background-color: #00000073 !important;
+}
+.q-tooltip--style {
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    color: #fafafa !important;
+    background: #00000061 !important;
+    border-radius: 4px !important;
+    text-transform: none !important;
+}

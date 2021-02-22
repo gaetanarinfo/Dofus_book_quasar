@@ -7,12 +7,16 @@ import axios from 'axios'
 import { Notify } from 'quasar'
 
 const state = {
+    listMail: [],
     loggedIn: false,
     logged: false,
     token: null
 }
 
 const mutations = {
+    setListMail(state, value) {
+        state.listMail = value
+    },
     setLoggedIn(state, value) {
         state.loggedIn = value
     }
@@ -417,7 +421,15 @@ const actions = {
 
                 }
             })
-    }
+    },
+    getListMail({ commit }) {
+        console.log('Get List Mail')
+        axios
+            .get('/mailbox')
+            .then(res => {
+                commit('setListMail', res.data.listMail)
+            })
+    },
 }
 
 const getters = {}

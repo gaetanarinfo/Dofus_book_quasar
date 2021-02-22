@@ -87,37 +87,20 @@
 
     <q-tab-panel name="Avatar">
 
-    <q-form
-      transition="flip-right"
-      @submit="editAvatar"
-      @reset="onReset"
-    >
+    <div transition="flip-right" class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="padding: 20px 0 10px 0px;">Modifier mon avatar</div>
 
-    <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="padding: 20px 0 0 0;">Modifier mon avatar</div>
-
-      <q-file
-        v-model="files"
-        label="Ton avatar"
-        filled
-        counter
-        :counter-label="counterLabelFn"
-        max-files="1"
-        multiple
-        :filter="checkFileType"
-        @rejected="onRejected"
-        style="padding: 16px 0 16px 0;"
-      >
-        <template v-slot:prepend>
-          <q-icon name="image" color="dark" />
-        </template>
-      </q-file>
-
-     <div style="padding: 26px 0 0 0;">
-        <q-btn color="deep-orange" type="submit" glossy label="Valider"/>
-        <q-btn label="Effacer" type="reset" color="red" glossy class="q-ml-sm" />
-      </div>
-
-    </q-form>
+      <q-uploader
+      :url="userIdAvatar"
+      :headers="[{name: 'X-Custom-Timestamp', value: 1550240306080}]"
+      style="max-width: 42%;"
+      multiple
+      max-files="1"
+      accept=".jpg, .png, .gif, .jpeg, image/*"
+      @rejected="onRejected"
+      color="amber"
+      class="q-ml-auto q-mr-auto text-center"
+      label="Avatar de ton profil"
+    />
 
     </q-tab-panel>
 
@@ -133,13 +116,14 @@
 <script>
 
 import { mapActions, mapState } from 'vuex'
+import { log } from 'util'
 
 export default {
     name: 'edit',
     data () {
     return {
       tab: 'Profil',
-      files: null,
+      userIdAvatar: `http://127.0.0.1:8000/profil_edit_avatar/${localStorage.getItem('userId')}`,
       formEdit: {
         pseudo: localStorage.getItem('pseudo'),
         lastname: localStorage.getItem('lastname'),
@@ -153,11 +137,6 @@ export default {
     }
   },
     methods: {
-
-    checkFileType (files) {
-      return files.filter(files => files.type === 'image/png' || 'image/jpg' || 'image/gif' || 'image/jpeg')
-    },
-
     onRejected (rejectedEntries) {
       this.$q.notify({
         color: 'red-5',
@@ -165,9 +144,6 @@ export default {
         icon: 'warning',
         message: `Le fichier ne respectant pas nos conditions ! Il doit être en JPG, PNG, GIF, JPEG !`
       })
-    },
-    counterLabelFn ({ totalSize, filesNumber, maxFiles }) {
-      return `${filesNumber} fichier sur ${maxFiles} | ${totalSize}`
     },
     edit() {
 
@@ -180,9 +156,9 @@ export default {
       this.firstname = null
       this.pseudo = null
       this.accept = false
-      this.files = null
     },
     ...mapActions('auth', ['editUser']),
+    ...mapActions('auth', ['editAvatars']),
     checkAuth () {
       this.loggedDataUser()
       setTimeout(this.checkAuth, 2500)
