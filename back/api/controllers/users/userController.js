@@ -188,14 +188,9 @@ module.exports = {
         // get the decoded payload and header
         var decoded = jwt.decode(req.params.token, { complete: true });
 
-        const userEmail = decoded.payload.email,
-            userPseudo = decoded.payload.pseudo,
-            userLastName = decoded.payload.lastname,
-            userFirstName = decoded.payload.firstname,
-            userAvatar = decoded.payload.avatar,
-            userId = decoded.payload._id
-
-        res.send({ userEmail, userPseudo, userLastName, userFirstName, userAvatar, userId })
+        res.send({
+            userData: decoded.payload
+        })
 
     },
     editProfil: async(req, res) => {
@@ -276,13 +271,13 @@ module.exports = {
     },
     mailbox: (req, res) => {
 
-        Mailbox.findOne({ recipient: req.params.pseudo })
+        console.log(req.params.pseudo);
+
+        Mailbox.find({ recipient: req.params.pseudo })
             .lean()
             .sort('-dateCreate')
             .exec((err, data) => {
                 if (err) console.log(err)
-
-                console.log(data);
 
                 res.send({
                     listMail: data

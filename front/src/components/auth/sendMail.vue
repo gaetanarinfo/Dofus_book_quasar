@@ -63,14 +63,15 @@
         />
 
         <q-input
-        style="padding: 16px 0 16px 0;"
-            filled
-            v-model="formEdit.content"
-            label="Content *"
-            hint="Content"
+          style="padding: 16px 0 16px 0;"
+          filled
+          v-model="formEdit.content"
+          label="Message *"
+          hint="Message"
+          type="textarea"
         />
 
-        <div>
+        <div style="padding: 16px 0 0 0;">
             <q-btn color="deep-orange" type="submit" glossy label="Valider"/>
             <q-btn label="Effacer" type="reset" color="red" glossy class="q-ml-sm" />
         </div>
@@ -93,9 +94,9 @@ export default {
     return {
       tab: 'send',
       formEdit: {
-        author: "",
-        lastname: "",
-        firstname: "",
+        lastname: `${this.listUser.lastname}`,
+        author: `${this.listUser.pseudo}`,
+        firstname: `${this.listUser.firstname}`,
         recipient: "",
         sujet: "",
         content: "",
@@ -130,6 +131,11 @@ export default {
   },
   mounted () {
     this.checkAuth()
+  },
+  props: {
+    listUser : { 
+      type: Array 
+    }
   }
 }
 </script>

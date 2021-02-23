@@ -8,6 +8,7 @@ import { Notify } from 'quasar'
 
 const state = {
     listMail: [],
+    listUser: [],
     loggedIn: false,
     logged: false,
     token: null
@@ -16,6 +17,9 @@ const state = {
 const mutations = {
     setListMail(state, value) {
         state.listMail = value
+    },
+    setListUser(state, value) {
+        state.listUser = value
     },
     setLoggedIn(state, value) {
         state.loggedIn = value
@@ -372,6 +376,8 @@ const actions = {
                     localStorage.setItem('firstname', res.data.firstname)
                 }
 
+                commit('setListUser', res.data.userData)
+
             })
     },
     editUser({}, payload) {
@@ -429,6 +435,7 @@ const actions = {
         axios
             .get('/mailbox/' + pseudo)
             .then(res => {
+                console.log('data : ' + res.data.listMail);
                 commit('setListMail', res.data.listMail)
             })
     },
