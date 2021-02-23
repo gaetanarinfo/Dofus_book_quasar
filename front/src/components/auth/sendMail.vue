@@ -4,7 +4,7 @@
       <q-img
         transition="flip-right"
         src="https://image.noelshack.com/fichiers/2018/32/2/1533634229-wiki-background.jpg"
-        style="width: 100%;height:90vh; border-radius: 10px; "
+        style="width: 100%; border-radius: 10px; "
       >
         <div class="column absolute-right text-center bg-transparent">
           <q-avatar size="96px" class="q-ma-md shadow-10">
@@ -46,13 +46,26 @@
             hint="Pseudo"
         />
 
-        <q-input
-        style="padding: 16px 0 10px 0;"
-            filled
-            v-model="formEdit.recipient"
-            label="Destinataire *"
-            hint="Destinataire"
-        />
+        <div class="q-gutter-md row items-start">
+      <q-select
+        filled
+        v-model="formEdit.recipients"
+        use-chips
+        label="Destinataire"
+        :options="options"
+        @filter="filterFn"
+        @filter-abort="abortFilterFn"
+        style="width: 100%; padding: 16px 0 16px 0;"
+      >
+        <template v-slot:no-option>
+          <q-item>
+            <q-item-section class="text-grey">
+              Pas de résultat
+            </q-item-section>
+          </q-item>
+        </template>
+      </q-select>
+    </div>
 
         <q-input
         style="padding: 16px 0 16px 0;"
@@ -62,14 +75,89 @@
             hint="Sujet"
         />
 
-        <q-input
-          style="padding: 16px 0 16px 0;"
-          filled
-          v-model="formEdit.content"
-          label="Message *"
+        <q-editor
+        label="Message *"
           hint="Message"
-          type="textarea"
-        />
+        style="margin: 16px 0 16px 0;"
+      v-model="formEdit.content"
+      flat
+      content-class="bg-white-5"
+      toolbar-text-color="white"
+      toolbar-toggle-color="blue-8"
+      toolbar-bg="brown-8"
+      :toolbar="[
+        [
+          {
+            label: $q.lang.editor.align,
+            icon: $q.iconSet.editor.align,
+            fixedLabel: true,
+            list: 'only-icons',
+            options: ['left', 'center', 'right', 'justify']
+          }
+        ],
+        ['bold', 'italic', 'strike', 'underline'],
+        [
+          {
+            label: $q.lang.editor.formatting,
+            icon: $q.iconSet.editor.formatting,
+            list: 'no-icons',
+            options: [
+              'p',
+              'h1',
+              'h2',
+              'h3',
+              'h4',
+              'h5',
+              'h6',
+            ]
+          },
+          {
+            label: $q.lang.editor.fontSize,
+            icon: $q.iconSet.editor.fontSize,
+            fixedLabel: true,
+            fixedIcon: true,
+            list: 'no-icons',
+            options: [
+              'size-1',
+              'size-2',
+              'size-3',
+              'size-4',
+              'size-5',
+              'size-6',
+              'size-7'
+            ]
+          },
+          {
+            label: $q.lang.editor.defaultFont,
+            icon: $q.iconSet.editor.font,
+            fixedIcon: true,
+            list: 'no-icons',
+            options: [
+              'default_font',
+              'arial',
+              'arial_black',
+              'comic_sans',
+              'courier_new',
+              'impact',
+              'lucida_grande',
+              'times_new_roman',
+              'verdana'
+            ]
+          },
+        ],
+        ['outdent', 'indent', 'undo', 'redo'],
+      ]"
+      :fonts="{
+        arial: 'Arial',
+        arial_black: 'Arial Black',
+        comic_sans: 'Comic Sans MS',
+        courier_new: 'Courier New',
+        impact: 'Impact',
+        lucida_grande: 'Lucida Grande',
+        times_new_roman: 'Times New Roman',
+        verdana: 'Verdana'
+      }"
+    />
 
         <div style="padding: 16px 0 0 0;">
             <q-btn color="deep-orange" type="submit" glossy label="Valider"/>
@@ -88,16 +176,23 @@
 import { mapActions, mapState } from 'vuex'
 import { log } from 'util'
 
+const stringOptions = [
+  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
+]
+
 export default {
     name: 'send',
     data () {
     return {
       tab: 'send',
+      options: null,
+      editor: '<pre>Check out the two different types of dropdowns' +
+        ' in each of the "Align" buttons.</pre> ',
       formEdit: {
         lastname: `${this.listUser.lastname}`,
         author: `${this.listUser.pseudo}`,
         firstname: `${this.listUser.firstname}`,
-        recipient: "",
+        recipients: null,
         sujet: "",
         content: "",
         avatar : localStorage.getItem('avatar')
@@ -109,6 +204,37 @@ export default {
     }
   },
     methods: {
+      filterFn (val, update, abort) {
+      if (this.options !== null) {
+        // already loaded
+        update()
+        return
+      }
+
+      setTimeout(() => {
+        update(() => {
+
+          let table = []
+
+          this.listRecipient.forEach(res => {
+
+            const parse = res.pseudo
+
+            JSON.stringify(parse)      
+
+            table.push(parse)
+
+            this.options = table
+            
+          });
+        
+        })
+      }, 2000)
+    },
+
+    abortFilterFn () {
+      // console.log('delayed filter aborted')
+    },
     send() {
 
       this.sendMail(this.formEdit)
@@ -120,7 +246,7 @@ export default {
       this.firstname = null
       this.author = null
       this.sujet = null
-      this.recipient = null
+      this.recipients = null
     },
     ...mapActions('auth', ['sendMail']),
     checkAuth () {
@@ -134,6 +260,9 @@ export default {
   },
   props: {
     listUser : { 
+      type: Object 
+    },
+    listRecipient : { 
       type: Array 
     }
   }

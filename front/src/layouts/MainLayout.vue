@@ -39,6 +39,21 @@
           </q-list>
         </q-btn-dropdown>
       </q-toolbar>
+
+      <q-btn dense color="green-9" round icon="email" class="q-ml-md" to="/profil_mailbox">
+      <q-badge color="deep-purple-9" floating>{{ listNotif }}</q-badge>
+       <q-tooltip anchor="bottom middle" self="center middle">
+                Boîte de réception
+                </q-tooltip>
+        </q-btn>
+
+     <q-btn dense color="blue-9" round icon="circle_notifications" class="q-ml-md">
+      <q-badge color="brown-10" floating>0</q-badge>
+       <q-tooltip anchor="bottom middle" self="center middle">
+               Notification(s)
+                </q-tooltip>
+    </q-btn>
+
       </q-toolbar>
     </q-header>
 
@@ -181,6 +196,11 @@ export default defineComponent({
     }
   },
   methods: {
+    checkNotif () {
+      this.getMailNotif()
+      setTimeout(this.checkNotif, 2500)
+    },
+    ...mapActions('auth', ['getMailNotif']),
     play (song) {
       if (typeof song.src !== 'undefined') {
         this.current = song
@@ -210,12 +230,16 @@ export default defineComponent({
   },
   components: { EssentialLink },  
   computed: {
-    ...mapState('auth', ['loggedIn'])
+    ...mapState('auth', ['loggedIn']),
+    ...mapState('auth', ['listNotif'])    
   },
   setup() {
     const leftDrawerOpen = ref(false);
 
     return {leftDrawerOpen}
+  },
+  mounted () {
+    this.checkNotif()
   }
 });
 </script>

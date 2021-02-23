@@ -1,7 +1,7 @@
 <template>
   <q-page class="q-pa-md">
 
-     <send v-if='loggedIn === true' :listUser='listUser'></send>
+     <send v-if='loggedIn === true' :listUser='listUser' :listRecipient='listRecipient'></send>
 
   </q-page>
 </template>
@@ -19,22 +19,25 @@ export default {
   methods: {
     checkAuth () {
       this.logged()
-      this.getListUser()
+      this.loggedDataUser()
       setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['logged']),
-    ...mapActions('auth', ['getListUser'])
+    ...mapActions('auth', ['getListRecipient']),
+    ...mapActions('auth', ['loggedDataUser'])
   },
   computed: {
     ...mapState('auth', ['loggedIn']),
-    ...mapState('auth', ['listUser'])
+    ...mapState('auth', ['listUser']),
+    ...mapState('auth', ['listRecipient'])
   },
   components: {
     send
   },
   mounted () {
     this.checkAuth()
-    this.getListUser()
+    this.getListRecipient()
+    this.loggedDataUser()
   }
 }
 </script>

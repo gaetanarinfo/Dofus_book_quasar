@@ -4,7 +4,7 @@
       <q-img
         transition="flip-right"
         src="https://image.noelshack.com/fichiers/2018/32/2/1533634229-wiki-background.jpg"
-        style="width: 100%;height:90vh; border-radius: 10px; "
+        style="width: 100%; border-radius: 10px; "
       >
         <div class="column absolute-right text-center bg-transparent">
           <q-avatar size="96px" class="q-ma-md shadow-10">

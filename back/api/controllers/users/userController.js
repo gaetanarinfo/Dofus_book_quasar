@@ -14,8 +14,6 @@ const bcrypt = require('bcrypt'),
     fs = require('fs'),
     folder = path.join(__dirname, '../../../public/avatar')
 
-console.log(folder);
-
 // Déclaration de notre transporter
 // C'est en quelque sorte notre connexion à notre boite mail
 transporter = nodemailer.createTransport({
@@ -188,8 +186,12 @@ module.exports = {
         // get the decoded payload and header
         var decoded = jwt.decode(req.params.token, { complete: true });
 
-        res.send({
-            userData: decoded.payload
+        User.findOne({ _id: decoded.payload._id }, (err, data) => {
+
+            res.send({
+                userData: data
+            })
+
         })
 
     },
@@ -255,6 +257,7 @@ module.exports = {
 
                         if (err) {
 
+                            res.send(err)
 
                         } else {
 
@@ -269,9 +272,21 @@ module.exports = {
         })
 
     },
-    mailbox: (req, res) => {
+    deleteAccount: (req, res) => {
+        User.deleteOne({ _id: req.params.id }, (err, res) => {
 
-        console.log(req.params.pseudo);
+            if (err) {
+                let error = true
+                res.send({ error })
+            }
+
+            let success = true
+
+            res.send({ success })
+
+        })
+    },
+    mailbox: (req, res) => {
 
         Mailbox.find({ recipient: req.params.pseudo })
             .lean()
@@ -290,20 +305,67 @@ module.exports = {
 
         Mailbox
 
-        console.log(req.body);
-
-        // On définit notre construction de Commentaire
         const mailbox = new Mailbox({
             ...req.body,
             dateCreate: new Date()
         })
 
         mailbox.save((err) => {
+
             if (err) {
-                res.send(err)
+                let error = true
+                res.send({ error })
             }
+
+            let success = true
+
+            res.send({ success })
         })
 
+    },
+    recipientList: (req, res) => {
 
-    }
+        User
+            .find()
+            .exec((err, user) => {
+
+                res.send({ listRecipient: user })
+
+            })
+
+    },
+    mailDelete: (req, res) => {
+
+        Mailbox
+            .findOneAndRemove({ _id: req.params.id }, (err, rep) => {
+
+                if (err) {
+                    let error = true
+                    res.send({ error })
+                }
+
+                let success = true
+
+                res.send({ success })
+
+            })
+
+    },
+    mailNotif: ((req, res) => {
+
+        Mailbox.find({ recipient: req.params.pseudo })
+            .exec((err, data) => {
+                if (err) console.log(err)
+
+                Mailbox.countDocuments({ recipient: req.params.pseudo })
+                    .exec((err, count) => {
+
+                        res.send({ notif: count })
+
+                    })
+
+            })
+
+    })
+
 }

@@ -21,7 +21,7 @@ const auth = require('../middleware/auth')
  * Router
  ***********/
 
-// Article
+// User
 router.route('/register')
     .post(userController.register)
 
@@ -31,10 +31,12 @@ router.route('/login')
 router.route('/password_reset')
     .post(resetpasswordController.passwordReset)
 
+router.route('/delete_account/:id')
+    .get(userController.deleteAccount)
+
 router.route('/session')
     .get(SessionController.get)
 
-// Routes reset password
 router.route('/reset_password/:token')
     .get(resetpasswordController.get)
 router.route('/reset_password')
@@ -49,11 +51,21 @@ router.route('/profil_edit/:id')
 router.route('/profil_edit_avatar/:id')
     .post(userController.editProfilAvatar)
 
+// Mail
+router.route('/mailNotif/:pseudo')
+    .get(userController.mailNotif)
+
 router.route('/mailbox/:pseudo')
     .get(userController.mailbox)
 
 router.route('/mailbox/:id')
     .post(userController.mailpost)
+
+router.route('/recipientList')
+    .get(userController.recipientList)
+
+router.route('/mailbox_delete/:id')
+    .get(userController.mailDelete)
 
 /***********
  * / Router

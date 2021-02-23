@@ -17,12 +17,12 @@
 
         <div>Dofus Book v{{ $q.version }}</div>
 
-         <q-btn dense color="green-9" round icon="email" class="q-ml-md">
-      <q-badge color="deep-purple-9" floating>0</q-badge>
+         <q-btn dense color="green-9" round icon="email" class="q-ml-md" to="/profil_mailbox">
+      <q-badge color="deep-purple-9" floating>{{ listNotif }}</q-badge>
        <q-tooltip anchor="bottom middle" self="center middle">
                 Boîte de réception
                 </q-tooltip>
-    </q-btn>
+        </q-btn>
 
      <q-btn dense color="blue-9" round icon="circle_notifications" class="q-ml-md">
       <q-badge color="brown-10" floating>0</q-badge>
@@ -85,6 +85,25 @@
               </q-item-section>
             </q-item>
 
+            <q-item clickable v-ripple @click="submitDeleteAccount(`${userData.userId}`)">
+              <q-item-section avatar>
+                <q-icon name="close" color="red"/>
+              </q-item-section>
+
+              <q-item-section>
+                Supprimer mon compte
+              </q-item-section>
+            </q-item>
+
+            <!-- Modal Mail -->
+          <modalMail
+            v-if='modalDeleteAccount'
+            :modal.sync='modalDeleteAccount'
+            :data='user'
+            @closeModalDeleteAccount='closeModal()'
+          />
+          <!-- / Modal Mail -->
+
            <q-item clickable v-ripple @click='logout()'>
               <q-item-section avatar>
                 <q-icon name="logout" color="red"/>
@@ -120,13 +139,16 @@
 <script lang="ts">
 
 import { defineComponent, ref } from '@vue/composition-api';
+import modalDeleteAccount from '../components/modal/modalConfirm'
 import { mapState, mapActions } from 'vuex'
 
 export default defineComponent({
   name: 'ProfilLayout',
   data (){
       return {
+          modalDeleteAccount: false,
           userData: {
+            userId: localStorage.getItem('userId'),
             pseudo: localStorage.getItem('pseudo'),              
             lastname: localStorage.getItem('lastname'),
             firstname: localStorage.getItem('firstname'),
@@ -136,19 +158,41 @@ export default defineComponent({
       }
   },
   methods: {
+    checkNotif () {
+      this.getMailNotif()
+      setTimeout(this.checkNotif, 2500)
+    },
+    showModalDelete (data) {
+      this.mail = data
+      this.modalDeleteAccount = true
+    },
+    closeModal () {
+      this.modalDeleteAccount = false
+    },
+    submitDeleteAccount(id) {
+        //this.removeMailBox(id)
+    },
     logout () {
       this.logoutUser()
     },
-    ...mapActions('auth', ['logoutUser'])
+    ...mapActions('auth', ['loggedDataUser']),
+    ...mapActions('auth', ['logoutUser']),
+    ...mapActions('auth', ['getMailNotif'])
   },
-  components: {  },  
   computed: {
-    ...mapState('auth', ['loggedIn'])
+    ...mapState('auth', ['loggedIn']),
+    ...mapState('auth', ['listNotif'])
   },
   setup() {
     const leftDrawerOpen = ref(true)
 
     return {leftDrawerOpen}
-  }
+  },
+  mounted () {
+    this.checkNotif()
+  },
+  components: {
+    modalDeleteAccount
+  },
 });
 </script>

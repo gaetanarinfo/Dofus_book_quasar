@@ -8,10 +8,12 @@ import { Notify } from 'quasar'
 
 const state = {
     listMail: [],
-    listUser: [],
+    listUser: {},
+    listRecipient: [],
     loggedIn: false,
     logged: false,
-    token: null
+    token: null,
+    listNotif: null
 }
 
 const mutations = {
@@ -23,6 +25,12 @@ const mutations = {
     },
     setLoggedIn(state, value) {
         state.loggedIn = value
+    },
+    setListRecipient(state, value) {
+        state.listRecipient = value
+    },
+    setMailNotif(state, value) {
+        state.listNotif = value
     }
 }
 
@@ -362,18 +370,18 @@ const actions = {
                     firstname = localStorage.getItem('firstname')
 
                 // Comparaison si l'user vient à modifier le localstorage
-                if (email != res.data.userEmail) {
-                    localStorage.setItem('email', res.data.userEmail)
-                } else if (pseudo != res.data.pseudo) {
-                    localStorage.setItem('pseudo', res.data.userPseudo)
-                } else if (id != res.data._id) {
-                    localStorage.setItem('userId', res.data._id)
-                } else if (avatar != res.data.avatar) {
-                    localStorage.setItem('avatar', res.data.avatar)
-                } else if (lastname != res.data.lastname) {
-                    localStorage.setItem('lastname', res.data.lastname)
-                } else if (firstname != res.data.firstname) {
-                    localStorage.setItem('firstname', res.data.firstname)
+                if (email != res.data.userData.email) {
+                    localStorage.setItem('email', res.data.userData.userEmail)
+                } else if (pseudo != res.data.userData.pseudo) {
+                    localStorage.setItem('pseudo', res.data.userData.userPseudo)
+                } else if (id != res.data.userData._id) {
+                    localStorage.setItem('userId', res.data.userData._id)
+                } else if (avatar != res.data.userData.avatar) {
+                    localStorage.setItem('avatar', res.data.userData.avatar)
+                } else if (lastname != res.data.userData.lastname) {
+                    localStorage.setItem('lastname', res.data.userData.lastname)
+                } else if (firstname != res.data.userData.firstname) {
+                    localStorage.setItem('firstname', res.data.userData.firstname)
                 }
 
                 commit('setListUser', res.data.userData)
@@ -435,7 +443,6 @@ const actions = {
         axios
             .get('/mailbox/' + pseudo)
             .then(res => {
-                console.log('data : ' + res.data.listMail);
                 commit('setListMail', res.data.listMail)
             })
     },
@@ -450,14 +457,13 @@ const actions = {
                 author: payload.author,
                 avatar: payload.avatar,
                 content: payload.content,
-                recipient: payload.recipient
+                recipient: payload.recipients
             })
             .then((res) => {
 
                 const succ = res.data.success,
                     err = res.data.error
 
-                // User email exist
                 if (err === true) {
 
                     Notify.create({
@@ -474,12 +480,65 @@ const actions = {
                         color: 'green-5',
                         textColor: 'white',
                         icon: 'check',
-                        message: 'Message envoyer !'
+                        message: 'Ton message à été envoyer à ' + payload.recipients + ' !'
                     })
 
                 }
             })
-    }
+    },
+    getListRecipient({ commit }) {
+        axios
+            .get('/recipientList')
+            .then(res => {
+                commit('setListRecipient', res.data.listRecipient)
+            })
+    },
+    removeMailBox({}, payload) {
+
+        axios
+            .get(`/mailbox_delete/${payload}`)
+            .then(res => {
+
+                const succ = res.data.success,
+                    err = res.data.error
+
+                if (err === true) {
+
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Une erreur est survenue !"
+                    })
+                }
+
+                if (succ === true) {
+
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: 'Ton message à été supprimer !'
+                    })
+
+                    setTimeout(function() {
+                        document.location.href = "#/profil_mailbox";
+                    }, 1200);
+
+                }
+
+            })
+    },
+    getMailNotif({ commit }) {
+
+        const pseudo = localStorage.getItem('pseudo')
+
+        axios
+            .get('/mailNotif/' + pseudo)
+            .then(res => {
+                commit('setMailNotif', res.data.notif)
+            })
+    },
 }
 
 const getters = {}
