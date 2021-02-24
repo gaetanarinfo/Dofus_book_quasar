@@ -539,6 +539,38 @@ const actions = {
                 commit('setMailNotif', res.data.notif)
             })
     },
+    removeAccount({}, payload) {
+
+        axios
+            .get(`/delete_account/${payload}`)
+            .then(res => {
+
+                const succ = res.data.success,
+                    err = res.data.error
+
+                if (err === true) {
+
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Une erreur est survenue !"
+                    })
+                }
+
+                if (succ === true) {
+
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: 'Ton compte à été supprimé, tu peux te déconnecter !'
+                    })
+
+                }
+
+            })
+    },
 }
 
 const getters = {}

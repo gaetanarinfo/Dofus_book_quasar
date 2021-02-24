@@ -19,35 +19,21 @@
 
         <q-toolbar class="col-md-6 col-xs-10 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
         <q-space />
-        <q-btn stretch flat :label="current.title"/>
-        <q-btn flat round dense v-if="!isPlaying" @click="play" icon="play_circle_filled" class="q-mr-sm" />
-        <q-btn flat round dense v-else @click="pause" icon="pause_circle_filled" />
-        <q-btn-dropdown stretch flat>
-          <q-list style="background : #716b6b85 !important;">
-            <q-item-label header style="color: #fff4f4 !important;font-weight: 600 !important;">Playlist</q-item-label>
-            <q-item v-for="song in songs" :key="song.src"
-              clickable v-close-popup tabindex="0" @click="play(song)" class=""
-            >
-              <q-item-section avatar>
-                <q-avatar icon="library_music" color="brown" text-color="white" />
-              </q-item-section>
-              <q-item-section>
-                <q-item-label style="color: #fff4f4 !important;font-weight: 500 !important;">{{ song.title }}</q-item-label>
-                <q-item-label caption style="color: #fff4f4 !important;font-weight: 500 !important;">{{ song.artist }}</q-item-label>
-              </q-item-section>
-            </q-item>
-          </q-list>
-        </q-btn-dropdown>
+        <q-btn flat round dense icon="play_circle_filled" @click="open('bottom')">
+          <q-tooltip anchor="bottom middle" self="center middle">
+               Lire la musique
+                </q-tooltip>
+        </q-btn>
       </q-toolbar>
 
-      <q-btn dense color="green-9" round icon="email" class="q-ml-md" to="/profil_mailbox">
+      <q-btn v-if='loggedIn === true' dense color="green-9" round icon="email" class="q-ml-md" to="/profil_mailbox">
       <q-badge color="deep-purple-9" floating>{{ listNotif }}</q-badge>
        <q-tooltip anchor="bottom middle" self="center middle">
                 Boîte de réception
                 </q-tooltip>
         </q-btn>
 
-     <q-btn dense color="blue-9" round icon="circle_notifications" class="q-ml-md">
+     <q-btn v-if='loggedIn === true' dense color="blue-9" round icon="circle_notifications" class="q-ml-md">
       <q-badge color="brown-10" floating>0</q-badge>
        <q-tooltip anchor="bottom middle" self="center middle">
                Notification(s)
@@ -163,12 +149,35 @@
       </q-list>
     </q-drawer>
 
-        
+    <!-- Audio -->
+  <div class="q-pa-md q-gutter-sm">
+
+    <q-dialog v-model="dialog" :position="position">
+      <q-card style="width: 450px; background: #31303096;">
+        <q-linear-progress :value="1.0" color="blue" />
+
+        <q-card-section class="row items-center no-wrap">
+          <div style="width: 100%;background: transparent;">
+           <q-media-player
+              type="audio"
+              style="background: transparent;"
+                background-color="transparent"
+                :tracks="tracks"
+              no-video
+              :sources="sources"
+            />
+          </div>
+        </q-card-section>
+      </q-card>
+    </q-dialog>
+  </div>
+  <!-- Audio / -->
 
     <q-page-container>
       <router-view />
     </q-page-container>
   </q-layout>
+  
 </template>
 
 <script lang="ts">
@@ -181,48 +190,33 @@ export default defineComponent({
   name: 'MainLayout',
   data () {
     return {
-      miniState: true,
-      current: {},
-      index: 0,
-      isPlaying: false,
-      songs: [
+      dialog: false,
+      position: 'bottom',
+      tracks: [
         {
-          title: 'Dofus Retro',
-          artist: 'Ankama',
-          src: require('../../public/music/dofus-retro.mp3')
+          kind: 'subtitles',
+          srclang: 'fr',
+          label: 'Français'
         }
       ],
-      player: new Audio()
+      sources: [
+        {
+          src: require('../../public/music/dofus-retro.mp3'),
+          type: 'video/mp3'
+        }
+      ],
     }
   },
   methods: {
+    open (position) {
+      this.position = position
+      this.dialog = true
+    },
     checkNotif () {
       this.getMailNotif()
       setTimeout(this.checkNotif, 2500)
     },
     ...mapActions('auth', ['getMailNotif']),
-    play (song) {
-      if (typeof song.src !== 'undefined') {
-        this.current = song
-        this.player.src = this.current.src
-      }
-      this.player.play()
-      this.player.addEventListener('ended', function () {
-        this.index++
-        if (this.index > this.songs.length - 1) this.index = 0
-        this.current = this.songs[this.index]
-        this.play(this.current)
-      }.bind(this))
-      this.isPlaying = true
-    },
-    pause () {
-      this.player.pause()
-      this.isPlaying = false
-    },
-    created () {
-    this.current = this.songs[this.index]
-    this.player.src = this.current.src
-  },
     logout () {
       this.logoutUser()
     },

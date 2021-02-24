@@ -273,18 +273,21 @@ module.exports = {
 
     },
     deleteAccount: (req, res) => {
-        User.deleteOne({ _id: req.params.id }, (err, res) => {
 
-            if (err) {
-                let error = true
-                res.send({ error })
-            }
+        User
+            .findOneAndRemove({ _id: req.params.id }, (err, rep) => {
 
-            let success = true
+                if (err) {
+                    let error = true
+                    res.send({ error })
+                }
 
-            res.send({ success })
+                let success = true
 
-        })
+                res.send({ success })
+
+            })
+
     },
     mailbox: (req, res) => {
 

@@ -85,7 +85,7 @@
               </q-item-section>
             </q-item>
 
-            <q-item clickable v-ripple @click="submitDeleteAccount(`${userData.userId}`)">
+            <q-item clickable v-ripple @click="showModalDelete(`${userData.userId}`)">
               <q-item-section avatar>
                 <q-icon name="close" color="red"/>
               </q-item-section>
@@ -96,7 +96,7 @@
             </q-item>
 
             <!-- Modal Mail -->
-          <modalMail
+          <modalDeleteAccount
             v-if='modalDeleteAccount'
             :modal.sync='modalDeleteAccount'
             :data='user'
@@ -140,13 +140,14 @@
 
 import { defineComponent, ref } from '@vue/composition-api';
 import modalDeleteAccount from '../components/modal/modalConfirm'
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default defineComponent({
   name: 'ProfilLayout',
   data (){
       return {
           modalDeleteAccount: false,
+          user : null,
           userData: {
             userId: localStorage.getItem('userId'),
             pseudo: localStorage.getItem('pseudo'),              
@@ -163,21 +164,24 @@ export default defineComponent({
       setTimeout(this.checkNotif, 2500)
     },
     showModalDelete (data) {
-      this.mail = data
+      this.user = data
       this.modalDeleteAccount = true
     },
     closeModal () {
       this.modalDeleteAccount = false
-    },
-    submitDeleteAccount(id) {
-        //this.removeMailBox(id)
     },
     logout () {
       this.logoutUser()
     },
     ...mapActions('auth', ['loggedDataUser']),
     ...mapActions('auth', ['logoutUser']),
-    ...mapActions('auth', ['getMailNotif'])
+    ...mapActions('auth', ['getMailNotif']),
+    checkAuth () {
+      this.handleAuthStateChange()
+      setTimeout(this.checkAuth, 2500)
+    },
+    ...mapActions('auth', ['handleAuthStateChange']),
+    ...mapMutations('auth', ['setLoggedIn'])
   },
   computed: {
     ...mapState('auth', ['loggedIn']),
@@ -190,6 +194,7 @@ export default defineComponent({
   },
   mounted () {
     this.checkNotif()
+    this.checkAuth()
   },
   components: {
     modalDeleteAccount

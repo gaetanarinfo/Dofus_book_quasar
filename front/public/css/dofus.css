@@ -65,3 +65,7 @@ form {
     border-radius: 4px !important;
     text-transform: none !important;
 }
+
+.q-media__controls {
+    background: transparent !important;
+}
