@@ -15,9 +15,54 @@
           Dofus Book
         </q-toolbar-title>
 
-        <div>Dofus Book v{{ $q.version }}</div>
+        <div class="q-gutter-md row">
+        <q-btn glossy color="light-green-8" label="Le jeu">
+        <q-menu
+          transition-show="flip-right"
+          transition-hide="flip-left"
+        >
+          <q-list style="min-width: 100px">
+            <q-item clickable>
+              <q-item-section>Having fun</q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
 
-        <q-toolbar class="col-md-6 col-xs-10 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
+      <q-btn glossy color="light-green-8" label="Transmédia">
+        <q-menu
+          transition-show="flip-right"
+          transition-hide="flip-left"
+        >
+          <q-list style="min-width: 100px">
+            <q-item clickable>
+              <q-item-section>Having fun</q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
+
+      <q-btn glossy color="light-green-8" label="Actualités">
+        <q-menu
+          transition-show="flip-right"
+          transition-hide="flip-left"
+        >
+          <q-list style="min-width: 100px">
+            <q-item clickable>
+              <q-item-section>Having fun</q-item-section>
+            </q-item>
+          </q-list>
+        </q-menu>
+      </q-btn>
+
+      <q-btn glossy color="light-green-8" label="Acheter des kamas"></q-btn>
+
+      <q-btn glossy color="light-green-8" label="Forums"></q-btn>
+
+      <q-btn glossy color="light-green-8" label="Boutique"></q-btn>
+      </div>
+
+        <q-toolbar class="col-md-3 col-xs-10 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
         <q-space />
         <q-btn flat round dense icon="play_circle_filled" @click="open('bottom')">
           <q-tooltip anchor="bottom middle" self="center middle">
@@ -160,6 +205,7 @@
           <div style="width: 100%;background: transparent;">
            <q-media-player
               type="audio"
+              :autoplay="true"
               style="background: transparent;"
                 background-color="transparent"
                 :tracks="tracks"
@@ -202,7 +248,7 @@ export default defineComponent({
       sources: [
         {
           src: require('../../public/music/dofus-retro.mp3'),
-          type: 'video/mp3'
+          type: 'music/mp3'
         }
       ],
     }

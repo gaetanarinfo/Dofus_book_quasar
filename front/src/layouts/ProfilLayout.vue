@@ -15,8 +15,6 @@
           Dofus Book
         </q-toolbar-title>
 
-        <div>Dofus Book v{{ $q.version }}</div>
-
          <q-btn dense color="green-9" round icon="email" class="q-ml-md" to="/profil_mailbox">
       <q-badge color="deep-purple-9" floating>{{ listNotif }}</q-badge>
        <q-tooltip anchor="bottom middle" self="center middle">

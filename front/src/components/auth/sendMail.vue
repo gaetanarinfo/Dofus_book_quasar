@@ -2,8 +2,8 @@
   <div class="row">
     <div class="col-12 col-md-12 col-xs-12">
       <q-img
-        transition="flip-right"
-        src="https://image.noelshack.com/fichiers/2018/32/2/1533634229-wiki-background.jpg"
+        transition="flip-left"
+        src="https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg"
         style="width: 100%; border-radius: 10px; "
       >
         <div class="column absolute-right text-center bg-transparent">
@@ -15,7 +15,7 @@
         <div class="absolute-center bg-transparent" style="width: 700px">
 
         <q-form
-        transition="flip-right"
+        transition="flip-left"
       @submit="send"
       @reset="onReset"
     >
@@ -176,10 +176,6 @@
 import { mapActions, mapState } from 'vuex'
 import { log } from 'util'
 
-const stringOptions = [
-  'Google', 'Facebook', 'Twitter', 'Apple', 'Oracle'
-]
-
 export default {
     name: 'send',
     data () {
@@ -195,10 +191,10 @@ export default {
         recipients: null,
         sujet: "",
         content: "",
-        avatar : localStorage.getItem('avatar')
+        avatar : `${this.listUser.avatar}`
       },
       userData: {
-          avatar: localStorage.getItem('avatar')
+          avatar: `${this.listUser.avatar}`
       }
       
     }

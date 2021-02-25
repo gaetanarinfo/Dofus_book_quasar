@@ -9,7 +9,8 @@ const express = require('express'),
  *************/
 const userController = require('./users/userController'),
     SessionController = require('./users/SessionController'),
-    resetpasswordController = require('./users/resetpasswordController')
+    resetpasswordController = require('./users/resetpasswordController'),
+    newsController = require('./news/newsController')
 
 
 /*
@@ -66,6 +67,10 @@ router.route('/recipientList')
 
 router.route('/mailbox_delete/:id')
     .get(userController.mailDelete)
+
+// News
+router.route('/news')
+    .get(newsController.get)
 
 /***********
  * / Router

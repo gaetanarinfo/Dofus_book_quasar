@@ -69,3 +69,15 @@ form {
 .q-media__controls {
     background: transparent !important;
 }
+
+.q-card {
+    background: #48414199 !important;
+}
+
+.text-overline-dofus {
+    font-size: 13px !important;
+    font-weight: 500 !important;
+    margin-top: 8px !important;
+    line-height: 27px !important;
+    letter-spacing: 0.16667em !important;
+}

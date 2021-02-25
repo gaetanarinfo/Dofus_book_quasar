@@ -3,7 +3,7 @@
     <div class="col-12 col-md-12 col-xs-12">
       <q-img
         transition="flip-right"
-        src="https://image.noelshack.com/fichiers/2018/32/2/1533634229-wiki-background.jpg"
+        src="https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg"
         style="width: 100%; border-radius: 10px; "
       >
         <div class="column absolute-right text-center bg-transparent">
