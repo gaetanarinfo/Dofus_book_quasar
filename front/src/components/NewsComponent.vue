@@ -8,15 +8,15 @@
         
         <div><img :src="news.category"></div>
         <div class="text-overline text-overline-dofus text-yellow-9">{{ news.cat }}</div>
-        <div class="text-h5 q-mt-sm q-mb-xs text-white" style="min-height: 64px;">{{ news.title }}</div>
-        <div class="text-caption text-white" style="max-height: 78px;overflow: auto;content: ' ... ';">
+        <div class="text-h5 q-mt-sm q-mb-xs text-white" style="text-overflow: ellipsis;max-width: 317px;overflow: hidden;white-space: nowrap;">{{ news.title }}</div>
+        <div class="text-caption text-white" style="max-height: 103px;overflow: auto;content: ' ... ';">
          {{ news.content }}
         </div>
       </q-card-section>
 
       <q-card-actions>
         <q-btn flat color="white" label="Partager" />
-        <q-btn flat color="warning" label="Lire la suite" />
+        <q-btn flat color="warning" label="Lire la suite" :to="news.url" />
       </q-card-actions>
     </q-card>
     
