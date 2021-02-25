@@ -179,6 +179,18 @@
 
             <q-separator /> 
 
+            <q-item v-if='adminIn === true' clickable v-ripple @click="showModalCreateNews()">
+              <q-item-section avatar>
+                <q-icon name="add" color="green-8" />
+              </q-item-section>
+
+              <q-item-section>
+                Crée un article
+              </q-item-section>
+            </q-item>
+
+             <q-separator /> 
+
             <q-item v-if='loggedIn === true' clickable v-ripple @click='logout()'>
               <q-item-section avatar>
                 <q-icon name="logout" color="red"/>
@@ -222,6 +234,15 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <!-- Modal Create News -->
+    <modalCreateNews
+      v-if='adminIn === true || modalCreateNews'
+      :modal2.sync='modalCreateNews'
+      @closeModalCreateNews='closeModal2()'
+    />
+    <!-- / Modal Create News -->
+
   </q-layout>
   
 </template>
@@ -230,6 +251,7 @@
 import EssentialLink from 'components/EssentialLink.vue'
 
 import { defineComponent, ref } from '@vue/composition-api';
+import modalCreateNews from '../components/modal/admin/modalCreateNews'
 import { mapState, mapActions } from 'vuex'
 
 export default defineComponent({
@@ -237,6 +259,7 @@ export default defineComponent({
   data () {
     return {
       dialog: false,
+      modalCreateNews: false,
       position: 'bottom',
       tracks: [
         {
@@ -266,11 +289,18 @@ export default defineComponent({
     logout () {
       this.logoutUser()
     },
-    ...mapActions('auth', ['logoutUser'])
+    ...mapActions('auth', ['logoutUser']),
+    showModalCreateNews () {
+      this.modalCreateNews = true
+    },
+    closeModal2 () {
+      this.modalCreateNews = false
+    }
   },
-  components: { EssentialLink },  
+  components: { EssentialLink, modalCreateNews },  
   computed: {
     ...mapState('auth', ['loggedIn']),
+    ...mapState('auth', ['adminIn']),
     ...mapState('auth', ['listNotif'])    
   },
   setup() {

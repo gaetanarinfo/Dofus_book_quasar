@@ -11,6 +11,7 @@ const state = {
     listUser: {},
     listRecipient: [],
     loggedIn: false,
+    adminIn: false,
     logged: false,
     token: null,
     listNotif: null
@@ -25,6 +26,9 @@ const mutations = {
     },
     setLoggedIn(state, value) {
         state.loggedIn = value
+    },
+    setAdminIn(state, value) {
+        state.adminIn = value
     },
     setListRecipient(state, value) {
         state.listRecipient = value
@@ -138,6 +142,7 @@ const actions = {
 
                 // Modif --> 15/02/2021
                 localStorage.setItem('status', res.data.sess.status)
+                localStorage.setItem('admin', res.data.sess.admin)
                 localStorage.setItem('email', res.data.sess.email)
                 localStorage.setItem('userId', res.data.sess._id)
                 localStorage.setItem('pseudo', res.data.sess.pseudo)
@@ -147,8 +152,19 @@ const actions = {
                 localStorage.setItem('token', res.data.token)
 
                 const sess = localStorage.getItem('status')
+                const admin = localStorage.getItem('admin')
 
                 if (sess === 'user') {
+
+                    if (admin === 'true') {
+
+                        commit('setAdminIn', true)
+
+                    } else {
+
+
+
+                    }
 
                     Notify.create({
                         color: 'green-5',
@@ -179,10 +195,22 @@ const actions = {
             .then((res) => {
 
                 const sess = localStorage.getItem('status')
+                const admin = localStorage.getItem('admin')
 
                 if (sess === 'user') {
 
+                    if (admin === 'true') {
+
+                        commit('setAdminIn', true)
+
+                    } else {
+
+
+
+                    }
+
                     commit('setLoggedIn', true)
+
                 }
             })
     },
@@ -195,8 +223,19 @@ const actions = {
             .then((res) => {
 
                 const sess = localStorage.getItem('status')
+                const admin = localStorage.getItem('admin')
 
                 if (sess === 'user') {
+
+                    if (admin === 'true') {
+
+                        commit('setAdminIn', true)
+
+                    } else {
+
+
+
+                    }
 
                     commit('setLoggedIn', true)
 
@@ -219,6 +258,7 @@ const actions = {
                     localStorage.removeItem('sess', null)
                     localStorage.removeItem('token', null)
                     localStorage.removeItem('status', null)
+                    localStorage.removeItem('admin', null)
                     localStorage.removeItem('userId', null)
                     localStorage.removeItem('email', null)
                     localStorage.removeItem('pseudo', null)
@@ -365,6 +405,7 @@ const actions = {
                 const email = localStorage.getItem('email'),
                     pseudo = localStorage.getItem('pseudo'),
                     id = localStorage.getItem('userId'),
+                    admin = localStorage.getItem('admin'),
                     avatar = localStorage.getItem('avatar'),
                     lastname = localStorage.getItem('lastname'),
                     firstname = localStorage.getItem('firstname')
@@ -382,6 +423,8 @@ const actions = {
                     localStorage.setItem('lastname', res.data.userData.lastname)
                 } else if (firstname != res.data.userData.firstname) {
                     localStorage.setItem('firstname', res.data.userData.firstname)
+                } else if (admin != res.data.userData.isAdmin) {
+                    localStorage.setItem('admin', res.data.userData.isAdmin)
                 }
 
                 commit('setListUser', res.data.userData)

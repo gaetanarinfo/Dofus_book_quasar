@@ -2,7 +2,8 @@
  * Import Module
  ****************/
 const express = require('express'),
-    router = express.Router()
+    router = express.Router(),
+    multer = require('multer')
 
 /*
  * Controller
@@ -13,10 +14,8 @@ const userController = require('./users/userController'),
     newsController = require('./news/newsController')
 
 
-/*
- * Middleware
- *************/
-const auth = require('../middleware/auth')
+// Multer gestion image
+const upload = require('../config/multer')
 
 /*
  * Router
@@ -71,6 +70,7 @@ router.route('/mailbox_delete/:id')
 // News
 router.route('/news')
     .get(newsController.get)
+    .post(upload.array('files', 1), newsController.post)
 
 /***********
  * / Router

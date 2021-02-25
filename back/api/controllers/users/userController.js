@@ -7,11 +7,8 @@ const bcrypt = require('bcrypt'),
     Mailbox = require('../../database/models/Mailbox'),
     nodemailer = require('nodemailer'),
     templateNewUser = require('../../template/templateNewUser'),
-    templateRecoverPassword = require('../../template/templateRecoverPassword'),
-    randtoken = require('rand-token'),
     formidable = require('formidable'),
     path = require('path'),
-    fs = require('fs'),
     folder = path.join(__dirname, '../../../public/avatar')
 
 // Déclaration de notre transporter
@@ -68,6 +65,7 @@ module.exports = {
                                 const payload = {
                                     _id: User._id,
                                     status: User.status,
+                                    admin: User.isAdmin,
                                     email: User.email,
                                     pseudo: User.pseudo,
                                     lastname: User.lastname,
@@ -76,7 +74,7 @@ module.exports = {
                                 }
 
                                 let token = jwt.sign(payload, 'token', {
-                                    expiresIn: 60
+                                    expiresIn: 6000
                                 })
 
                                 var decoded = jwt.decode(token, { complete: true });

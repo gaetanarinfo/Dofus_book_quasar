@@ -83,6 +83,18 @@
               </q-item-section>
             </q-item>
 
+            <q-item v-if='adminIn === true' clickable v-ripple @click="showModalCreateNews()">
+              <q-item-section avatar>
+                <q-icon name="add" color="green-8" />
+              </q-item-section>
+
+              <q-item-section>
+                Crée un article
+              </q-item-section>
+            </q-item>
+
+             <q-separator /> 
+
             <q-item clickable v-ripple @click="showModalDelete(`${userData.userId}`)">
               <q-item-section avatar>
                 <q-icon name="close" color="red"/>
@@ -92,15 +104,6 @@
                 Supprimer mon compte
               </q-item-section>
             </q-item>
-
-            <!-- Modal Mail -->
-          <modalDeleteAccount
-            v-if='modalDeleteAccount'
-            :modal.sync='modalDeleteAccount'
-            :data='user'
-            @closeModalDeleteAccount='closeModal()'
-          />
-          <!-- / Modal Mail -->
 
            <q-item clickable v-ripple @click='logout()'>
               <q-item-section avatar>
@@ -126,11 +129,27 @@
         </q-img>
       </q-drawer>
 
-        
-
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <!-- Modal Create News -->
+    <modalCreateNews
+      v-if='adminIn === true || modalCreateNews'
+      :modal2.sync='modalCreateNews'
+      @closeModalCreateNews='closeModal2()'
+    />
+    <!-- / Modal Create News -->
+
+    <!-- Modal Mail -->
+    <modalDeleteAccount
+      v-if='modalDeleteAccount'
+      :modal.sync='modalDeleteAccount'
+      :data='user'
+      @closeModalDeleteAccount='closeModal()'
+    />
+    <!-- / Modal Mail -->
+
   </q-layout>
 </template>
 
@@ -138,6 +157,7 @@
 
 import { defineComponent, ref } from '@vue/composition-api';
 import modalDeleteAccount from '../components/modal/modalConfirm'
+import modalCreateNews from '../components/modal/admin/modalCreateNews'
 import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default defineComponent({
@@ -145,6 +165,7 @@ export default defineComponent({
   data (){
       return {
           modalDeleteAccount: false,
+          modalCreateNews: false,
           user : null,
           userData: {
             userId: localStorage.getItem('userId'),
@@ -168,6 +189,12 @@ export default defineComponent({
     closeModal () {
       this.modalDeleteAccount = false
     },
+    showModalCreateNews () {
+      this.modalCreateNews = true
+    },
+    closeModal2 () {
+      this.modalCreateNews = false
+    },
     logout () {
       this.logoutUser()
     },
@@ -179,11 +206,13 @@ export default defineComponent({
       setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['handleAuthStateChange']),
-    ...mapMutations('auth', ['setLoggedIn'])
+    ...mapMutations('auth', ['setLoggedIn']),
+    ...mapMutations('auth', ['setAdminIn'])
   },
   computed: {
     ...mapState('auth', ['loggedIn']),
-    ...mapState('auth', ['listNotif'])
+    ...mapState('auth', ['listNotif']),
+    ...mapState('auth', ['adminIn']),
   },
   setup() {
     const leftDrawerOpen = ref(true)
@@ -195,7 +224,7 @@ export default defineComponent({
     this.checkAuth()
   },
   components: {
-    modalDeleteAccount
+    modalDeleteAccount, modalCreateNews
   },
 });
 </script>

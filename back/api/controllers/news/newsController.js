@@ -27,4 +27,26 @@ module.exports = {
             })
 
     },
+    post: (req, res) => {
+
+        console.log(req.body.categorie);
+
+        const url = req.protocol + '://' + req.get('host')
+
+        News
+
+        const news = new News({
+            ...req.body,
+            cat: req.body.categorie,
+            image: url + '/public/news/' + req.files[0].filename
+        })
+
+        news.save((err) => {
+
+            if (err) {
+            
+            }
+        })
+
+    }
 }

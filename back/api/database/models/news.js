@@ -9,12 +9,17 @@ const mongoose = require('mongoose'),
 const NewsShema = new mongoose.Schema({
 
     author: {
-        type: String
+        type: String,
+        default: 'Dofus-Book'
     },
     avatar: {
-        type: String
+        type: String,
+        default: 'https://play-lh.googleusercontent.com/DwTsGsKrvYPsC-TzKc-3dasiEgIwVOUY5wgTT94XPzcHJP-5V5pvSKZ9v1j1m85OdFfm'
     },
     title: {
+        type: String
+    },
+    image: {
         type: String
     },
     content: {
@@ -24,7 +29,8 @@ const NewsShema = new mongoose.Schema({
         type: String
     },
     dateCreate: {
-        type: String
+        type: String,
+        default: new Date()
     },
     category: {
         type: String

@@ -14,7 +14,8 @@ export default {
       setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['handleAuthStateChange']),
-    ...mapMutations('auth', ['setLoggedIn'])
+    ...mapMutations('auth', ['setLoggedIn']),
+    ...mapMutations('auth', ['setAdminIn'])
   },
   mounted () {
     this.checkAuth()
