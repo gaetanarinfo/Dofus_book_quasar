@@ -88,37 +88,34 @@ const actions = {
             formData.set('category', payload.category)
         }
 
-        console.log(payload.category);
-        console.log(payload.cat);
+        axios
+            .post('/news/' + payload.newsId, formData)
+            .then((res) => {
 
-        // axios
-        //     .post('/news/' + payload.newsId, formData)
-        //     .then((res) => {
+                const succ = res.data.success,
+                    err = res.data.error
 
-        //         const succ = res.data.success,
-        //             err = res.data.error
+                if (err === true) {
 
-        //         if (err === true) {
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Une erreur est survenue !"
+                    })
+                }
 
-        //             Notify.create({
-        //                 color: 'red-5',
-        //                 textColor: 'white',
-        //                 icon: 'warning',
-        //                 message: "Une erreur est survenue !"
-        //             })
-        //         }
+                if (succ === true) {
 
-        //         if (succ === true) {
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: "L'article " + payload.title + " À bien été modifié !"
+                    })
 
-        //             Notify.create({
-        //                 color: 'green-5',
-        //                 textColor: 'white',
-        //                 icon: 'check',
-        //                 message: "L'article à bien été modifier !"
-        //             })
-
-        //         }
-        //     })
+                }
+            })
     },
 }
 
