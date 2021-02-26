@@ -32,11 +32,9 @@ const NewsShema = new mongoose.Schema({
         type: String,
         default: new Date()
     },
-    category: {
-        type: String
-    },
     cat: {
-        type: String
+        type: String,
+        default: 'Aucune'
     }
 });
 

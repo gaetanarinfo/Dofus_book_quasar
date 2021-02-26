@@ -27,20 +27,15 @@ const actions = {
     postNews({}, payload) {
 
         const formData = new FormData();
-        for (const i of Object.keys(payload.files)) {
-            formData.append('files', payload.files[i])
-        }
 
-        console.log(payload.cat);
+        formData.append('files', payload.files[0])
+        formData.set('title', payload.title)
+        formData.set('content', payload.content)
+        formData.set('url', payload.url)
+        formData.set('cat', payload.cat)
 
         axios
-            .post('/news', formData, {
-                title: payload.title,
-                content: payload.content,
-                files: payload.files,
-                url: payload.url,
-                categorie: payload.cat
-            })
+            .post('/news', formData)
             .then((res) => {
 
                 // const succ = res.data.success,

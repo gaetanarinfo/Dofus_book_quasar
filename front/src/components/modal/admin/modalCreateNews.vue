@@ -71,7 +71,7 @@
      lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un url']"
     />
 
-     <q-select color="orange" filled v-model="form.cat" :options="options" label="Catégorie">
+     <q-select color="orange" filled v-model="form.cat" :options="form.options" label="Catégorie">
         <template v-if="form.cat" v-slot:append>
           <q-icon name="cancel" @click.stop="form.cat = null" class="cursor-pointer" />
         </template>
@@ -101,15 +101,15 @@ export default {
     data() {
         return {
             form : {
-                files: null,
                 title : "",
                 content : "",
                 url : "",
-                cat : null,
-            },
-            options: [
+                cat : "",
+                files: null,
+                options: [
                 'Event', 'Shop', 'Info', 'Communauté'
-            ]
+                ]
+            }
         }
     },
   components: {

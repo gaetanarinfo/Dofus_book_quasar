@@ -29,22 +29,24 @@ module.exports = {
     },
     post: (req, res) => {
 
-        console.log(req.body.categorie);
+        console.log(req.body);
 
         const url = req.protocol + '://' + req.get('host')
 
         News
 
         const news = new News({
-            ...req.body,
-            cat: req.body.categorie,
+            title: req.body.title,
+            content: req.body.content,
+            url: req.body.url,
+            cat: req.body.cat,
             image: url + '/public/news/' + req.files[0].filename
         })
 
         news.save((err) => {
 
             if (err) {
-            
+
             }
         })
 
