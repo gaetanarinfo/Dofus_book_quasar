@@ -16,9 +16,19 @@
 
       <q-card-actions>
         <q-btn flat color="white" label="Partager" />
-        <q-btn flat color="warning" label="Lire la suite" :to="news.url" />
+        <q-btn flat color="warning" label="Lire la suite" type="button" />
+        <q-btn flat color="green" label="Editer" type="button" @click="showModalEditNews(news)" />
       </q-card-actions>
     </q-card>
+
+    <!-- Modal Edit news -->
+    <modalEditNews
+      v-if='modalEditNews'
+      :modal3.sync='modalEditNews'
+      :data='newsModal'
+      @closeModalEditNews='closeModal3()'
+    />
+    <!-- / Modal Edit News -->
     
   </div>
 </template>
@@ -32,13 +42,28 @@
 <script>
 
 import { mapActions, mapState } from 'vuex'
+import modalEditNews from '../components/modal/admin/modalEditNews'
 
 export default {
     name: 'news',
     data () {
     return {
+       modalEditNews: false,
        news : null,
+       newsModal : null
       }
+  },
+  methods : {
+    showModalEditNews (data) {
+      this.newsModal = data
+      this.modalEditNews = true
+    },
+    closeModal3 () {
+      this.modalEditNews = false
+    },
+  },
+  components: {
+    modalEditNews
   },
   props: {
     listNews: Array

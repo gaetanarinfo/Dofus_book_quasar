@@ -1,24 +1,24 @@
 <template>
   <div class="q-pa-md q-gutter-sm">
 
-      <q-dialog v-model="modal2" persistent>
-      <q-card style="background: #535658bf !important; color: white; width: 700px; max-width: 80vw;">
+      <q-dialog v-model="modal3" persistent>
+      <q-card style="background: #535658bf !important; color: white;width: 700px; max-width: 80vw;">
         <q-toolbar>
           <q-avatar>
-            <img src='https://styles.redditmedia.com/t5_2sl1e/styles/communityIcon_w2pemjj4a7b21.png?width=256&s=2388bd09a659c346fce7c8d5eb82143a1ebf4a72'>
+            <img :src='data.category'>
           </q-avatar>
 
-          <q-toolbar-title><span class="text-weight-bold">Crée un article</span></q-toolbar-title>
+          <q-toolbar-title><span class="text-weight-bold">{{ data.title }}</span></q-toolbar-title>
 
-          <q-btn flat round dense icon="close" v-close-popup @click="$emit('closeModalCreateNews')">
+          <q-btn flat round dense icon="close" v-close-popup @click="$emit('closeModalEditNews')">
             <q-tooltip anchor="top middle" self="center middle">
-               Fermer
+               Fermer l'actualité
                 </q-tooltip>
           </q-btn>    
  
         </q-toolbar>
 
-        <q-card-section>
+         <q-card-section>
            <q-form
            style="margin-top : 0px !important; background-color: #acb5aec7;"
       @submit="send"
@@ -26,9 +26,10 @@
     >
         <q-input
         style="padding: 16px 0 16px 0;"
+        v-model="form.title"
+        :value="data.title"
             filled
-            req
-            v-model="form.title"
+            req 
             label="Titre de l'article *"
             hint="Titre de l'article"
             lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un titre']"
@@ -37,6 +38,7 @@
     <q-file
     style="margin: 16px 0 16px 0;"
         type="file"
+        disabled
         v-model="form.files"
         label="Image de l'article"
         hint="Image de l'article"
@@ -46,16 +48,17 @@
         max-files="1"
         multiple
         @change="uploadFile"
-        lazy-rules :rules="[ val => val && val.length > 0 || 'Merci de choisir une image']"
       >
         <template v-slot:prepend>
           <q-icon name="image" />
         </template>
       </q-file>
 
+      <q-img style="width 100%;" :src='data.image' />
+
     <q-input
      style="margin: 16px 0 0 0;"
-      v-model="form.content"
+      :value="data.content"
       filled
       label="Description de l'article *"
      hint="Description de l'article"
@@ -65,7 +68,7 @@
 
     <q-input
     style="margin: 16px 0 16px 0;"
-      v-model="form.url"
+    :value="data.url"
       filled
       label="Url de l'article *"
      hint="Url de l'article"
@@ -74,62 +77,24 @@
 
      <q-select
      filled
+     disable
         v-model="form.cat"
-        :options="form.optionsCat"
         label="Catégorie"
          hint="Catégorie"
         color="orange"
-        clearable
-        options-selected-class="grey-9"
-        lazy-rules :rules="[ val => val && val.length > 0 || 'Merci de choisir une catégorie']"
      >
-        <template v-slot:option="scope">
-          <q-item
-          style="background: #ffffffcc !important;"
-            v-bind="scope.itemProps"
-            v-on="scope.itemEvents"
-          >
-            
-            <q-item-section>
-              <q-item-label v-html="scope.opt.label"></q-item-label>
-            </q-item-section>
-
-             <q-item-section avatar>
-              <q-icon :name="scope.opt.icon"></q-icon>
-            </q-item-section>
-
-          </q-item>
-        </template>
+    
       </q-select>
 
       <q-select
+      disable
       style="margin: 16px 0 0 0;"
         filled
-        v-model="form.categorie"
-        :options="form.optionsCategorie"
+        v-model="form.category"
         label="Image Catégorie"
          hint="Image Catégorie"
         color="orange"
-        clearable
-        options-selected-class="grey-9"
-        lazy-rules :rules="[ val => val && val.length > 0 || 'Merci de choisir une image de catégorie']"
       >
-        <template v-slot:option="scope">
-          <q-item
-          style="background: #ffffffcc !important;"
-            v-bind="scope.itemProps"
-            v-on="scope.itemEvents"
-          >
-            
-            <q-item-section>
-              <q-item-label v-html="scope.opt.label"></q-item-label>
-              <q-item-label caption>{{ scope.opt.description }}</q-item-label>
-            </q-item-section>
-            <q-item-section avatar>
-              <q-icon :name="scope.opt.icon"></q-icon>
-            </q-item-section>
-          </q-item>
-        </template>
       </q-select>
 
         <div style="padding: 16px 0 0 0;">
@@ -139,7 +104,6 @@
 
     </q-form>
         </q-card-section>
-
       </q-card>
     </q-dialog>
 
@@ -149,17 +113,16 @@
 <script>
 
 import { mapActions } from 'vuex'
-import axios from "axios";
-import { log } from 'util'
 
 export default {
-    data() {
-        return {
-            form : {
-                title : "",
-                content : "",
-                url : "",
-                cat : "",
+    data () {
+    return {
+       form : {
+                newsId : this.$props.data._id, 
+                title : this.$props.data.title,
+                content : this.$props.data.content,
+                url : this.$props.data.url,
+                cat : this.$props.data.cat,
                 files: null,
                 optionsCat: [
                 {
@@ -183,7 +146,7 @@ export default {
                   icon: 'api'
                 }
               ],
-                category : null,
+                category : this.$props.data.category,
                 optionsCategorie: [
                 {
                   label: 'Event',
@@ -211,13 +174,18 @@ export default {
                 }
               ]
             }
-        }
-    },
+      }
+  },
   components: {
 
   },
   methods: {
-       counterLabelImage ({ totalSize, filesNumber, maxFiles }) {
+    onReset () {
+      this.cat = null
+      this.files = null
+      this.category = null
+    },
+     counterLabelImage ({ totalSize, filesNumber, maxFiles }) {
             return `${filesNumber} fichier sur ${maxFiles} | ${totalSize}`
         },
       uploadFile (event) {
@@ -225,23 +193,18 @@ export default {
         },
       send() { 
 
-        this.postNews(this.form)
+        this.editNews(this.form)
        
     },
-    onReset () {
-      this.files = null
-      this.title = "",
-      this.content = "",
-      this.url = "",
-      this.cat = "",
-      this.category = ""
-    },
-    ...mapActions('news', ['postNews']),
+    ...mapActions('news', ['editNews'])
   },
   props: {
-    modal2: {
+    modal3: {
       default: false
-    }
+    },
+    data: {
+      type: Object
+    },
   }
 }
 </script>

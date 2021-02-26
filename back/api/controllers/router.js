@@ -72,6 +72,10 @@ router.route('/news')
     .get(newsController.get)
     .post(upload.array('files', 1), newsController.post)
 
+router.route('/news/:id')
+    // .get(newsController.get)
+    .post(upload.array('files', 1), newsController.editId)
+
 /***********
  * / Router
  */

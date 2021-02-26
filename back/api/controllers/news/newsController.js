@@ -29,8 +29,6 @@ module.exports = {
     },
     post: (req, res) => {
 
-        console.log(req.body);
-
         const url = req.protocol + '://' + req.get('host')
 
         News
@@ -40,6 +38,7 @@ module.exports = {
             content: req.body.content,
             url: req.body.url,
             cat: req.body.cat,
+            category: req.body.category,
             image: url + '/public/news/' + req.files[0].filename
         })
 
@@ -47,8 +46,52 @@ module.exports = {
 
             if (err) {
 
+                let error = true
+
+                res.json({
+                    error
+                })
+
             }
+
+            let success = true
+
+            res.send({
+                success
+            })
         })
+
+    },
+    editId: (req, res) => {
+
+        console.log(req.body.category)
+        
+        News
+            .updateOne({ _id: req.params.id }, {
+                title: req.body.title,
+                content: req.body.content,
+                url: req.body.url,
+                cat: req.body.cat,
+                category: req.body.category
+            }, (err, data) => {
+
+                if (err) {
+
+                    let error = true
+
+                    res.json({
+                        error
+                    })
+
+                }
+
+                let success = true
+
+                res.send({
+                    success
+                })
+
+            })
 
     }
 }

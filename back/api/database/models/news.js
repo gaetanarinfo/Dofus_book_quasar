@@ -35,6 +35,10 @@ const NewsShema = new mongoose.Schema({
     cat: {
         type: String,
         default: 'Aucune'
+    },
+    category: {
+        type: String,
+        default: 'Aucune'
     }
 });
 

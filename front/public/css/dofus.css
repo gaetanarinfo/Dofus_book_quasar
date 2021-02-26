@@ -51,12 +51,15 @@ form {
     background: #fff0 !important;
 }
 
-.q-item.q-router-link--active, .q-item--active {
+.q-item.q-router-link--active,
+.q-item--active {
     color: #c0c1c1 !important;
 }
+
 .q-table__card {
     background-color: #00000073 !important;
 }
+
 .q-tooltip--style {
     font-size: 11px !important;
     font-weight: 600 !important;
@@ -80,4 +83,8 @@ form {
     margin-top: 8px !important;
     line-height: 27px !important;
     letter-spacing: 0.16667em !important;
+}
+
+.list-item-dofus {
+    background: #ffffff82 !important;
 }

@@ -141,14 +141,14 @@
     />
     <!-- / Modal Create News -->
 
-    <!-- Modal Mail -->
+    <!-- Modal User Delete -->
     <modalDeleteAccount
       v-if='modalDeleteAccount'
       :modal.sync='modalDeleteAccount'
       :data='user'
       @closeModalDeleteAccount='closeModal()'
     />
-    <!-- / Modal Mail -->
+    <!-- / Modal User Delete -->
 
   </q-layout>
 </template>
