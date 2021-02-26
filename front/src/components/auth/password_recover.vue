@@ -104,7 +104,7 @@ export default {
     ...mapActions('auth', ['recoverPasswordUserConfirm']),
     checkAuth () {
       this.recoverPasswordUser()
-      setTimeout(this.checkAuth, 2500)
+      setTimeout(this.checkAuth, 1000)
     },
     ...mapActions('auth', ['recoverPasswordUser'])
   },

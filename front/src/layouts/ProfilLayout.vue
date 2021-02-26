@@ -180,7 +180,7 @@ export default defineComponent({
   methods: {
     checkNotif () {
       this.getMailNotif()
-      setTimeout(this.checkNotif, 2500)
+      setTimeout(this.checkNotif, 1000)
     },
     showModalDelete (data) {
       this.user = data
@@ -203,7 +203,7 @@ export default defineComponent({
     ...mapActions('auth', ['getMailNotif']),
     checkAuth () {
       this.handleAuthStateChange()
-      setTimeout(this.checkAuth, 2500)
+      setTimeout(this.checkAuth, 1000)
     },
     ...mapActions('auth', ['handleAuthStateChange']),
     ...mapMutations('auth', ['setLoggedIn']),

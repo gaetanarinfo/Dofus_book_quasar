@@ -11,14 +11,20 @@ export default {
   methods: {
     checkAuth () {
       this.handleAuthStateChange()
-      setTimeout(this.checkAuth, 2500)
+      setTimeout(this.checkAuth, 1000)
+    },
+     checkAdmin () {
+      this.setAdminIn()
+      setTimeout(this.loggedDataUser, 1000)
     },
     ...mapActions('auth', ['handleAuthStateChange']),
     ...mapMutations('auth', ['setLoggedIn']),
-    ...mapMutations('auth', ['setAdminIn'])
+    ...mapMutations('auth', ['setAdminIn']),
+    ...mapActions('auth', ['loggedDataUser'])
   },
   mounted () {
     this.checkAuth()
+    this.checkAdmin()
   }
 }
 </script>

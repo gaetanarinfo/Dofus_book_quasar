@@ -17,7 +17,12 @@
       <q-card-actions>
         <q-btn flat color="white" label="Partager" />
         <q-btn flat color="warning" label="Lire la suite" type="button" />
-        <q-btn flat color="green" label="Editer" type="button" @click="showModalEditNews(news)" />
+        <q-btn v-if='adminIn === true' flat color="green" label="Editer" type="button" @click="showModalEditNews(news)" />
+        <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(news.id)">
+             <q-tooltip anchor="top middle" self="center middle">
+               Supprimer l'article
+              </q-tooltip>
+        </q-btn>
       </q-card-actions>
     </q-card>
 
@@ -29,6 +34,15 @@
       @closeModalEditNews='closeModal3()'
     />
     <!-- / Modal Edit News -->
+
+    <!-- Modal Delete news -->
+    <modalDeleteGeneral
+      v-if='modalDeleteGeneral'
+      :modal4.sync='modalDeleteGeneral'
+      :data='news'
+      @closeModalDeleteGeneral='closeModal4()'
+    />
+    <!-- / Modal Delete News -->
     
   </div>
 </template>
@@ -41,14 +55,16 @@
 
 <script>
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapMutations } from 'vuex'
 import modalEditNews from '../components/modal/admin/modalEditNews'
+import modalDeleteGeneral from '../components/modal/admin/modalDeleteGeneral'
 
 export default {
     name: 'news',
     data () {
     return {
        modalEditNews: false,
+       modalDeleteGeneral : false,
        news : null,
        newsModal : null
       }
@@ -61,9 +77,20 @@ export default {
     closeModal3 () {
       this.modalEditNews = false
     },
+    showModalDeleteGeneral (data) {
+      this.news = data
+      this.modalDeleteGeneral = true
+    },
+    closeModal4 () {
+      this.modalDeleteGeneral = false
+    },
+    ...mapMutations('auth', ['setAdminIn'])
+  },
+  computed : {
+     ...mapState('auth', ['adminIn'])
   },
   components: {
-    modalEditNews
+    modalEditNews, modalDeleteGeneral
   },
   props: {
     listNews: Array

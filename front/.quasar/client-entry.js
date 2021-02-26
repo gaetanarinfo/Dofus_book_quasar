@@ -40,8 +40,6 @@ import qboot_Bootcompositionapi from 'boot/composition-api'
 
 import qboot_Bootaxios from 'boot/axios'
 
-import qboot_Bootrouterauth from 'boot/router-auth'
-
 import qboot_Quasarquasarappextensionqmediaplayersrcbootregisterjs from '@quasar/quasar-app-extension-qmediaplayer/src/boot/register.js'
 
 
@@ -81,7 +79,7 @@ async function start () {
   }
 
   const urlPath = window.location.href.replace(window.location.origin, '')
-  const bootFiles = [qboot_Bootcompositionapi,qboot_Bootaxios,qboot_Bootrouterauth,qboot_Quasarquasarappextensionqmediaplayersrcbootregisterjs]
+  const bootFiles = [qboot_Bootcompositionapi,qboot_Bootaxios,qboot_Quasarquasarappextensionqmediaplayersrcbootregisterjs]
 
   for (let i = 0; hasRedirected === false && i < bootFiles.length; i++) {
     if (typeof bootFiles[i] !== 'function') {

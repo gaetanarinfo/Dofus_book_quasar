@@ -107,7 +107,7 @@ export default {
     },
     checkAuth () {
       this.loggedDataUser()
-      setTimeout(this.checkAuth, 2500)
+      setTimeout(this.checkAuth, 1000)
     },
     ...mapActions('auth', ['loggedDataUser']),
     ...mapActions('auth', ['removeMailBox'])

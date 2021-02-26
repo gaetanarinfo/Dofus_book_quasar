@@ -283,7 +283,7 @@ export default defineComponent({
     },
     checkNotif () {
       this.getMailNotif()
-      setTimeout(this.checkNotif, 2500)
+      setTimeout(this.checkNotif, 1000)
     },
     ...mapActions('auth', ['getMailNotif']),
     logout () {

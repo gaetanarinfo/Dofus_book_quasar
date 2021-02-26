@@ -76,6 +76,10 @@ router.route('/news/:id')
     // .get(newsController.get)
     .post(upload.array('files', 1), newsController.editId)
 
+router.route('/delete_news/:id')
+    // .get(newsController.get)
+    .post(newsController.deleteId)
+
 /***********
  * / Router
  */

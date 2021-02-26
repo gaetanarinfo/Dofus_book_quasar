@@ -2,7 +2,7 @@
   <div class="q-pa-md q-gutter-sm">
 
       <q-dialog v-model="modal" persistent>
-      <q-card style="background: #535658bf !important; color: white;">
+      <q-card style="background: rgb(31 31 31 / 78%) !important; color: white;">
         <q-toolbar>
           <q-avatar>
             <img src='https://styles.redditmedia.com/t5_2sl1e/styles/communityIcon_w2pemjj4a7b21.png?width=256&s=2388bd09a659c346fce7c8d5eb82143a1ebf4a72'>

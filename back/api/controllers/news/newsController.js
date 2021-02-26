@@ -64,8 +64,6 @@ module.exports = {
     },
     editId: (req, res) => {
 
-        console.log(req.body.category)
-        
         News
             .updateOne({ _id: req.params.id }, {
                 title: req.body.title,
@@ -90,6 +88,31 @@ module.exports = {
                 res.send({
                     success
                 })
+
+            })
+
+    },
+    deleteId: (req, res) => {
+        
+        News
+            .findOneAndRemove(({_id: req.params.id}), (err, data) => {
+
+                if (err) {
+
+                    let error = true
+
+                    res.json({
+                        error
+                    })
+
+                }
+
+                let success = true
+
+                res.send({
+                    success
+                })
+
 
             })
 
