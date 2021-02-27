@@ -156,8 +156,8 @@
 <script lang="ts">
 
 import { defineComponent, ref } from '@vue/composition-api';
-import modalDeleteAccount from '../components/modal/modalConfirm'
-import modalCreateNews from '../components/modal/admin/modalCreateNews'
+import modalDeleteAccount from '../components/modal/modalConfirm.vue'
+import modalCreateNews from '../components/modal/admin/modalCreateNews.vue'
 import { mapState, mapActions, mapMutations } from 'vuex'
 
 export default defineComponent({
@@ -180,9 +180,9 @@ export default defineComponent({
   methods: {
     checkNotif () {
       this.getMailNotif()
-      setTimeout(this.checkNotif, 1000)
+      setTimeout(this.checkNotif, 2500)
     },
-    showModalDelete (data) {
+    showModalDelete (data : any) {
       this.user = data
       this.modalDeleteAccount = true
     },
@@ -203,7 +203,7 @@ export default defineComponent({
     ...mapActions('auth', ['getMailNotif']),
     checkAuth () {
       this.handleAuthStateChange()
-      setTimeout(this.checkAuth, 1000)
+      setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['handleAuthStateChange']),
     ...mapMutations('auth', ['setLoggedIn']),

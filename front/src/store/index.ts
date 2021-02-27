@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 // import example from './module-example'
 import auth from './user_store'
 import news from './news_store'
+import almanax from './alma_store.js'
 
 Vue.use(Vuex)
 
@@ -19,7 +20,7 @@ Vue.use(Vuex)
 export default function (/* { ssrContext } */) {
   const Store = new Vuex.Store({
     modules: {
-      auth, news
+      auth, news, almanax
     },
 
     // enable strict mode (adds overhead!)

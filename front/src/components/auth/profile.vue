@@ -161,7 +161,7 @@ export default {
     ...mapActions('auth', ['editAvatars']),
     checkAuth () {
       this.loggedDataUser()
-      setTimeout(this.checkAuth, 1000)
+      setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['loggedDataUser'])
   },

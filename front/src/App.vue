@@ -6,16 +6,17 @@
 
 <script>
 import { mapActions, mapMutations } from 'vuex'
+
 export default {
   name: 'App',
   methods: {
     checkAuth () {
       this.handleAuthStateChange()
-      setTimeout(this.checkAuth, 1000)
+      setTimeout(this.checkAuth, 2500)
     },
      checkAdmin () {
       this.setAdminIn()
-      setTimeout(this.loggedDataUser, 1000)
+      setTimeout(this.loggedDataUser, 2500)
     },
     ...mapActions('auth', ['handleAuthStateChange']),
     ...mapMutations('auth', ['setLoggedIn']),

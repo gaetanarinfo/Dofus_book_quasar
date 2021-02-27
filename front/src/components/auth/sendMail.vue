@@ -247,7 +247,7 @@ export default {
     ...mapActions('auth', ['sendMail']),
     checkAuth () {
       this.loggedDataUser()
-      setTimeout(this.checkAuth, 1000)
+      setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['loggedDataUser'])
   },

@@ -648,7 +648,26 @@ const actions = {
     }
 }
 
-const getters = {}
+const getters = {
+    setListMail(state, value) {
+        state.listMail
+    },
+    setListUser(state, value) {
+        state.listUser
+    },
+    setLoggedIn(state, value) {
+        state.loggedIn
+    },
+    setAdminIn(state, value) {
+        state.adminIn
+    },
+    setListRecipient(state, value) {
+        state.listRecipient
+    },
+    setMailNotif(state, value) {
+        state.listNotif
+    }
+}
 
 export default {
     namespaced: true,

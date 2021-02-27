@@ -10,6 +10,11 @@
     src: url('../css/fonts/BebasNeue.otf');
 }
 
+@font-face {
+    font-family: charming;
+    src: url("../css/fonts/Charming.otf");
+}
+
 .font-bebas {
     font-family: 'bebas', sans-serif;
     letter-spacing: 3px !important;

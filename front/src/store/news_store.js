@@ -119,7 +119,11 @@ const actions = {
     },
 }
 
-const getters = {}
+const getters = {
+    setListNews: state => {
+        return state.listNews
+    }
+}
 
 export default {
     namespaced: true,

@@ -9,9 +9,16 @@
         <div><img :src="news.category"></div>
         <div class="text-overline text-overline-dofus text-yellow-9">{{ news.cat }}</div>
         <div class="text-h5 q-mt-sm q-mb-xs text-white" style="text-overflow: ellipsis;max-width: 317px;overflow: hidden;white-space: nowrap;">{{ news.title }}</div>
-        <div class="text-caption text-white" style="max-height: 103px;overflow: auto;content: ' ... ';">
+       
+          <q-scroll-area
+          :thumb-style="thumbStyle"
+          :bar-style="barStyle"
+          style="height: 100px; max-width: 100%;"
+        >
+        <div class="text-caption text-white" style="max-height: 100px;overflow: hidden;">
          {{ news.content }}
         </div>
+        </q-scroll-area>
       </q-card-section>
 
       <q-card-actions>
@@ -63,6 +70,20 @@ export default {
     name: 'news',
     data () {
     return {
+      thumbStyle: {
+        right: '4px',
+        borderRadius: '5px',
+        backgroundColor: '#DF4F30',
+        width: '5px',
+        opacity: 0.75
+      },
+      barStyle: {
+        right: '2px',
+        borderRadius: '9px',
+        backgroundColor: '#A5331B',
+        width: '9px',
+        opacity: 0.2
+      },
        modalEditNews: false,
        modalDeleteGeneral : false,
        news : null,

@@ -184,13 +184,17 @@ module.exports = {
         // get the decoded payload and header
         var decoded = jwt.decode(req.params.token, { complete: true });
 
-        User.findOne({ _id: decoded.payload._id }, (err, data) => {
+        if (decoded != null) {
 
-            res.send({
-                userData: data
+            User.findOne({ _id: decoded.payload._id }, (err, data) => {
+
+                res.send({
+                    userData: data
+                })
+
             })
 
-        })
+        }
 
     },
     editProfil: async(req, res) => {

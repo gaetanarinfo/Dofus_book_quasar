@@ -11,7 +11,8 @@ const express = require('express'),
 const userController = require('./users/userController'),
     SessionController = require('./users/SessionController'),
     resetpasswordController = require('./users/resetpasswordController'),
-    newsController = require('./news/newsController')
+    newsController = require('./news/newsController'),
+    almanaxController = require('./general/almanaxController')
 
 
 // Multer gestion image
@@ -79,6 +80,13 @@ router.route('/news/:id')
 router.route('/delete_news/:id')
     // .get(newsController.get)
     .post(newsController.deleteId)
+
+// Almanax
+router.route('/almanax')
+    .get(almanaxController.get)
+
+router.route('/almanax2')
+    .get(almanaxController.get2)
 
 /***********
  * / Router

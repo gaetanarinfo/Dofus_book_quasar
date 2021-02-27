@@ -11,7 +11,7 @@
           @click="leftDrawerOpen = !leftDrawerOpen"
         />
 
-        <q-toolbar-title>
+        <q-toolbar-title style="font-family: charming, sans-serif;font-size: 21px;color: blanchedalmond;font-weight: 600;letter-spacing: 4px;padding: 7px 0px 0px 7px;">
           Dofus Book
         </q-toolbar-title>
 
@@ -21,7 +21,7 @@
           transition-show="flip-right"
           transition-hide="flip-left"
         >
-          <q-list style="min-width: 100px">
+          <q-list style="min-width: 100px; background-color: #ffffffb5;font-weight: 400;letter-spacing: 0.5px;">
             <q-item clickable>
               <q-item-section>Having fun</q-item-section>
             </q-item>
@@ -34,10 +34,47 @@
           transition-show="flip-right"
           transition-hide="flip-left"
         >
-          <q-list style="min-width: 100px">
-            <q-item clickable>
-              <q-item-section>Having fun</q-item-section>
-            </q-item>
+          <q-list style="min-width: 100px; background-color: #ffffffb5;font-weight: 400;letter-spacing: 0.5px;">
+
+        <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;" clickable>
+          <q-avatar>
+            <img src="https://static.wikia.nocookie.net/wakfulesgardiens/images/c/c0/Bouftou_blanc.png/revision/latest?cb=20100306192748&path-prefix=fr">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Acheter des produits dérivés</q-item-section>
+         </q-item>
+
+        </div>
+
+        <div style="display: block;">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="https://static.wikia.nocookie.net/wakfulesgardiens/images/c/c0/Bouftou_blanc.png/revision/latest?cb=20100306192748&path-prefix=fr">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Editions</q-item-section>
+         </q-item>
+
+        </div>
+
+         <div style="display: block;">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="https://static.wikia.nocookie.net/wakfulesgardiens/images/c/c0/Bouftou_blanc.png/revision/latest?cb=20100306192748&path-prefix=fr">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Jeux videos</q-item-section>
+         </q-item>
+
+        </div>
+    
           </q-list>
         </q-menu>
       </q-btn>
@@ -47,7 +84,7 @@
           transition-show="flip-right"
           transition-hide="flip-left"
         >
-          <q-list style="min-width: 100px">
+          <q-list style="min-width: 100px; background-color: #ffffffb5;font-weight: 400;letter-spacing: 0.5px;">
             <q-item clickable>
               <q-item-section>Having fun</q-item-section>
             </q-item>
@@ -55,14 +92,9 @@
         </q-menu>
       </q-btn>
 
-      <q-btn glossy color="light-green-8" label="Acheter des kamas"></q-btn>
-
-      <q-btn glossy color="light-green-8" label="Forums"></q-btn>
-
-      <q-btn glossy color="light-green-8" label="Boutique"></q-btn>
       </div>
 
-        <q-toolbar class="col-md-3 col-xs-10 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
+        <q-toolbar class="col-md-5 col-xs-10 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
         <q-space />
         <q-btn flat round dense icon="play_circle_filled" @click="open('bottom')">
           <q-tooltip anchor="bottom middle" self="center middle">
@@ -153,7 +185,7 @@
               </q-item-section>
             </q-item>
 
-            <q-separator />
+            <q-separator v-if='loggedIn === false' />
 
             <q-item v-if='loggedIn === false' clickable v-ripple to="/register">
               <q-item-section avatar>
@@ -165,7 +197,7 @@
               </q-item-section>
             </q-item>
 
-            <q-separator />
+            <q-separator v-if='loggedIn === true' />
 
             <q-item v-if='loggedIn === true' clickable v-ripple to="/profil">
               <q-item-section avatar>
@@ -177,7 +209,7 @@
               </q-item-section>
             </q-item> 
 
-            <q-separator /> 
+            <q-separator v-if='loggedIn === true' /> 
 
             <q-item v-if='adminIn === true' clickable v-ripple @click="showModalCreateNews()">
               <q-item-section avatar>
@@ -189,7 +221,7 @@
               </q-item-section>
             </q-item>
 
-             <q-separator /> 
+             <q-separator v-if='loggedIn === true' /> 
 
             <q-item v-if='loggedIn === true' clickable v-ripple @click='logout()'>
               <q-item-section avatar>
@@ -203,6 +235,82 @@
 
             <q-separator />
 
+            <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+
+              <q-btn class="glossy" color="green-10" push @click="showModalAlmanax()">
+              <div class="row items-center no-wrap">
+                <q-icon left name="card_giftcard" />
+                <div class="text-center">
+                  Almanax
+                </div>
+              </div>
+            </q-btn>
+
+            </div>
+            
+            <q-separator />
+
+           
+          <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+              <q-btn class="glossy" color="blue-6" push clickable tag="a" href="https://discord.com/oauth2/authorize?client_id=804766726079774780&permissions=0&scope=bot">
+              <div class="row items-center no-wrap">
+                <q-icon left name="sick" />
+                <div class="text-center">
+                  Bot discord
+                </div>
+              </div>
+            </q-btn>
+
+          </div>
+
+             <q-separator />
+
+             <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+
+                  <q-btn glossy color="yellow-10" push clickable tag="a" href="https://www.dofus.com/fr/achat-kamas">
+                <div class="row items-center no-wrap">
+                  <q-icon left name="shopping_cart" />
+                <div class="text-center">
+                  Acheter des kamas
+                </div>
+              </div>
+      </q-btn>
+
+      </div>
+
+       <q-separator />
+
+       <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+
+      <q-btn glossy color="brown-8" clickable push tag="a" href="https://www.dofus.com/fr/forum">
+        <div class="row items-center no-wrap">
+          <q-icon left name="forum" />
+                <div class="text-center">
+                  Forums
+                </div>
+              </div>
+      </q-btn>
+
+       </div>
+
+       <q-separator />
+
+       <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+
+      <q-btn glossy color="purple-8" clickable push tag="a" href="https://www.dofus.com/fr/boutique">
+         <div class="row items-center no-wrap">
+           <q-icon left name="shopping_cart" />
+                <div class="text-center">
+                  Boutique
+                </div>
+              </div>
+      </q-btn>
+
+       </div>
+
+
+             <q-separator />
+   
       </q-list>
     </q-drawer>
 
@@ -243,15 +351,26 @@
     />
     <!-- / Modal Create News -->
 
+      <!-- Modal Almanax -->
+    <modalAlmanax
+      v-if='modalAlmanax'
+      :modal5.sync='modalAlmanax'
+      @closeModalAlmanax='closeModal5()'
+    />
+    <!-- / Modal Almanax -->
+
   </q-layout>
   
 </template>
+
+<style src="@quasar/quasar-ui-qiconpicker/dist/index.css"></style>
 
 <script lang="ts">
 import EssentialLink from 'components/EssentialLink.vue'
 
 import { defineComponent, ref } from '@vue/composition-api';
-import modalCreateNews from '../components/modal/admin/modalCreateNews'
+import modalCreateNews from '../components/modal/admin/modalCreateNews.vue'
+import modalAlmanax from '../components/modal/modalAlmanax.vue'
 import { mapState, mapActions } from 'vuex'
 
 export default defineComponent({
@@ -260,6 +379,7 @@ export default defineComponent({
     return {
       dialog: false,
       modalCreateNews: false,
+      modalAlmanax: false,
       position: 'bottom',
       tracks: [
         {
@@ -277,13 +397,13 @@ export default defineComponent({
     }
   },
   methods: {
-    open (position) {
+    open (position : any) {
       this.position = position
       this.dialog = true
     },
     checkNotif () {
       this.getMailNotif()
-      setTimeout(this.checkNotif, 1000)
+      setTimeout(this.checkNotif, 2500)
     },
     ...mapActions('auth', ['getMailNotif']),
     logout () {
@@ -295,13 +415,19 @@ export default defineComponent({
     },
     closeModal2 () {
       this.modalCreateNews = false
+    },
+    showModalAlmanax () {
+      this.modalAlmanax = true
+    },
+    closeModal5 () {
+      this.modalAlmanax = false
     }
   },
-  components: { EssentialLink, modalCreateNews },  
+  components: { EssentialLink, modalCreateNews, modalAlmanax },  
   computed: {
     ...mapState('auth', ['loggedIn']),
     ...mapState('auth', ['adminIn']),
-    ...mapState('auth', ['listNotif'])    
+    ...mapState('auth', ['listNotif'])
   },
   setup() {
     const leftDrawerOpen = ref(false);

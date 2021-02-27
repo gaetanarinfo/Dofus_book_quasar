@@ -20,7 +20,7 @@ export default {
     checkAuth () {
       this.logged()
       this.loggedDataUser()
-      setTimeout(this.checkAuth, 1000)
+      setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['logged']),
     ...mapActions('auth', ['getListRecipient']),

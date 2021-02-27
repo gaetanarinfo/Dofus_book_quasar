@@ -19,7 +19,7 @@ export default {
   methods: {
     checkAuth () {
       this.logged()
-      setTimeout(this.checkAuth, 1000)
+      setTimeout(this.checkAuth, 2500)
     },
     ...mapActions('auth', ['logged']),
     ...mapActions('auth', ['getListMail'])
