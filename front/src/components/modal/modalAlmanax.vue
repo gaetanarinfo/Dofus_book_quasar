@@ -47,7 +47,7 @@
          <q-separator />
 
         <q-card-actions align="right">
-          <q-btn glossy clickable tag="a" href="http://www.krosmoz.com/fr/almanax" color="green-8">
+          <q-btn glossy color="green-8" type="a" href="http://www.krosmoz.com/fr/almanax" target="_blank">
             <q-item-section>
                 <q-item-label>Voir l'almanax</q-item-label>
               </q-item-section>

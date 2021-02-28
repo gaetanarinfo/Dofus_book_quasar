@@ -9,7 +9,8 @@ const routes: RouteConfig[] = [
       { path: '/login', name: 'Login', component: () => import('pages/Login.vue') },
       { path: '/register', name: 'Register', component: () => import('pages/Register.vue') },
       { path: '/password_reset', name: 'Password Reset', component: () => import('pages/Password_Reset.vue') },
-      { path: '/reset_password/:token', name: 'Reset Password', component: () => import('pages/Reset_Password.vue') }
+      { path: '/reset_password/:token', name: 'Reset Password', component: () => import('pages/Reset_Password.vue') },
+      { path: '/download', name: 'Download', component: () => import('pages/Download.vue') }
     ]
    },
   {
@@ -17,13 +18,6 @@ const routes: RouteConfig[] = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/News.vue') }
-    ]
-  },
-  {
-    path: '/download',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/Download.vue') }
     ]
   },
   {

@@ -22,9 +22,98 @@
           transition-hide="flip-left"
         >
           <q-list style="min-width: 100px; background-color: #ffffffb5;font-weight: 400;letter-spacing: 0.5px;">
-            <q-item clickable>
-              <q-item-section>Having fun</q-item-section>
-            </q-item>
+           
+             <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/12746.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Télécharger le jeu</q-item-section>
+         </q-item>
+
+        </div>
+
+          <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/12769.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Créez votre compte officiel</q-item-section>
+         </q-item>
+
+        </div>
+
+        <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/12764.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Avantages parrainage</q-item-section>
+         </q-item>
+
+        </div>
+
+        <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/12023.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Code Cadeau</q-item-section>
+         </q-item>
+
+        </div>
+
+         <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/126025.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Encyclopédie</q-item-section>
+         </q-item>
+
+        </div>
+
+        <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/12141.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Annuaires</q-item-section>
+         </q-item>
+
+        </div>
+
+        <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/12743.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Ladders</q-item-section>
+         </q-item>
+
+        </div>
+
           </q-list>
         </q-menu>
       </q-btn>
@@ -38,9 +127,9 @@
 
         <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
           <q-avatar>
-            <img src="https://static.wikia.nocookie.net/wakfulesgardiens/images/c/c0/Bouftou_blanc.png/revision/latest?cb=20100306192748&path-prefix=fr">
+            <img src="images/dofus/16362.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
        
 
@@ -53,7 +142,7 @@
      
         <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
           <q-avatar>
-            <img src="https://static.wikia.nocookie.net/wakfulesgardiens/images/c/c0/Bouftou_blanc.png/revision/latest?cb=20100306192748&path-prefix=fr">
+            <img src="images/dofus/17330.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
        
 
@@ -66,7 +155,7 @@
      
         <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
           <q-avatar>
-            <img src="https://static.wikia.nocookie.net/wakfulesgardiens/images/c/c0/Bouftou_blanc.png/revision/latest?cb=20100306192748&path-prefix=fr">
+            <img src="images/dofus/9313.w40h40.png" style="width: 40px; height: auto;">
           </q-avatar>
        
 
@@ -79,22 +168,72 @@
         </q-menu>
       </q-btn>
 
-      <q-btn glossy color="light-green-8" label="Actualités">
+      <q-btn glossy color="light-green-8" label="Actualités officiel">
         <q-menu
           transition-show="flip-right"
           transition-hide="flip-left"
         >
           <q-list style="min-width: 100px; background-color: #ffffffb5;font-weight: 400;letter-spacing: 0.5px;">
-            <q-item clickable>
-              <q-item-section>Having fun</q-item-section>
-            </q-item>
+           <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/23004.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Découvrir la dernière mise à jour</q-item-section>
+         </q-item>
+
+        </div>
+
+         <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/23023.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Toutes les news</q-item-section>
+         </q-item>
+
+        </div>
+
+         <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/23024.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Tous les devblogs</q-item-section>
+
+         </q-item>
+
+        </div>
+
+          <div style="display: block">
+     
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+          <q-avatar>
+            <img src="images/dofus/23002.w40h40.png" style="width: 40px;height: auto;">
+          </q-avatar>
+       
+
+        <q-item-section style="display: inline-block;margin-left: 8px;">Toutes les mises à jour (changelog)</q-item-section>
+        
+         </q-item>
+
+        </div>
           </q-list>
         </q-menu>
       </q-btn>
 
       </div>
 
-        <q-toolbar class="col-md-5 col-xs-10 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
+        <q-toolbar class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
         <q-space />
         <q-btn flat round dense icon="play_circle_filled" @click="open('bottom')">
           <q-tooltip anchor="bottom middle" self="center middle">
@@ -362,8 +501,6 @@
   </q-layout>
   
 </template>
-
-<style src="@quasar/quasar-ui-qiconpicker/dist/index.css"></style>
 
 <script lang="ts">
 import EssentialLink from 'components/EssentialLink.vue'
