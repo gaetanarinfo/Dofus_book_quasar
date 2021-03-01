@@ -93,9 +93,9 @@ module.exports = {
 
     },
     deleteId: (req, res) => {
-        
+
         News
-            .findOneAndRemove(({_id: req.params.id}), (err, data) => {
+            .findOneAndRemove(({ _id: req.params.id }), (err, data) => {
 
                 if (err) {
 

@@ -7,13 +7,17 @@ import axios from 'axios'
 import { Notify } from 'quasar'
 
 const state = {
-    listNews: []
+    listNews: [],
+    listNews2: []
 }
 
 const mutations = {
     setListNews(state, value) {
         state.listNews = value
     },
+    setListNews2(state, value) {
+        state.listNews2 = value
+    }
 }
 
 const actions = {
@@ -22,6 +26,13 @@ const actions = {
             .get('/news')
             .then(res => {
                 commit('setListNews', res.data.listNews)
+            })
+    },
+    getNews2({ commit }) {
+        axios
+            .get('/news2')
+            .then(res => {
+                commit('setListNews2', res.data.listNews2)
             })
     },
     postNews({}, payload) {
@@ -122,6 +133,9 @@ const actions = {
 const getters = {
     setListNews: state => {
         return state.listNews
+    },
+    setListNews2: state => {
+        return state.listNews2
     }
 }
 

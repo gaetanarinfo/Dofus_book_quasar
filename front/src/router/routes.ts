@@ -10,16 +10,10 @@ const routes: RouteConfig[] = [
       { path: '/register', name: 'Register', component: () => import('pages/Register.vue') },
       { path: '/password_reset', name: 'Password Reset', component: () => import('pages/Password_Reset.vue') },
       { path: '/reset_password/:token', name: 'Reset Password', component: () => import('pages/Reset_Password.vue') },
-      { path: '/download', name: 'Download', component: () => import('pages/Download.vue') }
+      { path: '/download', name: 'Download', component: () => import('pages/Download.vue') },
+      { path: '/news', name: 'News', component: () => import('pages/News.vue') }
     ]
    },
-  {
-    path: '/news',
-    component: () => import('layouts/MainLayout.vue'),
-    children: [
-      { path: '', component: () => import('pages/News.vue') }
-    ]
-  },
   {
     path: '/profil',
     component: () => import('layouts/ProfilLayout.vue'),

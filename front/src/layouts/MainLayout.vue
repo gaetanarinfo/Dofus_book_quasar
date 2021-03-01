@@ -25,7 +25,7 @@
            
              <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable to="/download">
           <q-avatar>
             <img src="images/dofus/12746.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -77,7 +77,7 @@
 
          <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable to="/encyclopedia">
           <q-avatar>
             <img src="images/dofus/126025.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -391,7 +391,7 @@
 
            
           <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
-              <q-btn class="glossy" color="blue-6" push clickable tag="a" href="https://discord.com/oauth2/authorize?client_id=804766726079774780&permissions=0&scope=bot">
+              <q-btn class="glossy" color="blue-6" push type="a" href="https://discord.com/oauth2/authorize?client_id=804766726079774780&permissions=0&scope=bot" target="_blank">
               <div class="row items-center no-wrap">
                 <q-icon left name="sick" />
                 <div class="text-center">
@@ -406,7 +406,7 @@
 
              <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
 
-                  <q-btn glossy color="yellow-10" push clickable tag="a" href="https://www.dofus.com/fr/achat-kamas">
+                  <q-btn glossy color="yellow-10" push clickable type="a" href="https://www.dofus.com/fr/achat-kamas" target="_blank">
                 <div class="row items-center no-wrap">
                   <q-icon left name="shopping_cart" />
                 <div class="text-center">
@@ -421,7 +421,7 @@
 
        <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
 
-      <q-btn glossy color="brown-8" clickable push tag="a" href="https://www.dofus.com/fr/forum">
+      <q-btn glossy color="brown-8" clickable push type="a" href="https://www.dofus.com/fr/forum" target="_blank">
         <div class="row items-center no-wrap">
           <q-icon left name="forum" />
                 <div class="text-center">
@@ -436,7 +436,7 @@
 
        <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
 
-      <q-btn glossy color="purple-8" clickable push tag="a" href="https://www.dofus.com/fr/boutique">
+      <q-btn glossy color="purple-8" clickable push type="a" href="https://www.dofus.com/fr/boutique" target="_blank">
          <div class="row items-center no-wrap">
            <q-icon left name="shopping_cart" />
                 <div class="text-center">

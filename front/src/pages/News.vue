@@ -1,241 +1,57 @@
 <template>
   <div class="row items-start q-gutter-md justify-center">
 
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1292680.w500h.jpg"
-      />
+    <div class="col-sm-10 col-10 col-md-10 text-h4 font-bebas text-center text-white">Actualités du jour</div>
+
+    <q-card class="my-card" flat bordered v-for="news in listNews2" :key="news.id">
+     <img :src="news.image" />
 
       <q-card-section>
-        <div class="text-overline text-blue-9">Event</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Célébrez le Nouvel An lunaire Pandawa !</div>
-        <div class="text-caption text-grey">
-          Si les Pandawas ont souvent l’air d’être dans la lune, ça n’est pas qu’une question de boisson fermentée ! Au grand dam de Xélor, les bons vivants du Monde des Douze ont une façon bien à eux de considérer...
+        
+        <div><img :src="news.category"></div>
+        <div class="text-overline text-overline-dofus text-yellow-9">{{ news.cat }}</div>
+        <div class="text-h5 q-mt-sm q-mb-xs text-white" style="text-overflow: ellipsis;max-width: 317px;overflow: hidden;white-space: nowrap;">{{ news.title }}</div>
+       
+          <q-scroll-area
+          :thumb-style="thumbStyle"
+          :bar-style="barStyle"
+          style="height: 100px; max-width: 100%;"
+        >
+        <div class="text-caption text-white" style="max-height: 100px;overflow: hidden;">
+         {{ news.content }}
         </div>
+        </q-scroll-area>
       </q-card-section>
 
       <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-    </q-card>
-   
-  
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1115369.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-orange-9">Info</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">DONJON FORGERON : PARTICIPEZ AU SONDAGE !</div>
-        <div class="text-caption text-grey">
-          Lors d’une précédente news, nous vous faisions part du besoin de modifier l’expérience du Donjon Forgeron et avions laissé les principaux intéressés s’exprimer sur le sujet, à savoir : vous. Aujourd’hui...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
+        <q-btn flat color="white" label="Partager" />
+        <q-btn flat color="warning" label="Lire la suite" type="button" />
+        <q-btn v-if='adminIn === true' flat color="green" label="Editer" type="button" @click="showModalEditNews(news)" />
+        <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(news.id)">
+             <q-tooltip anchor="top middle" self="center middle">
+               Supprimer l'article
+              </q-tooltip>
+        </q-btn>
       </q-card-actions>
     </q-card>
 
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1293052.w500h.jpg"
-      />
+    <!-- Modal Edit news -->
+    <modalEditNews
+      v-if='modalEditNews'
+      :modal3.sync='modalEditNews'
+      :data='newsModal'
+      @closeModalEditNews='closeModal3()'
+    />
+    <!-- / Modal Edit News -->
 
-      <q-card-section>
-        <div class="text-overline text-red-9">Shop</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Soldes d’hiver : les prix dévalent la pente !</div>
-        <div class="text-caption text-grey">
-          Elles ont entamé leur parcours en douceur, les voilà désormais bien décidées à s’aventurer sur la piste rouge ! Les soldes d’hiver d’Ankama* Shop entament leur deuxième démarque...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-
-    </q-card>
-
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1292680.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-blue-9">Event</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Célébrez le Nouvel An lunaire Pandawa !</div>
-        <div class="text-caption text-grey">
-          Si les Pandawas ont souvent l’air d’être dans la lune, ça n’est pas qu’une question de boisson fermentée ! Au grand dam de Xélor, les bons vivants du Monde des Douze ont une façon bien à eux de considérer...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-    </q-card>
-   
-  
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1115369.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-orange-9">Info</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">DONJON FORGERON : PARTICIPEZ AU SONDAGE !</div>
-        <div class="text-caption text-grey">
-          Lors d’une précédente news, nous vous faisions part du besoin de modifier l’expérience du Donjon Forgeron et avions laissé les principaux intéressés s’exprimer sur le sujet, à savoir : vous. Aujourd’hui...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-    </q-card>
-
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1293052.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-red-9">Shop</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Soldes d’hiver : les prix dévalent la pente !</div>
-        <div class="text-caption text-grey">
-          Elles ont entamé leur parcours en douceur, les voilà désormais bien décidées à s’aventurer sur la piste rouge ! Les soldes d’hiver d’Ankama* Shop entament leur deuxième démarque...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-
-    </q-card>
-
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1292680.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-blue-9">Event</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Célébrez le Nouvel An lunaire Pandawa !</div>
-        <div class="text-caption text-grey">
-          Si les Pandawas ont souvent l’air d’être dans la lune, ça n’est pas qu’une question de boisson fermentée ! Au grand dam de Xélor, les bons vivants du Monde des Douze ont une façon bien à eux de considérer...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-    </q-card>
-   
-  
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1115369.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-orange-9">Info</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">DONJON FORGERON : PARTICIPEZ AU SONDAGE !</div>
-        <div class="text-caption text-grey">
-          Lors d’une précédente news, nous vous faisions part du besoin de modifier l’expérience du Donjon Forgeron et avions laissé les principaux intéressés s’exprimer sur le sujet, à savoir : vous. Aujourd’hui...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-    </q-card>
-
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1293052.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-red-9">Shop</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Soldes d’hiver : les prix dévalent la pente !</div>
-        <div class="text-caption text-grey">
-          Elles ont entamé leur parcours en douceur, les voilà désormais bien décidées à s’aventurer sur la piste rouge ! Les soldes d’hiver d’Ankama* Shop entament leur deuxième démarque...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-
-    </q-card>
-
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1292680.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-blue-9">Event</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Célébrez le Nouvel An lunaire Pandawa !</div>
-        <div class="text-caption text-grey">
-          Si les Pandawas ont souvent l’air d’être dans la lune, ça n’est pas qu’une question de boisson fermentée ! Au grand dam de Xélor, les bons vivants du Monde des Douze ont une façon bien à eux de considérer...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-    </q-card>
-   
-  
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1115369.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-orange-9">Info</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">DONJON FORGERON : PARTICIPEZ AU SONDAGE !</div>
-        <div class="text-caption text-grey">
-          Lors d’une précédente news, nous vous faisions part du besoin de modifier l’expérience du Donjon Forgeron et avions laissé les principaux intéressés s’exprimer sur le sujet, à savoir : vous. Aujourd’hui...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-    </q-card>
-
-    <q-card class="my-card" flat bordered>
-      <q-img
-        src="news/1293052.w500h.jpg"
-      />
-
-      <q-card-section>
-        <div class="text-overline text-red-9">Shop</div>
-        <div class="text-h5 q-mt-sm q-mb-xs">Soldes d’hiver : les prix dévalent la pente !</div>
-        <div class="text-caption text-grey">
-          Elles ont entamé leur parcours en douceur, les voilà désormais bien décidées à s’aventurer sur la piste rouge ! Les soldes d’hiver d’Ankama* Shop entament leur deuxième démarque...
-        </div>
-      </q-card-section>
-
-      <q-card-actions>
-        <q-btn flat color="dark" label="Partager" />
-        <q-btn flat color="primary" label="Lire la suite" />
-      </q-card-actions>
-
-    </q-card>
+    <!-- Modal Delete news -->
+    <modalDeleteGeneral
+      v-if='modalDeleteGeneral'
+      :modal4.sync='modalDeleteGeneral'
+      :data='news'
+      @closeModalDeleteGeneral='closeModal4()'
+    />
+    <!-- / Modal Delete News -->
     
   </div>
 </template>
@@ -245,3 +61,67 @@
   width: 100%
   max-width: 350px
 </style>
+
+<script>
+
+import { mapActions, mapState, mapMutations, mapGetters } from 'vuex'
+import modalEditNews from '../components/modal/admin/modalEditNews'
+import modalDeleteGeneral from '../components/modal/admin/modalDeleteGeneral'
+import { type } from 'os'
+import { log } from 'util'
+
+export default {
+    name: 'news',
+    data () {
+    return {
+      thumbStyle: {
+        right: '4px',
+        borderRadius: '5px',
+        backgroundColor: '#DF4F30',
+        width: '5px',
+        opacity: 0.75
+      },
+      barStyle: {
+        right: '2px',
+        borderRadius: '9px',
+        backgroundColor: '#A5331B',
+        width: '9px',
+        opacity: 0.2
+      },
+       modalEditNews: false,
+       modalDeleteGeneral : false,
+       news : null,
+       newsModal : null
+      }
+  },
+  methods : {
+    showModalEditNews (data) {
+      this.newsModal = data
+      this.modalEditNews = true
+    },
+    closeModal3 () {
+      this.modalEditNews = false
+    },
+    showModalDeleteGeneral (data) {
+      this.news = data
+      this.modalDeleteGeneral = true
+    },
+    closeModal4 () {
+      this.modalDeleteGeneral = false
+    },
+    ...mapMutations('auth', ['setAdminIn']),
+    ...mapActions('news', ['getNews2']),
+  },
+  computed : {
+     ...mapState('auth', ['adminIn']),
+     ...mapState('news', ['listNews2'])
+  },
+  components: {
+    modalEditNews, modalDeleteGeneral
+  },
+  mounted () {
+    this.getNews2()
+  },
+}
+
+</script>
