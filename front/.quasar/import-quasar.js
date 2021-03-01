@@ -10,7 +10,7 @@
  * Boot files are your "main.js"
  **/
 
-import lang from 'quasar/lang/en-us'
+import lang from 'quasar/lang/fr'
 
 import iconSet from 'quasar/icon-set/material-icons'
 

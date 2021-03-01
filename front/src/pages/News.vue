@@ -3,14 +3,38 @@
 
     <div class="col-sm-10 col-10 col-md-10 text-h4 font-bebas text-center text-white">Actualités du jour</div>
 
-    <q-card class="my-card" flat bordered v-for="news in listNews2" :key="news.id">
-     <img :src="news.image" />
+  <q-table
+      grid
+      :card-container-class="cardContainerClass"
+      :data="listNews2"
+      row-key="name"
+      :columns="columns"
+      hide-header
+      no-data-label="Aucun article trouvé"
+      :pagination.sync="pagination"
+      :filter="filter"
+    >
+      <template v-slot:top-left>
+        <q-input borderless dense debounce="1000" v-model="filter" placeholder="Rechercher..." style="background: #ffffff7a;border-radius: 5px;padding: 0px 11px;">
+          <template v-slot:append>
+            <q-icon name="search" />
+          </template>
+        </q-input>
+      </template>
+
+      <template v-slot:item="props">
+
+ <div class="row justify-center q-table__grid-content" style="margin: 0 15px 15px 0 !important;">
+
+        <q-card class="my-card" flat bordered>
+          
+     <img :src="props.row.image" />
 
       <q-card-section>
         
-        <div><img :src="news.category"></div>
-        <div class="text-overline text-overline-dofus text-yellow-9">{{ news.cat }}</div>
-        <div class="text-h5 q-mt-sm q-mb-xs text-white" style="text-overflow: ellipsis;max-width: 317px;overflow: hidden;white-space: nowrap;">{{ news.title }}</div>
+        <div><img :src="props.row.category"></div>
+        <div class="text-overline text-overline-dofus text-yellow-9">{{ props.row.cat }}</div>
+        <div class="text-h5 q-mt-sm q-mb-xs text-white" style="text-overflow: ellipsis;max-width: 317px;overflow: hidden;white-space: nowrap;">{{ props.row.title }}</div>
        
           <q-scroll-area
           :thumb-style="thumbStyle"
@@ -18,7 +42,7 @@
           style="height: 100px; max-width: 100%;"
         >
         <div class="text-caption text-white" style="max-height: 100px;overflow: hidden;">
-         {{ news.content }}
+         {{ props.row.content }}
         </div>
         </q-scroll-area>
       </q-card-section>
@@ -26,14 +50,20 @@
       <q-card-actions>
         <q-btn flat color="white" label="Partager" />
         <q-btn flat color="warning" label="Lire la suite" type="button" />
-        <q-btn v-if='adminIn === true' flat color="green" label="Editer" type="button" @click="showModalEditNews(news)" />
-        <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(news.id)">
+        <q-btn v-if='adminIn === true' flat color="green" label="Editer" type="button" @click="showModalEditNews(props.row)" />
+        <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(props.row.id)">
              <q-tooltip anchor="top middle" self="center middle">
                Supprimer l'article
               </q-tooltip>
         </q-btn>
       </q-card-actions>
     </q-card>
+</div>
+      </template>
+
+
+
+    </q-table>
 
     <!-- Modal Edit news -->
     <modalEditNews
@@ -56,10 +86,60 @@
   </div>
 </template>
 
+<style lang="css">
+.q-table__bottom {
+    color: #ff832b !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.5px !important;
+}
+
+.q-field--auto-height.q-field--dense .q-field__control, .q-field--auto-height.q-field--dense .q-field__native {
+    color: #ff832b !important;
+    font-weight: 500 !important;
+}
+
+.q-position-engine {
+  background: #ffffffad !important;
+}
+</style>
+
 <style lang="sass" scoped>
+
 .my-card
   width: 100%
   max-width: 350px
+
+.grid-masonry
+  flex-direction: column
+  height: 300vh
+
+  &--2
+    > div
+      &:nth-child(2n + 1)
+        order: 1
+      &:nth-child(2n)
+        order: 2
+
+    &:before
+      content: ''
+      flex: 1 0 100% !important
+      width: 0 !important
+      order: 1
+  &--3
+    > div
+      &:nth-child(3n + 1)
+        order: 1
+      &:nth-child(3n + 2)
+        order: 2
+      &:nth-child(3n)
+        order: 3
+
+    &:before,
+    &:after
+      content: ''
+      flex: 1 0 100% !important
+      width: 0 !important
+      order: 2
 </style>
 
 <script>
@@ -74,6 +154,20 @@ export default {
     name: 'news',
     data () {
     return {
+       pagination: {
+        rowsPerPage: 12
+        // rowsNumber: xx if getting data from a server
+      },
+      filter: '',
+      columns: [
+        {
+          name: 'title',
+          required: false,
+          field: row => row.title,
+          format: val => `${val}`,
+          sortable: true
+        },
+      ],
       thumbStyle: {
         right: '4px',
         borderRadius: '5px',
@@ -114,7 +208,15 @@ export default {
   },
   computed : {
      ...mapState('auth', ['adminIn']),
-     ...mapState('news', ['listNews2'])
+     ...mapState('news', ['listNews2']),
+     cardContainerClass () {
+      if (this.$q.screen.gt.xs) {
+        return 'grid-masonry grid-masonry--' + (this.$q.screen.gt.sm ? '3' : '2')
+      }
+
+      return void 0
+    },
+ 
   },
   components: {
     modalEditNews, modalDeleteGeneral

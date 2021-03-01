@@ -27,6 +27,18 @@ module.exports = {
             })
 
     },
+    get2: (req, res) => {
+
+        News
+            .find()
+            .sort('-dateCreate')
+            .exec((err, data) => {
+
+                res.send({ listNews2: data })
+
+            })
+
+    },
     post: (req, res) => {
 
         const url = req.protocol + '://' + req.get('host')
@@ -60,6 +72,20 @@ module.exports = {
                 success
             })
         })
+
+    },
+    getId: (req, res) => {
+
+        News
+            .findOne({ _id: req.params.id })
+            .lean()
+            .exec((err, data) => {
+
+                if (err) res.send(err)
+
+                res.send({ articleId: data })
+
+            })
 
     },
     editId: (req, res) => {

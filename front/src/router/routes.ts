@@ -11,7 +11,8 @@ const routes: RouteConfig[] = [
       { path: '/password_reset', name: 'Password Reset', component: () => import('pages/Password_Reset.vue') },
       { path: '/reset_password/:token', name: 'Reset Password', component: () => import('pages/Reset_Password.vue') },
       { path: '/download', name: 'Download', component: () => import('pages/Download.vue') },
-      { path: '/news', name: 'News', component: () => import('pages/News.vue') }
+      { path: '/news', name: 'News', component: () => import('pages/News.vue') },
+      { path: '/article/:id', name: 'article', component: () => import('pages/Article.vue') }
     ]
    },
   {

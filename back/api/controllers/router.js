@@ -73,6 +73,10 @@ router.route('/news')
     .get(newsController.get)
     .post(upload.array('files', 1), newsController.post)
 
+router.route('/news2')
+    .get(newsController.get2)
+    .post(upload.array('files', 1), newsController.post)
+
 router.route('/news/:id')
     // .get(newsController.get)
     .post(upload.array('files', 1), newsController.editId)
@@ -80,6 +84,9 @@ router.route('/news/:id')
 router.route('/delete_news/:id')
     // .get(newsController.get)
     .post(newsController.deleteId)
+
+router.route('/article/:id')
+    .get(newsController.getId)
 
 // Almanax
 router.route('/almanax')
