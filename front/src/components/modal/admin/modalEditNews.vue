@@ -2,7 +2,7 @@
   <div class="q-pa-md q-gutter-sm">
 
       <q-dialog v-model="modal3" persistent>
-      <q-card style="background: #535658bf !important; color: white;width: 700px; max-width: 80vw;">
+      <q-card style="background: #535658bf !important; color: white;width: 1000px; max-width: 80vw;">
         <q-toolbar>
           <q-avatar>
             <img :src='data.category'>
@@ -66,6 +66,99 @@
       lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter une description']"
     />
 
+    <q-editor
+      style="margin: 16px 0 16px 0;"
+      class="text-black"
+      v-model="form.content2"
+      :dense="$q.screen.lt.md"
+      toolbar-color="black"
+      :toolbar="[
+        [
+          {
+            label: $q.lang.editor.align,
+            icon: $q.iconSet.editor.align,
+            fixedLabel: true,
+            list: 'only-icons',
+            options: ['left', 'center', 'right', 'justify']
+          },
+          {
+            label: $q.lang.editor.align,
+            icon: $q.iconSet.editor.align,
+            fixedLabel: true,
+            options: ['left', 'center', 'right', 'justify']
+          }
+        ],
+        ['bold', 'italic', 'strike', 'underline', 'subscript', 'superscript'],
+        ['token', 'hr', 'link', 'custom_btn'],
+        ['print', 'fullscreen'],
+        [
+          {
+            label: $q.lang.editor.formatting,
+            icon: $q.iconSet.editor.formatting,
+            list: 'no-icons',
+            options: [
+              'p',
+              'h1',
+              'h2',
+              'h3',
+              'h4',
+              'h5',
+              'h6',
+              'code'
+            ]
+          },
+          {
+            label: $q.lang.editor.fontSize,
+            icon: $q.iconSet.editor.fontSize,
+            fixedLabel: true,
+            fixedIcon: true,
+            list: 'no-icons',
+            options: [
+              'size-1',
+              'size-2',
+              'size-3',
+              'size-4',
+              'size-5',
+              'size-6',
+              'size-7'
+            ]
+          },
+          {
+            label: $q.lang.editor.defaultFont,
+            icon: $q.iconSet.editor.font,
+            fixedIcon: true,
+            list: 'no-icons',
+            options: [
+              'default_font',
+              'arial',
+              'arial_black',
+              'comic_sans',
+              'courier_new',
+              'impact',
+              'lucida_grande',
+              'times_new_roman',
+              'verdana'
+            ]
+          },
+          'removeFormat'
+        ],
+        ['quote', 'unordered', 'ordered', 'outdent', 'indent'],
+
+        ['undo', 'redo'],
+        ['viewsource']
+      ]"
+      :fonts="{
+        arial: 'Arial',
+        arial_black: 'Arial Black',
+        comic_sans: 'Comic Sans MS',
+        courier_new: 'Courier New',
+        impact: 'Impact',
+        lucida_grande: 'Lucida Grande',
+        times_new_roman: 'Times New Roman',
+        verdana: 'Verdana'
+      }"
+    />
+
     <q-input
     style="margin: 16px 0 16px 0;"
     :value="data.url"
@@ -121,6 +214,7 @@ export default {
                 newsId : this.$props.data._id, 
                 title : this.$props.data.title,
                 content : this.$props.data.content,
+                content2 : 'this.$props.data.content2',
                 url : this.$props.data.url,
                 cat : this.$props.data.cat,
                 files: null,
@@ -181,9 +275,11 @@ export default {
   },
   methods: {
     onReset () {
-      this.cat = null
-      this.files = null
-      this.category = null
+      this.form.title = null
+      this.form.content = null
+      this.form.content2 = null
+      this.form.url = null
+      this.form.files = null
     },
      counterLabelImage ({ totalSize, filesNumber, maxFiles }) {
             return `${filesNumber} fichier sur ${maxFiles} | ${totalSize}`

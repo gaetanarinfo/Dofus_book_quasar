@@ -17,6 +17,22 @@ import { mapActions, mapState } from 'vuex';
 
 export default defineComponent({
   name: 'PageIndex',
+  meta() {
+    return {
+      // optional; sets final title as "Index Page - My Website", useful for multiple level meta
+      title: 'Dofus Book',
+      description: {
+          name: "description",
+          content: 'Dofus book'
+        },
+        keywords: { name: "keywords", content: "dofus, dofus-book, article" },
+        equiv: {
+          "http-equiv": "Content-Type",
+          content: "text/html; charset=UTF-8"
+        }
+      }
+
+  },
   components: { 
     NewsComponent 
   },

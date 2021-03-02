@@ -23,9 +23,9 @@
 
       <q-card-actions>
         <q-btn flat color="white" label="Partager" />
-        <q-btn flat color="warning" label="Lire la suite" type="button" />
+        <q-btn flat color="warning" label="Lire la suite" type="a" @click="showArticle(news._id)" />
         <q-btn v-if='adminIn === true' flat color="green" label="Editer" type="button" @click="showModalEditNews(news)" />
-        <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(news.id)">
+        <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(news._id)">
              <q-tooltip anchor="top middle" self="center middle">
                Supprimer l'article
               </q-tooltip>
@@ -104,6 +104,11 @@ export default {
     },
     closeModal4 () {
       this.modalDeleteGeneral = false
+    },
+    showArticle (data) {
+      localStorage.setItem('articleId', data)
+
+      location.href = '/#/article/' + data
     },
     ...mapMutations('auth', ['setAdminIn'])
   },

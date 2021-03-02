@@ -9,7 +9,8 @@ import { Notify } from 'quasar'
 const state = {
     listNews: [],
     listNews2: [],
-    newsID: []
+    listNewsId: [],
+    listNewsIdTitle: null
 }
 
 const mutations = {
@@ -19,8 +20,11 @@ const mutations = {
     setListNews2(state, value) {
         state.listNews2 = value
     },
-    setNewsId(state, value) {
-        state.newsID = value
+    setListNewsId(state, value) {
+        state.listNewsId = value
+    },
+    setListNewsIdTitle(state, value) {
+        state.listNewsIdTitle = value
     }
 }
 
@@ -39,12 +43,13 @@ const actions = {
                 commit('setListNews2', res.data.listNews2)
             })
     },
-    getNewsId({ commit }) {
+    getNewsId({ commit }, payload) {
+
         axios
-            .get('/article/:id')
+            .get('/article/' + payload)
             .then(res => {
-                console.log(res.data.articleId);
-                commit('setNewsId', res.data.articleId)
+                commit('setListNewsId', res.data.articleId)
+                commit('setListNewsIdTitle', res.data.articleId.title)
             })
     },
     postNews({}, payload) {
@@ -98,6 +103,7 @@ const actions = {
         formData.set('title', payload.title)
         formData.set('content', payload.content)
         formData.set('url', payload.url)
+        formData.set('content2', payload.content2)
 
         if (payload.cat.value != undefined) {
             formData.set('cat', payload.cat.value)
@@ -148,7 +154,13 @@ const getters = {
     },
     setListNews2: state => {
         return state.listNews2
-    }
+    },
+    setListNewsId: state => {
+        return state.listNewsId
+    },
+    listNewsIdTitle: state => {
+        return state.listNewsIdTitle
+    },
 }
 
 export default {

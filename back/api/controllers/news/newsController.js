@@ -90,10 +90,13 @@ module.exports = {
     },
     editId: (req, res) => {
 
+        console.log(req.body);
+
         News
             .updateOne({ _id: req.params.id }, {
                 title: req.body.title,
                 content: req.body.content,
+                content2: req.body.content2,
                 url: req.body.url,
                 cat: req.body.cat,
                 category: req.body.category

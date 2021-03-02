@@ -25,6 +25,9 @@ const NewsShema = new mongoose.Schema({
     content: {
         type: String
     },
+    content2: {
+        type: String
+    },
     url: {
         type: String
     },
