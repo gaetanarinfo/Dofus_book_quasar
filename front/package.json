@@ -1,7 +1,7 @@
 {
     "name": "dofus_book",
     "version": "0.0.1",
-    "description": "Test",
+    "description": "Plusieurs milliers de joueurs dans le monde. DOFUS est un jeu de rôle massivement multijoueur où le but est de retrouver les 6 précieux Dofus pour devenir maître d'Amakna.",
     "productName": "Dofus Book",
     "author": "Gaëtan Seigneur",
     "private": true,

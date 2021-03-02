@@ -1,11 +1,7 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-12 col-xs-12">
-      <q-img
-        transition="flip-left"
-        src="https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg"
-        style="width: 100%; border-radius: 10px; "
-      >
+ 
         <div class="column absolute-right text-center bg-transparent">
           <q-avatar size="96px" class="q-ma-md shadow-10">
             <img :src="userData.avatar" />
@@ -166,7 +162,7 @@
 
     </q-form>
     </div>
-      </q-img>
+    
     </div>
   </div>
 </template>

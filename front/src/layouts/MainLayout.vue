@@ -338,7 +338,7 @@
 
             <q-separator v-if='loggedIn === true' />
 
-            <q-item v-if='loggedIn === true' clickable v-ripple to="/profil">
+            <q-item v-if='loggedIn === true' clickable v-ripple :to="`/profil`">
               <q-item-section avatar>
                 <q-icon name="account_box" color="green"/>
               </q-item-section>
@@ -509,11 +509,14 @@ import { defineComponent, ref } from '@vue/composition-api';
 import modalCreateNews from '../components/modal/admin/modalCreateNews.vue'
 import modalAlmanax from '../components/modal/modalAlmanax.vue'
 import { mapState, mapActions } from 'vuex'
+import { AnyARecord } from 'dns';
 
 export default defineComponent({
   name: 'MainLayout',
   data () {
     return {
+      userId: '',
+      userPseudo: '',
       dialog: false,
       modalCreateNews: false,
       modalAlmanax: false,
@@ -534,6 +537,12 @@ export default defineComponent({
     }
   },
   methods: {
+     mountedData () {
+
+      this.userId = this.listUser._id
+      this.userPseudo = this.listUser.pseudo
+
+    },
     open (position : any) {
       this.position = position
       this.dialog = true
@@ -544,7 +553,7 @@ export default defineComponent({
     },
     ...mapActions('auth', ['getMailNotif']),
     logout () {
-      this.logoutUser()
+      this.logoutUser(this.userPseudo)
     },
     ...mapActions('auth', ['logoutUser']),
     showModalCreateNews () {
@@ -558,13 +567,17 @@ export default defineComponent({
     },
     closeModal5 () {
       this.modalAlmanax = false
-    }
+    },
+    showUser (data : any) {
+      location.href = '/#/profil/' + data
+    },
   },
   components: { EssentialLink, modalCreateNews, modalAlmanax },  
   computed: {
     ...mapState('auth', ['loggedIn']),
     ...mapState('auth', ['adminIn']),
-    ...mapState('auth', ['listNotif'])
+    ...mapState('auth', ['listNotif']),
+    ...mapState("auth", ["listUser"])
   },
   setup() {
     const leftDrawerOpen = ref(false);
@@ -573,6 +586,7 @@ export default defineComponent({
   },
   mounted () {
     this.checkNotif()
+    this.mountedData()
   }
 });
 </script>

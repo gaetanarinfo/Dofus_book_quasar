@@ -1,11 +1,6 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-12 col-xs-12">
-      <q-img
-        transition="flip-right"
-        src="https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg"
-        style="width: 100%; border-radius: 10px; "
-      >
         <div class="column absolute-right text-center bg-transparent">
           <q-avatar size="96px" class="q-ma-md shadow-10">
             <img :src="userData.avatar" />
@@ -108,7 +103,6 @@
 
     </div>
 
-      </q-img>
     </div>
   </div>
 </template>
@@ -123,20 +117,31 @@ export default {
     data () {
     return {
       tab: 'Profil',
-      userIdAvatar: `http://127.0.0.1:8000/profil_edit_avatar/${localStorage.getItem('userId')}`,
+      userIdAvatar: `http://127.0.0.1:8000/profil_edit_avatar/${this.$route.params.id}`,
       formEdit: {
-        pseudo: localStorage.getItem('pseudo'),
-        lastname: localStorage.getItem('lastname'),
-        firstname: localStorage.getItem('firstname'),
-        email: localStorage.getItem('email'),
+        userId: '',
+        pseudo: '',
+        lastname: '',
+        firstname: '',
+        email: '',
       },
       userData: {
-          avatar: localStorage.getItem('avatar')
+          avatar: ''
       }
       
     }
   },
-    methods: {
+    methods: { 
+      mountedData () {
+
+      this.formEdit.pseudo = this.listUser.pseudo
+      this.formEdit.lastname = this.listUser.lastname
+      this.formEdit.firstname = this.listUser.firstname
+      this.formEdit.email = this.listUser.email
+      this.userData.avatar = this.listUser.avatar
+      this.formEdit.userId = this.listUser._id
+
+    },
     onRejected (rejectedEntries) {
       this.$q.notify({
         color: 'red-5',
@@ -157,6 +162,7 @@ export default {
       this.pseudo = null
       this.accept = false
     },
+    ...mapActions("auth", ["getProfil"]),
     ...mapActions('auth', ['editUser']),
     ...mapActions('auth', ['editAvatars']),
     checkAuth () {
@@ -165,8 +171,12 @@ export default {
     },
     ...mapActions('auth', ['loggedDataUser'])
   },
+  computed: {
+    ...mapState("auth", ["listUser"])
+  },
   mounted () {
     this.checkAuth()
+    this.mountedData() 
   }
 }
 </script>

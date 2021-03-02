@@ -143,12 +143,12 @@ const actions = {
                 // Modif --> 15/02/2021
                 localStorage.setItem('status', res.data.sess.status)
                 localStorage.setItem('admin', res.data.sess.admin)
-                localStorage.setItem('email', res.data.sess.email)
+                    // localStorage.setItem('email', res.data.sess.email)
                 localStorage.setItem('userId', res.data.sess._id)
-                localStorage.setItem('pseudo', res.data.sess.pseudo)
-                localStorage.setItem('lastname', res.data.sess.lastname)
-                localStorage.setItem('firstname', res.data.sess.firstname)
-                localStorage.setItem('avatar', res.data.sess.avatar)
+                    // localStorage.setItem('pseudo', res.data.sess.pseudo)
+                    // localStorage.setItem('lastname', res.data.sess.lastname)
+                    // localStorage.setItem('firstname', res.data.sess.firstname)
+                    // localStorage.setItem('avatar', res.data.sess.avatar)
                 localStorage.setItem('token', res.data.token)
 
                 const sess = localStorage.getItem('status')
@@ -242,7 +242,7 @@ const actions = {
                 }
             })
     },
-    logoutUser({ commit }) {
+    logoutUser({ commit }, payload) {
         axios
             .get('/logout')
             .then((res) => {
@@ -251,7 +251,7 @@ const actions = {
                     color: 'green-5',
                     textColor: 'white',
                     icon: 'cloud_done',
-                    message: `Merci de ta visite ${localStorage.getItem('pseudo')} à bientôt !`
+                    message: `Merci de ta visite ${payload} à bientôt !`
                 })
 
                 setTimeout(function() {
@@ -260,12 +260,6 @@ const actions = {
                     localStorage.removeItem('status', null)
                     localStorage.removeItem('admin', null)
                     localStorage.removeItem('userId', null)
-                    localStorage.removeItem('email', null)
-                    localStorage.removeItem('pseudo', null)
-                    localStorage.removeItem('lastname', null)
-                    localStorage.removeItem('firstname', null)
-                    localStorage.removeItem('avatar', null)
-
                     commit('setLoggedIn', false)
                     document.location.href = "/";
                 }, 2000);
@@ -402,41 +396,23 @@ const actions = {
             .get('/profil/' + userToken)
             .then((res) => {
 
-                const email = localStorage.getItem('email'),
-                    pseudo = localStorage.getItem('pseudo'),
-                    id = localStorage.getItem('userId'),
-                    admin = localStorage.getItem('admin'),
-                    avatar = localStorage.getItem('avatar'),
-                    lastname = localStorage.getItem('lastname'),
-                    firstname = localStorage.getItem('firstname')
-
-                // Comparaison si l'user vient à modifier le localstorage
-                if (email != res.data.userData.email) {
-                    localStorage.setItem('email', res.data.userData.userEmail)
-                } else if (pseudo != res.data.userData.pseudo) {
-                    localStorage.setItem('pseudo', res.data.userData.userPseudo)
-                } else if (id != res.data.userData._id) {
-                    localStorage.setItem('userId', res.data.userData._id)
-                } else if (avatar != res.data.userData.avatar) {
-                    localStorage.setItem('avatar', res.data.userData.avatar)
-                } else if (lastname != res.data.userData.lastname) {
-                    localStorage.setItem('lastname', res.data.userData.lastname)
-                } else if (firstname != res.data.userData.firstname) {
-                    localStorage.setItem('firstname', res.data.userData.firstname)
-                } else if (admin != res.data.userData.isAdmin) {
-                    localStorage.setItem('admin', res.data.userData.isAdmin)
-                }
-
                 commit('setListUser', res.data.userData)
 
             })
+
+        // axios
+        //     .get('/profilUser/' + payload)
+        //     .then((res) => {
+
+        //         commit('setListUser', res.data.userData)
+
+        //     })
+
     },
     editUser({}, payload) {
 
-        const userId = localStorage.getItem('userId')
-
         axios
-            .post('/profil_edit/' + userId, {
+            .post('/profil_edit/' + payload, {
                 lastname: payload.lastname,
                 firstname: payload.firstname,
                 email: payload.email,
@@ -471,20 +447,12 @@ const actions = {
                         message: 'Ton profil à été modifier !'
                     })
 
-                    localStorage.setItem('email', userEmail)
-                    localStorage.setItem('lastname', userLastName)
-                    localStorage.setItem('firstname', userFirstName)
-                    localStorage.setItem('pseudo', userPseudo)
-
                 }
             })
     },
-    getListMail({ commit }) {
-
-        const pseudo = localStorage.getItem('pseudo')
-
+    getListMail({ commit }, payload) {
         axios
-            .get('/mailbox/' + pseudo)
+            .get('/mailbox/' + payload)
             .then(res => {
                 commit('setListMail', res.data.listMail)
             })
@@ -539,7 +507,7 @@ const actions = {
     removeMailBox({}, payload) {
 
         axios
-            .get(`/mailbox_delete/${payload}`)
+            .get('/mailbox_delete/' + payload)
             .then(res => {
 
                 const succ = res.data.success,

@@ -1,11 +1,6 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-12 col-xs-12">
-      <q-img
-        transition="flip-right"
-        src="https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg"
-        style="width: 100%; border-radius: 10px; "
-      >
         <div class="column absolute-right text-center bg-transparent">
           <q-avatar size="96px" class="q-ma-md shadow-10">
             <img :src="userData.avatar" />
@@ -69,7 +64,6 @@
 
     </div>
 
-      </q-img>
     </div>
   </div>
 </template>
@@ -87,14 +81,16 @@ export default {
         modalMail: false,
         mail : null,
         userData: {
-          avatar: localStorage.getItem('avatar')
-        }
+          avatar: ''
+      }
       }
   },
-   mounted () {
-    this.checkAuth()
-  },
     methods: { 
+       mountedData () {
+
+      this.userData.avatar = this.listUser.avatar
+
+    },
       showModalMail (data) {
       this.mail = data
       this.modalMail = true
@@ -109,11 +105,19 @@ export default {
       this.loggedDataUser()
       setTimeout(this.checkAuth, 2500)
     },
+     ...mapActions("auth", ["getProfil"]),
     ...mapActions('auth', ['loggedDataUser']),
     ...mapActions('auth', ['removeMailBox'])
   },
   components: {
     modalMail
+  },
+   computed: {
+    ...mapState("auth", ["listUser"])
+  },
+     mounted () {
+    this.checkAuth()
+    this.mountedData() 
   },
   props: {
     listMail: Array

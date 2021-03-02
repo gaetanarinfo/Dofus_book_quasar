@@ -168,16 +168,26 @@ export default defineComponent({
           modalCreateNews: false,
           user : null,
           userData: {
-            userId: localStorage.getItem('userId'),
-            pseudo: localStorage.getItem('pseudo'),              
-            lastname: localStorage.getItem('lastname'),
-            firstname: localStorage.getItem('firstname'),
-            email: localStorage.getItem('email'),
-            avatar: localStorage.getItem('avatar')
+            userId: '',
+            pseudo: '',              
+            lastname: '',
+            firstname: '',
+            email: '',
+            avatar: ''
         }
       }
   },
   methods: {
+     mountedData () {
+
+      this.userData.pseudo = this.listUser.pseudo
+      this.userData.lastname = this.listUser.lastname
+      this.userData.firstname = this.listUser.firstname
+      this.userData.email = this.listUser.email
+      this.userData.avatar = this.listUser.avatar
+      this.userData.userId = this.listUser._id
+
+    },
     checkNotif () {
       this.getMailNotif()
       setTimeout(this.checkNotif, 2500)
@@ -196,8 +206,9 @@ export default defineComponent({
       this.modalCreateNews = false
     },
     logout () {
-      this.logoutUser()
+      this.logoutUser(this.listUser.pseudo)
     },
+    ...mapActions("auth", ["getProfil"]),
     ...mapActions('auth', ['loggedDataUser']),
     ...mapActions('auth', ['logoutUser']),
     ...mapActions('auth', ['getMailNotif']),
@@ -213,6 +224,7 @@ export default defineComponent({
     ...mapState('auth', ['loggedIn']),
     ...mapState('auth', ['listNotif']),
     ...mapState('auth', ['adminIn']),
+    ...mapState("auth", ["listUser"])
   },
   setup() {
     const leftDrawerOpen = ref(true)
@@ -222,6 +234,7 @@ export default defineComponent({
   mounted () {
     this.checkNotif()
     this.checkAuth()
+    this.mountedData() 
   },
   components: {
     modalDeleteAccount, modalCreateNews

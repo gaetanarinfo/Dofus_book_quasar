@@ -217,15 +217,14 @@ export default {
       title: this.title,
       description: {
           name: "description",
-          content: ''
+          content: 'Plusieurs milliers de joueurs dans le monde. DOFUS est un jeu de rôle massivement multijoueur où le but est de retrouver les 6 précieux Dofus pour devenir maître d\'Amakna.'
         },
-        keywords: { name: "keywords", content: "dofus, dofus-book, article" },
+        keywords: { name: "keywords", content: "mmo, mmorpg, free mmorpg, free online mmorpg, video game, video game rental, video game system, free video game, online game, multiplayer game, free multiplayer game, dofus community, comics, pc game, pc game cheat, game, free game, online game, toy game, addicting game" },
         equiv: {
           "http-equiv": "Content-Type",
           content: "text/html; charset=UTF-8"
         }
       }
-
   },
 };
 </script>

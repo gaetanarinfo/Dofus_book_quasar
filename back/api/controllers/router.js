@@ -43,6 +43,9 @@ router.route('/reset_password/:token')
 router.route('/reset_password')
     .post(resetpasswordController.post)
 
+router.route('/profilUser/:id')
+    .get(userController.getProfilId)
+
 router.route('/profil/:token')
     .get(userController.getProfil)
 

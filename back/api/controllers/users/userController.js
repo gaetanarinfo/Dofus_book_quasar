@@ -197,6 +197,17 @@ module.exports = {
         }
 
     },
+    getProfilId: (req, res) => {
+
+        User.findOne({ _id: req.params.id }, (err, data) => {
+
+            res.send({
+                userData: data
+            })
+
+        })
+
+    },
     editProfil: async(req, res) => {
 
         const id = req.params.id

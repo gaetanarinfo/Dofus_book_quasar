@@ -16,7 +16,7 @@
                 </q-tooltip>
           </q-btn>    
 
-          <q-btn flat round dense rounded icon="check" clickable @click="submitDeleteMail(data._id)">
+          <q-btn flat round dense rounded icon="check" clickable @click="submitDeleteMail(data._id, data.recipient)">
                 <q-tooltip anchor="top middle" self="center middle">
                Supprimer le message
                 </q-tooltip>
@@ -42,8 +42,11 @@ export default {
 
   },
   methods: {
-      submitDeleteMail (id) {
-      this.removeMailBox(id)
+      submitDeleteMail (id, recipient) {
+
+      const data = {id, recipient}
+
+      this.removeMailBox(data)
       this.$emit('closeModalMail')
     },
     ...mapActions('auth', ['removeMailBox'])

@@ -6,14 +6,41 @@
   </q-page>
 </template>
 
+<style lang="css">
+
+.dofus {
+    background: url('https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg') !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+}
+
+</style>
+
 <script>
 import mailbox from '../components/auth/mailbox'
 import { mapActions, mapState } from 'vuex'
 
 export default {
+  meta() {
+    return {
+      // optional; sets final title as "Index Page - My Website", useful for multiple level meta
+      title: 'Dofus Book - Boîte de réception',
+      description: {
+          name: "description",
+          content: 'Plusieurs milliers de joueurs dans le monde. DOFUS est un jeu de rôle massivement multijoueur où le but est de retrouver les 6 précieux Dofus pour devenir maître d\'Amakna.'
+        },
+        keywords: { name: "keywords", content: "mmo, mmorpg, free mmorpg, free online mmorpg, video game, video game rental, video game system, free video game, online game, multiplayer game, free multiplayer game, dofus community, comics, pc game, pc game cheat, game, free game, online game, toy game, addicting game" },
+        equiv: {
+          "http-equiv": "Content-Type",
+          content: "text/html; charset=UTF-8"
+        }
+      }
+
+  },
   data () {
     return {
-      tab: 'mailbox'
+      tab: 'mailbox',
+      userPseudo: ''
     }
   },
   methods: {
@@ -21,10 +48,12 @@ export default {
       this.logged()
       setTimeout(this.checkAuth, 2500)
     },
+    ...mapActions("auth", ["getProfil"]),
     ...mapActions('auth', ['logged']),
     ...mapActions('auth', ['getListMail'])
   },
   computed: {
+    ...mapState("auth", ["listUser"]),
     ...mapState('auth', ['loggedIn']),
     ...mapState('auth', ['listMail'])
   },
@@ -33,7 +62,7 @@ export default {
   },
   mounted () {
     this.checkAuth()
-    this.getListMail()
+    this.getListMail(this.listUser.pseudo)
   }
 }
 </script>
