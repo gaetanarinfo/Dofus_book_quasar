@@ -1,6 +1,8 @@
-/*
- * Server.js
- ******************************/
+// Déclaration des packages npm ---->
+
+// Package nodemon pour le relancement des fichiers views et js avec npm start
+const livereload = require('livereload'),
+    reload = livereload.createServer()
 
 const
     express = require('express'),
@@ -19,6 +21,9 @@ const
 const MongoStore = require('connect-mongo'),
     mongoose = require('mongoose'),
     mongoStore = MongoStore(expressSession)
+
+// Helmet aide à sécuriser les applications Express.js en définissant divers en-têtes HTTP. Ce n'est pas un argent
+const helmet = require("helmet")
 
 // Package de configuration sécurisé pour le portfolio
 require('dotenv').config()
@@ -89,7 +94,24 @@ app.use((req, res) => {
     res.send('err404')
 })
 
+// Helmet security pour les failles XSS etc...
+app.use(helmet.contentSecurityPolicy());
+app.use(helmet.dnsPrefetchControl());
+app.use(helmet.expectCt());
+app.use(helmet.frameguard());
+app.use(helmet.hidePoweredBy());
+app.use(helmet.hsts());
+app.use(helmet.ieNoOpen());
+app.use(helmet.noSniff());
+app.use(helmet.permittedCrossDomainPolicies());
+app.use(helmet.referrerPolicy());
+app.use(helmet.xssFilter());
+app.disable('x-powered-by');
+
+// Permet de reload le dossier public des ressources
+reload.watch(__dirname + "/public")
+
 // Ecoute de notre app
 app.listen(port, () => {
-    console.log('le serveur tourne sur le port: ' + port)
+    console.log(`Ecoute le port ${port}, lancé le : ${new Date().toLocaleString()}`)
 })
