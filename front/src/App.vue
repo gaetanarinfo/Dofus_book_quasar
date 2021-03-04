@@ -7,6 +7,7 @@
 <script>
 import { mapActions, mapMutations } from 'vuex'
 import { realpathSync } from 'fs'
+import { QSpinnerHourglass } from 'quasar'
 
 export default {
   name: 'App',
@@ -29,7 +30,13 @@ export default {
     ...mapMutations('auth', ['setAdminIn']),
     ...mapActions('auth', ['loggedDataUser']),
     showLoading () {
-      this.$q.loading.show()
+      this.$q.loading.show({
+        spinner: QSpinnerHourglass,
+        spinnerColor: 'red',
+        spinnerSize: 200,
+        message: 'Chargement des ressources en cours',
+        messageColor: 'white'
+      })
 
       // hiding in 2s
       this.timer = setTimeout(() => {

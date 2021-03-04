@@ -17,7 +17,7 @@
         display: block;
         overflow: hidden;
         max-height: 774px;
-        margin: 10px 0 26px auto;
+        margin: 10px 0 -2px auto;
         padding: 0 0;
         max-width: 100%;
         text-align: center;

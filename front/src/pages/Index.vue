@@ -4,12 +4,14 @@
 
     <video-component></video-component>
 
-    <div class="q-pa-md row items-start q-gutter-md justify-center">
+    <div class="row items-start q-gutter-md justify-center">
 
-    <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white">Bienvenue dans le jeu en ligne multijoueur gratuit DOFUS !</div>
-  
-    <news-component :listNews='listNews'></news-component>
+    <div style="background-image: url('background/bg-news-dofus-2.jpg');background-position: center;background-size: cover;background-repeat: no-repeat;">
+      <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="margin: 18px 0px 11px 0;">Bienvenue dans le jeu en ligne multijoueur gratuit DOFUS !</div>
+    
+        <news-component :listNews='listNews'></news-component>
 
+      </div>
     </div>
     
   </q-page>
