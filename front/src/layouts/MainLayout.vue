@@ -9,7 +9,30 @@
           icon="home"
           aria-label="Menu"
           @click="leftDrawerOpen = !leftDrawerOpen"
-        />
+          v-if="leftDrawerOpen === false"
+        >
+
+        <q-tooltip anchor="bottom middle" self="center middle">
+               Ouvrir
+                </q-tooltip>
+
+        </q-btn>
+
+        <q-btn
+          flat
+          dense
+          round
+          icon="fas fa-times"
+          aria-label="Menu"
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          v-if="leftDrawerOpen === true"
+        >
+
+        <q-tooltip anchor="bottom middle" self="center middle">
+               Fermer
+                </q-tooltip>
+
+        </q-btn>
 
         <q-toolbar-title style="font-family: charming, sans-serif;font-size: 21px;color: blanchedalmond;font-weight: 600;letter-spacing: 4px;padding: 7px 0px 0px 7px;">
           Dofus Book
@@ -22,7 +45,7 @@
           transition-hide="flip-left"
         >
           <q-list style="min-width: 100px; background-color: #ffffffb5;font-weight: 400;letter-spacing: 0.5px;">
-           
+
              <div style="display: block">
      
         <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable to="/download">
@@ -35,10 +58,10 @@
          </q-item>
 
         </div>
-
+        <q-separator />
           <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.dofus.com/fr/mmorpg/jouer" target="_blank">
           <q-avatar>
             <img src="images/dofus/12769.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -48,10 +71,10 @@
          </q-item>
 
         </div>
-
+        <q-separator />
         <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.dofus.com/fr/mmorpg/communaute/parrainage" target="_blank">
           <q-avatar>
             <img src="images/dofus/12764.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -61,10 +84,10 @@
          </q-item>
 
         </div>
-
+        <q-separator />
         <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.dofus.com/fr/mmorpg/communaute/codes" target="_blank">
           <q-avatar>
             <img src="images/dofus/12023.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -74,7 +97,7 @@
          </q-item>
 
         </div>
-
+        <q-separator />
          <div style="display: block">
      
         <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable to="/encyclopedia">
@@ -87,10 +110,10 @@
          </q-item>
 
         </div>
-
+        <q-separator />
         <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.dofus.com/fr/mmorpg/communaute/annuaires/pages-persos" target="_blank">
           <q-avatar>
             <img src="images/dofus/12141.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -100,10 +123,10 @@
          </q-item>
 
         </div>
-
+        <q-separator />
         <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.dofus.com/fr/mmorpg/communaute/ladder" target="_blank">
           <q-avatar>
             <img src="images/dofus/12743.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -127,7 +150,7 @@
 
         <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.ankama-shop.com/" target="_blank">
           <q-avatar>
             <img src="images/dofus/16362.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -137,10 +160,10 @@
          </q-item>
 
         </div>
-
+        <q-separator />
         <div style="display: block;">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.ankama.com/fr/editions" target="_blank">
           <q-avatar>
             <img src="images/dofus/17330.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -150,10 +173,10 @@
          </q-item>
 
         </div>
-
+        <q-separator />
          <div style="display: block;">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.ankama.com/fr/games" target="_blank">
           <q-avatar>
             <img src="images/dofus/9313.w40h40.png" style="width: 40px; height: auto;">
           </q-avatar>
@@ -176,7 +199,7 @@
           <q-list style="min-width: 100px; background-color: #ffffffb5;font-weight: 400;letter-spacing: 0.5px;">
            <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" tag="a" href="https://www.dofus.com/fr#pandala-details" target="_blank">
           <q-avatar>
             <img src="images/dofus/23004.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -187,9 +210,11 @@
 
         </div>
 
+        <q-separator />
+
          <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable to="/news">
           <q-avatar>
             <img src="images/dofus/23023.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -199,7 +224,7 @@
          </q-item>
 
         </div>
-
+        <q-separator />
          <div style="display: block">
      
         <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
@@ -213,7 +238,7 @@
          </q-item>
 
         </div>
-
+        <q-separator />
           <div style="display: block">
      
         <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable>
@@ -261,7 +286,6 @@
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
       content-class="text-white"
       content-style="background: rgb(62 59 58 / 39%) !important;"
       elevated
@@ -520,6 +544,7 @@ export default defineComponent({
       dialog: false,
       modalCreateNews: false,
       modalAlmanax: false,
+      leftDrawerOpen : false,
       position: 'bottom',
       tracks: [
         {
@@ -568,9 +593,6 @@ export default defineComponent({
     closeModal5 () {
       this.modalAlmanax = false
     },
-    showUser (data : any) {
-      location.href = '/#/profil/' + data
-    },
   },
   components: { EssentialLink, modalCreateNews, modalAlmanax },  
   computed: {
@@ -580,9 +602,7 @@ export default defineComponent({
     ...mapState("auth", ["listUser"])
   },
   setup() {
-    const leftDrawerOpen = ref(false);
-
-    return {leftDrawerOpen}
+    
   },
   mounted () {
     this.checkNotif()

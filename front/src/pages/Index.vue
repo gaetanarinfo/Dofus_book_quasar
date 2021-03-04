@@ -1,10 +1,16 @@
 <template>
 
-  <q-page class="q-pa-md row items-start q-gutter-md justify-center">
+  <q-page style="min-height: 482px;padding-top: 0 !important;margin-top: -36px;">
+
+    <video-component></video-component>
+
+    <div class="q-pa-md row items-start q-gutter-md justify-center">
 
     <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white">Bienvenue dans le jeu en ligne multijoueur gratuit DOFUS !</div>
-    
+  
     <news-component :listNews='listNews'></news-component>
+
+    </div>
     
   </q-page>
 
@@ -19,7 +25,10 @@
 </style>
 
 <script lang="ts">
+
+
 import NewsComponent from 'components/NewsComponent.vue';
+import VideoComponent from 'components/VideoComponent.vue';
 import { defineComponent, ref } from '@vue/composition-api';
 import { mapActions, mapState } from 'vuex';
 
@@ -42,7 +51,7 @@ export default defineComponent({
 
   },
   components: { 
-    NewsComponent 
+    NewsComponent, VideoComponent
   },
   methods : {
     ...mapActions('news', ['getNews'])
