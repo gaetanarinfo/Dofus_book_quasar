@@ -273,7 +273,7 @@ Donjons, chasses aux trésors, monstres, boss, familiers, compagnons, mode joueu
 }
 .block-dofus {
     padding: 7px 13px 7px 9px;
-    margin-top: 15px !important;
+    margin-top: 28px !important;
     width: 350px;
     margin: 0 auto;
     color: #fff;

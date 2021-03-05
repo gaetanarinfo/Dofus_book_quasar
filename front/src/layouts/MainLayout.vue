@@ -34,11 +34,11 @@
 
         </q-btn>
 
-        <q-toolbar-title style="font-family: charming, sans-serif;font-size: 21px;color: blanchedalmond;font-weight: 600;letter-spacing: 4px;padding: 7px 0px 0px 7px;">
+        <q-toolbar-title style="font-family: 'bebas';font-size: 23px;color: #d8ffe9;font-weight: 600;letter-spacing: 4px;padding: 6px 0px 0px 7px;">
           Dofus Book
         </q-toolbar-title>
 
-        <div class="q-gutter-md row">
+        <div class="q-gutter-md row desktop-only">
         <q-btn glossy color="light-green-8" label="Le jeu">
         <q-menu
           transition-show="flip-right"
@@ -258,8 +258,8 @@
 
       </div>
 
-        <q-toolbar class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 bg-primary text-white glossy" style="background-color: #C64F10 !important;">
-        <q-space />
+        <q-toolbar class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy" style="background-color: rgb(198, 79, 16) !important;align-items: center;align-content: center;justify-content: center;">
+   
         <q-btn flat round dense icon="play_circle_filled" @click="open('bottom')">
           <q-tooltip anchor="bottom middle" self="center middle">
                Lire la musique

@@ -22,7 +22,6 @@
 .dofus {
     background: url('../../public/background/1023606.jpg') !important;
     background-repeat: no-repeat !important;
-    background-size: cover !important;
 }
 </style>
 
