@@ -19,6 +19,8 @@
     <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="padding: 20px 0 0 0;">Envoyer un message</div>
 
         <q-input
+        disable
+        bg-color="grey-2"
         style="padding: 0 0 10px 0;"
             filled
             v-model="formEdit.lastname"
@@ -27,6 +29,8 @@
         />
 
         <q-input
+        disable
+        bg-color="grey-2"
         style="padding: 16px 0 10px 0;"
             filled
             v-model="formEdit.firstname"
@@ -35,6 +39,8 @@
         />
 
         <q-input
+        disable
+        bg-color="grey-2"
         style="padding: 16px 0 10px 0;"
             filled
             v-model="formEdit.author"
@@ -44,6 +50,7 @@
 
         <div class="q-gutter-md row items-start">
       <q-select
+      bg-color="grey-2"
         filled
         v-model="formEdit.recipients"
         use-chips
@@ -64,6 +71,7 @@
     </div>
 
         <q-input
+        bg-color="grey-2"
         style="padding: 16px 0 16px 0;"
             filled
             v-model="formEdit.sujet"
@@ -77,7 +85,7 @@
         style="margin: 16px 0 16px 0;"
       v-model="formEdit.content"
       flat
-      content-class="bg-white-5"
+      content-class="bg-grey-10"
       toolbar-text-color="white"
       toolbar-toggle-color="blue-8"
       toolbar-bg="brown-8"

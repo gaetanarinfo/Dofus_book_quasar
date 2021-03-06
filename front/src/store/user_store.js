@@ -613,7 +613,43 @@ const actions = {
                 }
 
             })
-    }
+    },
+    contact({}, payload) {
+
+        axios
+            .post('/contact', {
+                name: payload.name,
+                email: payload.email,
+                sujet: payload.sujet,
+                content: payload.content
+            })
+            .then((res) => {
+
+                const succ = res.data.success,
+                    err = res.data.error
+
+                if (err === true) {
+
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Une erreur est survenue !"
+                    })
+                }
+
+                if (succ === true) {
+
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: 'Ton message à été envoyer !'
+                    })
+
+                }
+            })
+    },
 }
 
 const getters = {

@@ -210,6 +210,7 @@ Donjons, chasses aux trésors, monstres, boss, familiers, compagnons, mode joueu
     background: url('../../public/background/jouer_type3.jpg') !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
+    background-color: none !important;
 }
  .dofus-content-btn {
     display: block;

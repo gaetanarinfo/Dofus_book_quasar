@@ -40,6 +40,7 @@
     <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="padding: 20px 0 0 0;">Modifier mon profil</div>
 
       <q-input
+      bg-color="grey-2"
       style="padding: 0 0 10px 0;"
         filled
         v-model="formEdit.lastname"
@@ -48,6 +49,7 @@
       />
 
       <q-input
+      bg-color="grey-2"
       style="padding: 16px 0 10px 0;"
         filled
         v-model="formEdit.firstname"
@@ -56,6 +58,7 @@
       />
 
       <q-input
+      bg-color="grey-2"
       style="padding: 16px 0 10px 0;"
         filled
         v-model="formEdit.pseudo"
@@ -64,6 +67,7 @@
       />
 
       <q-input
+      bg-color="grey-2"
       style="padding: 16px 0 16px 0;"
         filled
         v-model="formEdit.email"
@@ -106,6 +110,12 @@
     </div>
   </div>
 </template>
+
+<style lang="css">
+.bg-grey-2 {
+    background: #f5f5f55e !important
+}
+</style>
 
 <script>
 

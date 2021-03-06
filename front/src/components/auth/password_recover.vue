@@ -7,9 +7,10 @@
 
     <div class="col-sm-9 text-center text-white"><img src="images/dofus_logo.png" style="width: 279px;"></div>
 
-        <q-input v-model="formLogin.password" filled :type="isPwd ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un mot de passe valide']">
+        <q-input bg-color="grey-2" v-model="formLogin.password" filled :type="isPwd ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un mot de passe valide']">
         <template v-slot:append>
           <q-icon
+            style="color: black !important;"
             :name="isPwd ? 'visibility_off' : 'visibility'"
             class="cursor-pointer"
             @click="isPwd = !isPwd"
@@ -17,9 +18,10 @@
         </template>
       </q-input>
 
-      <q-input v-model="formLogin.password_confirm" filled :type="isPwd2 ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un mot de passe valide']">
+      <q-input bg-color="grey-2" v-model="formLogin.password_confirm" filled :type="isPwd2 ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter un mot de passe valide']">
         <template v-slot:append>
           <q-icon
+            style="color: black !important;"
             :name="isPwd2 ? 'visibility_off' : 'visibility'"
             class="cursor-pointer"
             @click="isPwd2 = !isPwd2"
@@ -38,6 +40,12 @@
 
   </div>
 </template>
+
+<style lang="css">
+.bg-grey-2 {
+    background: #f5f5f55e !important
+}
+</style>
 
 <script>
 import { mapActions, mapMutations, mapState } from 'vuex'

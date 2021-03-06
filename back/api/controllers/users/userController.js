@@ -367,7 +367,7 @@ module.exports = {
             })
 
     },
-    mailNotif: ((req, res) => {
+    mailNotif: (req, res) => {
 
         Mailbox.find({ recipient: req.params.pseudo })
             .exec((err, data) => {
@@ -382,6 +382,29 @@ module.exports = {
 
             })
 
-    })
+    },
+    contact: (req, res) => {
+
+        // On configure notre mail à envoyer par nodemailer
+        const mailOptions = {
+            from: 'Contact Dofus Book',
+            to: 'support@dofus-book.fr',
+            subject: req.body.name + ' - ' + req.body.sujet + ' - ' + req.body.email,
+            html: req.body.content
+        }
+
+        // On demande à notre transporter d'envoyer notre mail
+        transporter.sendMail(mailOptions, (err, info) => {
+            if (err) {
+                let error = true
+                res.send({ error })
+            }
+
+            let success = true
+
+            res.send({ success })
+
+        })
+    }
 
 }

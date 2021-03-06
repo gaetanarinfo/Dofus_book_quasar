@@ -34,8 +34,6 @@ export default {
         spinner: QSpinnerHourglass,
         spinnerColor: 'red',
         spinnerSize: 200,
-        message: 'Chargement des ressources en cours',
-        messageColor: 'white'
       })
 
       // hiding in 2s
@@ -43,7 +41,7 @@ export default {
         this.$q.loading.hide()
         this.show = true
         this.timer = void 0
-      }, 3000)
+      }, 2500)
     }
   },
 

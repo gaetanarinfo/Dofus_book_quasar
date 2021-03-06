@@ -1,6 +1,16 @@
+@media only screen and (max-width: 400px) {
+  .dofus {
+    background: url("../background/1023606.jpg") !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
+    background-size: auto !important;
+  }
+}
+
 .dofus {
     background: url('../background/1023606.jpg');
     background-position: top;
+    background-size: cover !important;
     background-repeat: no-repeat;
 }
 
@@ -20,11 +30,12 @@
 }
 
 form {
-    background-color: #ffffff42;
+    background-color: #ffffff21;
     padding: 0px 63px 28px 50px;
     margin-top: 30px !important;
-    border-radius: 5px;
+    border-radius: 0px;
     color: white;
+    box-shadow: 0 0 13px #d2c6c68a;
 }
 
 .q-field__messages>div {
@@ -36,6 +47,16 @@ form {
     color: #232323;
     font-weight: 700;
     line-height: 7px;
+}
+
+.q-field--filled.q-field--highlighted .q-field__control:before {
+    opacity: 1;
+    background: rgb(212 212 212 / 45%) !important;
+}
+
+}
+.q-field--filled .q-field__control {
+     background: rgb(212 212 212 / 45%) !important;
 }
 
 .q-field__marginal {

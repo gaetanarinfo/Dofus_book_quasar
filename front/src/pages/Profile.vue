@@ -12,6 +12,7 @@
     background: url('https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg') !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
+    background-color: none !important;
 }
 
 </style>

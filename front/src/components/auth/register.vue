@@ -7,30 +7,31 @@
 
     <div class="col-sm-9 text-center text-white"><img src="images/dofus_logo.png" style="width: 279px;"></div>
 
-      <q-input v-model="form.lastname" filled type="text"  hint="Nom valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter ton nom']">
+      <q-input bg-color="grey-2" v-model="form.lastname" filled type="text"  hint="Nom valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'entrer ton nom']">
 
       </q-input>
 
-      <q-input v-model="form.firstname" filled type="text"  hint="Prénom valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter ton prénom']">
+      <q-input bg-color="grey-2" v-model="form.firstname" filled type="text"  hint="Prénom valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'entrer ton prénom']">
 
       </q-input>
 
-       <q-input v-model="form.pseudo" filled type="text"  hint="Pseudo valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter ton pseudo']">
+       <q-input bg-color="grey-2" v-model="form.pseudo" filled type="text"  hint="Pseudo valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'entrer ton pseudo']">
 
       </q-input>
 
 
-       <q-input v-model="form.email" filled type="email"  hint="Email valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'enter une adresse email valide']">
+       <q-input bg-color="grey-2" v-model="form.email" filled type="email"  hint="Email valide" lazy-rules :rules="[ val => val && val.length > 0 || 'Merci d\'entrer une adresse email valide']">
         <template v-slot:prepend>
-          <q-icon name="mail" />
+          <q-icon name="mail" style="color: black !important;" />
         </template>
       </q-input>
 
-       <q-input v-model="form.password" filled :type="form.isPwd ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 9 || 'Merci d\'enter un mot de passe valide avec 8 caractères et 2 caractères spéciaux']">
+       <q-input bg-color="grey-2" v-model="form.password" filled :type="form.isPwd ? 'password' : 'text'" hint="Mot de passe valide" lazy-rules :rules="[ val => val && val.length > 9 || 'Merci d\'entrer un mot de passe valide avec 8 caractères et 1 caractères spéciaux']">
         <template v-slot:append>
           <q-icon
             :name="form.isPwd ? 'visibility_off' : 'visibility'"
             class="cursor-pointer"
+            style="color: black !important;" 
             @click="form.isPwd = !form.isPwd"
           />
         </template>
@@ -46,6 +47,12 @@
 
   </div>
 </template>
+
+<style lang="css">
+.bg-grey-2 {
+    background: #f5f5f55e !important
+}
+</style>
 
 <script>
 

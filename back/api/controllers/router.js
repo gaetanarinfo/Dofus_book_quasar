@@ -71,6 +71,9 @@ router.route('/recipientList')
 router.route('/mailbox_delete/:id')
     .get(userController.mailDelete)
 
+router.route('/contact')
+    .post(userController.contact)
+
 // News
 router.route('/news')
     .get(newsController.get)

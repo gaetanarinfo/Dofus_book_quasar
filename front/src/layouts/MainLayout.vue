@@ -258,7 +258,7 @@
 
       </div>
 
-        <q-toolbar class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy" style="background-color: rgb(198, 79, 16) !important;align-items: center;align-content: center;justify-content: center;">
+        <q-toolbar class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy" style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: -17px;">
    
         <q-btn flat round dense icon="play_circle_filled" @click="open('bottom')">
           <q-tooltip anchor="bottom middle" self="center middle">
@@ -397,6 +397,18 @@
             </q-item>
 
             <q-separator />
+
+             <q-item clickable v-ripple to="/contact">
+              <q-item-section avatar>
+                <q-icon name="alternate_email" color="orange-10" />
+              </q-item-section>
+
+              <q-item-section>
+                Contactez-moi
+              </q-item-section>
+            </q-item>
+
+            <q-separator v-if='loggedIn === false' />
 
             <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
 
