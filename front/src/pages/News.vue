@@ -16,18 +16,18 @@
       :filter="filter"
     >
       <template v-slot:top-left>
-        <q-input
-          borderless
-          dense
-          debounce="1000"
-          v-model="filter"
-          placeholder="Rechercher..."
-          style="background: #ffffff7a;border-radius: 5px;padding: 0px 11px;"
-        >
-          <template v-slot:append>
-            <q-icon name="search" />
-          </template>
-        </q-input>
+          <q-input
+            borderless
+            dense
+            debounce="400"
+            v-model="filter"
+            placeholder="Rechercher..."
+            style="background: #ffffff7a;border-radius: 5px;padding: 0px 11px;"
+          >
+            <template v-slot:append>
+              <q-icon name="search" />
+            </template>
+          </q-input>
       </template>
 
       <template v-slot:item="props">
@@ -61,27 +61,15 @@
             </q-card-section>
 
             <q-card-actions>
-              <q-btn flat color="white" label="Partager" />
-              <q-btn flat color="warning" label="Lire la suite" type="button" />
-              <q-btn
-                v-if="adminIn === true"
-                flat
-                color="green"
-                label="Editer"
-                type="button"
-                @click="showModalEditNews(props.row)"
-              />
-              <q-btn
-                v-if="adminIn === true"
-                flat
-                color="yellow-9"
-                icon="delete"
-                type="button"
-                @click="showModalDeleteGeneral(props.row.id)"
-              >
-                <q-tooltip anchor="top middle" self="center middle">Supprimer l'article</q-tooltip>
-              </q-btn>
-            </q-card-actions>
+            <q-btn flat color="white" label="Partager" />
+            <q-btn flat color="warning" label="Lire la suite" type="a" @click="showArticle(props.row._id)" />
+            <q-btn v-if='adminIn === true' flat color="green" label="Editer" type="button" @click="showModalEditNews(props.row)" />
+            <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(props.row._id)">
+             <q-tooltip anchor="top middle" self="center middle">
+               Supprimer l'article
+              </q-tooltip>
+        </q-btn>
+      </q-card-actions>
           </q-card>
         </div>
       </template>
@@ -133,7 +121,6 @@
 .grid-masonry
   flex-direction: column
   height: 300vh
-
   &--2
     > div
       &:nth-child(2n + 1)
@@ -154,7 +141,6 @@
         order: 2
       &:nth-child(3n)
         order: 3
-
     &:before,
     &:after
       content: ''
@@ -225,6 +211,9 @@ export default {
     };
   },
   methods: {
+    showArticle (data) {
+      location.href = '/#/article/' + data
+    },
     showModalEditNews(data) {
       this.newsModal = data;
       this.modalEditNews = true;

@@ -18,7 +18,7 @@
 </template>
 
 <style lang="css">
-@media only screen and (max-width: 400px) {
+@media only screen and (min-width: 800px) {
   .dofus {
     background: url("../../public/background/1023606.jpg") !important;
     background-repeat: no-repeat !important;

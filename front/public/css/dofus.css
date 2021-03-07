@@ -1,16 +1,16 @@
-@media only screen and (max-width: 400px) {
-  .dofus {
-    background: url("../background/1023606.jpg") !important;
-    background-position: center !important;
-    background-repeat: no-repeat !important;
-    background-size: auto !important;
-  }
+@media only screen and (max-width: 600px) {
+    .dofus {
+        background: url("../background/1023606.jpg") !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        background-size: auto !important;
+    }
 }
 
 .dofus {
     background: url('../background/1023606.jpg');
     background-position: top;
-    background-size: cover !important;
+    background-size: cover;
     background-repeat: no-repeat;
 }
 
@@ -54,37 +54,31 @@ form {
     background: rgb(212 212 212 / 45%) !important;
 }
 
+
 }
 .q-field--filled .q-field__control {
-     background: rgb(212 212 212 / 45%) !important;
+    background: rgb(212 212 212 / 45%) !important;
 }
-
 .q-field__marginal {
     color: rgb(255 251 251 / 61%) !important;
 }
-
 .text-negative {
     color: #650610 !important;
     color: #650610 !important;
 }
-
 .q-menu {
     background: #ffffff30 !important;
 }
-
 .q-drawer {
     background: #fff0 !important;
 }
-
 .q-item.q-router-link--active,
 .q-item--active {
     color: #c0c1c1 !important;
 }
-
 .q-table__card {
     background-color: #00000073 !important;
 }
-
 .q-tooltip--style {
     font-size: 11px !important;
     font-weight: 600 !important;
@@ -93,15 +87,12 @@ form {
     border-radius: 4px !important;
     text-transform: none !important;
 }
-
 .q-media__controls {
     background: transparent !important;
 }
-
 .q-card {
     background: #48414199 !important;
 }
-
 .text-overline-dofus {
     font-size: 13px !important;
     font-weight: 500 !important;
@@ -109,7 +100,6 @@ form {
     line-height: 27px !important;
     letter-spacing: 0.16667em !important;
 }
-
 .list-item-dofus {
     background: #ffffff82 !important;
 }

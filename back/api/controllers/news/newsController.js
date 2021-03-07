@@ -81,9 +81,13 @@ module.exports = {
             .lean()
             .exec((err, data) => {
 
-                if (err) res.send(err)
+                if (data === undefined) {
 
-                res.send({ articleId: data })
+                } else {
+
+                    res.send({ articleId: data })
+
+                }
 
             })
 

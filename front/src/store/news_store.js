@@ -48,8 +48,10 @@ const actions = {
         axios
             .get('/article/' + payload)
             .then(res => {
+
                 commit('setListNewsId', res.data.articleId)
                 commit('setListNewsIdTitle', res.data.articleId.title)
+
             })
     },
     postNews({}, payload) {

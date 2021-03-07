@@ -66,7 +66,7 @@
     <div class="row">
       <div class="bloc-parent">
         <div class="btn-return">
-          <q-btn outline style="color: goldenrod;" label="Retour en arrière" to="/news" />
+          <q-btn outline style="color: goldenrod;" label="Retour en arrière" @click="clear()" />
         </div>
 
         <div class="bloc col-md-12 col-12 col-sm-12">
@@ -103,7 +103,7 @@
         </div>
 
         <div class="btn-return" style="margin: 8px auto 0 0;">
-          <q-btn outline style="color: goldenrod;" label="Retour en arrière" to="/news" />
+          <q-btn outline style="color: goldenrod;" label="Retour en arrière" @click="clear()" />
         </div>
       </div>
     </div>
@@ -191,12 +191,26 @@ export default {
     ...mapState("news", ["listNewsId"])
   },
   methods: {
+    checkArticle () {
+      this.dataCall()
+      this.getNewsId(this.$route.params.id)
+      this.timer = setTimeout(this.checkArticle, 2)
+    },
+    clear() {
+      clearTimeout(this.timer);
+
+      setTimeout(function() {
+        location.href = '/#/news'
+      }, 1000);
+    },
     ...mapMutations("auth", ["setAdminIn"]),
     ...mapActions("news", ["getNewsId"]),
-    mountedData () {
+    dataCall () {
       let dateCreate = this.listNewsId.dateCreate;
 
       let date = new Date(dateCreate);
+
+      let timer;
 
       moment.locale("fr");
 
@@ -204,12 +218,11 @@ export default {
       
       this.title = 'Dofus Book - ' + this.listNewsId.title
       this.description = this.listNewsId.content
-      console.log(this.getNewsId);
-    }
+  }
   },
   mounted() {
     this.getNewsId(this.$route.params.id);
-    this.mountedData();
+    this.checkArticle()
   },
   meta() {
     return {
