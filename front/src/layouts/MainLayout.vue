@@ -34,7 +34,7 @@
 
         </q-btn>
 
-        <q-toolbar-title style="font-family: 'bebas';font-size: 23px;color: #d8ffe9;font-weight: 600;letter-spacing: 4px;padding: 6px 0px 0px 7px;">
+        <q-toolbar-title style="font-family: 'bebas';font-size: 23px;color: #d8ffe9;font-weight: 600;letter-spacing: 4px;padding: 7px 0px 0px 7px;">
           Dofus Book
         </q-toolbar-title>
 
@@ -258,7 +258,7 @@
 
       </div>
 
-        <q-toolbar class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy" style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: -17px;">
+        <q-toolbar class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy" style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: 0px;">
    
         <q-btn flat round dense icon="play_circle_filled" @click="open('bottom')">
           <q-tooltip anchor="bottom middle" self="center middle">
@@ -408,7 +408,22 @@
               </q-item-section>
             </q-item>
 
-            <q-separator v-if='loggedIn === false' />
+            <q-separator />
+
+            <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+
+              <q-btn class="glossy" color="pink-5" push type="a" href="http://dofus-book.fr/apps/dofus-book.apk" target="_blank">
+              <div class="row items-center no-wrap">
+                <q-icon left name="android" />
+                <div class="text-center">
+                  Dofus Book
+                </div>
+              </div>
+            </q-btn>
+
+            </div>
+            
+            <q-separator />
 
             <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
 
@@ -567,7 +582,7 @@ export default defineComponent({
       ],
       sources: [
         {
-          src: require('../../public/music/dofus-retro.mp3'),
+          src: 'http://dofus-book.fr/music/dofus-retro.mp3',
           type: 'music/mp3'
         }
       ],

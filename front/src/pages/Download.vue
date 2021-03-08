@@ -10,7 +10,7 @@
         style="width: 254px;height: 72px;margin-left: 9px;"
         type="a"
         class="btn-download-mobile"
-        href="games/Ankama Launcher-Setup-x86_64.AppImage"
+        href="http://dofus-book.fr/games/Ankama Launcher-Setup-x86_64.AppImage"
         target="_blank"
       >
         <div class="row items-center no-wrap">
@@ -29,7 +29,7 @@
         style="width: 254px;height: 72px; margin-left: 10px;"
         type="a"
         class="btn-download-mobile"
-        href="games/Ankama Launcher-Setup.exe"
+        href="http://dofus-book.fr/games/Ankama Launcher-Setup.exe"
         target="_blank"
       >
         <div class="row items-center no-wrap">
@@ -48,7 +48,7 @@
         style="width: 254px;height: 72px; margin-left: 10px;"
         type="a"
         class="btn-download-mobile"
-        href="games/Ankama Launcher-Setup.dmg"
+        href="http://dofus-book.fr/games/Ankama Launcher-Setup.dmg"
         target="_blank"
       >
         <div class="row items-center no-wrap">
@@ -66,7 +66,7 @@
         glossy
         style="width: 254px;height: 72px; margin-left: 10px;"
         type="a"
-        href="games/Ankama Launcher-Setup-i386.AppImage"
+        href="http://dofus-book.fr/games/Ankama Launcher-Setup-i386.AppImage"
         target="_blank"
       >
         <div class="row items-center no-wrap">

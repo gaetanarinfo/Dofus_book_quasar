@@ -20,10 +20,7 @@
 <style lang="css">
 @media only screen and (min-width: 800px) {
   .dofus {
-    background: url("../../public/background/1023606.jpg") !important;
-    background-repeat: no-repeat !important;
-    background-size: cover !important;
-    background-color: none !important;
+    background-color: #5b2409 !important;
   }
 }
 </style>

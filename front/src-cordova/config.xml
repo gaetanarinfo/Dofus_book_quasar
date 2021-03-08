@@ -2,9 +2,10 @@
 <widget id="dofus.book" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Dofus Book</name>
     <description>Plusieurs milliers de joueurs dans le monde. DOFUS est un jeu de rôle massivement multijoueur où le but est de retrouver les 6 précieux Dofus pour devenir maître d'Amakna.</description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="support@dofus-book.fr" href="http://dofus-book.fr">
+        Dofus Book
     </author>
+    <icon density="mdpi" height="57" platform="android" src="/res/android/icon.png" width="57" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />

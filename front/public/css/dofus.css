@@ -1,16 +1,13 @@
 @media only screen and (max-width: 600px) {
     .dofus {
-        background: url("../background/1023606.jpg") !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-        background-size: auto !important;
+        background-color: #5b2409 !important;
     }
 }
 
 .dofus {
     background: url('../background/1023606.jpg');
     background-position: top;
-    background-size: cover;
+    background-color: #5b2409 !important;
     background-repeat: no-repeat;
 }
 
