@@ -13,7 +13,8 @@ const routes: RouteConfig[] = [
       { path: '/download', name: 'Download', component: () => import('pages/Download.vue') },
       { path: '/news', name: 'News', component: () => import('pages/News.vue') },
       { path: '/article/:id', name: 'articleId', component: () => import('pages/Article.vue') },
-      { path: '/contact/', name: 'contact', component: () => import('pages/Contact.vue') }
+      { path: '/contact/', name: 'contact', component: () => import('pages/Contact.vue') },
+      { path: '/encyclopedie', name: 'encyclopedie', component: () => import('pages/Encyclopedie.vue')}
     ]
    },
   {

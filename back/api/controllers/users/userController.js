@@ -369,19 +369,28 @@ module.exports = {
     },
     mailNotif: (req, res) => {
 
-        Mailbox.find({ recipient: req.params.pseudo })
-            .exec((err, data) => {
-                if (err) console.log(err)
+        User
+            .findById({ _id: req.params.id })
+            .exec((err, user) => {
 
-                Mailbox.countDocuments({ recipient: req.params.pseudo })
-                    .exec((err, count) => {
+                if (user !== undefined) {
 
-                        res.send({ notif: count })
+                    Mailbox.find({ recipient: user.pseudo })
+                        .exec((err, data) => {
+                            if (err) console.log(err)
 
-                    })
+                            Mailbox.countDocuments({ recipient: user.pseudo })
+                                .exec((err, count) => {
+
+                                    res.send({ notif: count })
+
+                                })
+
+                        })
+
+                }
 
             })
-
     },
     contact: (req, res) => {
 

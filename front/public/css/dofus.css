@@ -1,38 +1,60 @@
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width:600px) {
     .dofus {
-        background-color: #5b2409 !important;
+        background-color: #5b2409!important;
+        background-size: auto !important;
+        background-attachment: fixed !important;
+    }
+    form {
+        background-color: hsla(0, 0%, 100%, 0.12941176470588237) !important;
+        padding: 0px 8px 17px 8px !important;
+        margin-top: 30px !important;
+        border-radius: 0px !important;
+        color: #fff !important;
+        box-shadow: 0 0 13px rgb(210 198 198 / 54%) !important;
+    }
+    .form-mobile {
+        width: 320px !important;
+    }
+    .q-upload-mobile {
+        width: 304px !important;
     }
 }
 
 .dofus {
-    background: url('../background/1023606.jpg');
+    background: url(../background/1023606.jpg);
     background-position: top;
-    background-color: #5b2409 !important;
+    background-attachment: fixed !important;
+    background-color: #5b2409!important;
     background-repeat: no-repeat;
+    background-size: cover !important;
 }
 
 @font-face {
     font-family: bebas;
-    src: url('../css/fonts/BebasNeue.otf');
+    src: url(../css/fonts/BebasNeue.otf)
 }
 
 @font-face {
     font-family: charming;
-    src: url("../css/fonts/Charming.otf");
+    src: url(../css/fonts/Charming.otf)
 }
 
 .font-bebas {
-    font-family: 'bebas', sans-serif;
-    letter-spacing: 3px !important;
+    font-family: bebas, sans-serif;
+    letter-spacing: 3px!important
 }
 
 form {
-    background-color: #ffffff21;
+    background-color: hsla(0, 0%, 100%, 0.12941176470588237);
     padding: 0px 63px 28px 50px;
-    margin-top: 30px !important;
+    margin-top: 30px!important;
     border-radius: 0px;
-    color: white;
-    box-shadow: 0 0 13px #d2c6c68a;
+    color: #fff;
+    box-shadow: 0 0 13px rgba(210, 198, 198, 0.5411764705882353)
+}
+
+.form-mobile {
+    width: 720px;
 }
 
 .q-field__messages>div {
@@ -43,60 +65,68 @@ form {
     overflow-wrap: break-word;
     color: #232323;
     font-weight: 700;
-    line-height: 7px;
+    line-height: 7px
 }
 
 .q-field--filled.q-field--highlighted .q-field__control:before {
     opacity: 1;
-    background: rgb(212 212 212 / 45%) !important;
+    background: rgb(212 212 212/45%)!important
 }
 
-
-}
 .q-field--filled .q-field__control {
-    background: rgb(212 212 212 / 45%) !important;
+    background: rgb(212 212 212/45%)!important
 }
+
 .q-field__marginal {
-    color: rgb(255 251 251 / 61%) !important;
+    color: rgb(255 251 251/61%)!important
 }
+
 .text-negative {
-    color: #650610 !important;
-    color: #650610 !important;
+    color: #650610!important
 }
+
 .q-menu {
-    background: #ffffff30 !important;
+    background: hsla(0, 0%, 100%, 0.18823529411764706)!important
 }
+
 .q-drawer {
-    background: #fff0 !important;
+    background: hsla(0, 0%, 100%, 0)!important
 }
-.q-item.q-router-link--active,
-.q-item--active {
-    color: #c0c1c1 !important;
+
+.q-item--active,
+.q-item.q-router-link--active {
+    color: #c0c1c1!important
 }
+
 .q-table__card {
-    background-color: #00000073 !important;
+    background-color: rgba(0, 0, 0, 0.45098039215686275)!important
 }
+
 .q-tooltip--style {
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    color: #fafafa !important;
-    background: #00000061 !important;
-    border-radius: 4px !important;
-    text-transform: none !important;
+    font-size: 11px!important;
+    font-weight: 600!important;
+    color: #fafafa!important;
+    background: rgba(0, 0, 0, 0.3803921568627451)!important;
+    border-radius: 4px!important;
+    text-transform: none!important
 }
+
 .q-media__controls {
-    background: transparent !important;
+    background: transparent!important
 }
+
 .q-card {
-    background: #48414199 !important;
+    background: rgba(72, 65, 65, 0.6)!important
 }
+
 .text-overline-dofus {
-    font-size: 13px !important;
-    font-weight: 500 !important;
-    margin-top: 8px !important;
-    line-height: 27px !important;
-    letter-spacing: 0.16667em !important;
+    font-size: 13px!important;
+    font-weight: 500!important;
+    margin-top: 8px!important;
+    line-height: 27px!important;
+    letter-spacing: 0.16667em!important
 }
+
 .list-item-dofus {
-    background: #ffffff82 !important;
+    background: hsla(0, 0%, 100%, 0.5098039215686274)!important
 }

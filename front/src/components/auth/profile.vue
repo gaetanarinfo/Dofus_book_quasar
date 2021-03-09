@@ -1,13 +1,8 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-12 col-xs-12">
-        <div class="column absolute-right text-center bg-transparent">
-          <q-avatar size="96px" class="q-ma-md shadow-10">
-            <img :src="userData.avatar" />
-          </q-avatar>
-        </div>
 
-        <div class="absolute-center bg-transparent" style="width: 700px">
+        <div class="absolute-center bg-transparent form-mobile">
 
       <q-tabs
         v-model="tab"
@@ -37,7 +32,7 @@
       @reset="onReset"
     >
 
-    <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="padding: 20px 0 0 0;">Modifier mon profil</div>
+    <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="padding: 20px 0px 12px;">Modifier mon profil</div>
 
       <q-input
       bg-color="grey-2"
@@ -68,7 +63,7 @@
 
       <q-input
       bg-color="grey-2"
-      style="padding: 16px 0 16px 0;"
+      style="padding: 16px 0px 35px;"
         filled
         v-model="formEdit.email"
         label="Email *"
@@ -91,13 +86,12 @@
       <q-uploader
       :url="userIdAvatar"
       :headers="[{name: 'X-Custom-Timestamp', value: 1550240306080}]"
-      style="max-width: 42%;"
       multiple
       max-files="1"
       accept=".jpg, .png, .gif, .jpeg, image/*"
       @rejected="onRejected"
-      color="amber"
-      class="q-ml-auto q-mr-auto text-center"
+      color="blue-10"
+      class="q-ml-auto q-mr-auto text-center q-upload-mobile"
       label="Avatar de ton profil"
     />
 
@@ -172,7 +166,6 @@ export default {
       this.pseudo = null
       this.accept = false
     },
-    ...mapActions("auth", ["getProfil"]),
     ...mapActions('auth', ['editUser']),
     ...mapActions('auth', ['editAvatars']),
     checkAuth () {

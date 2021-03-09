@@ -51,11 +51,11 @@ export default {
   },
   methods: {
     checkAuth () {
-      this.logged()
+      this.loggedAuth()
       this.loggedDataUser()
       setTimeout(this.checkAuth, 2500)
     },
-    ...mapActions('auth', ['logged']),
+    ...mapActions('auth', ['loggedAuth']),
     ...mapActions('auth', ['getListRecipient']),
     ...mapActions('auth', ['loggedDataUser'])
   },

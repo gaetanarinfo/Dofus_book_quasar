@@ -409,6 +409,38 @@ const actions = {
         //     })
 
     },
+    loggedAuth({ commit }) {
+
+        const token = localStorage.getItem('token')
+
+        axios
+            .get('/session/', { token })
+            .then((res) => {
+
+                const sess = localStorage.getItem('status')
+                const admin = localStorage.getItem('admin')
+
+                if (sess !== 'user') {
+
+                    document.location.href = "#/login";
+
+                } else {
+
+                    if (admin === 'true') {
+
+                        commit('setAdminIn', true)
+
+                    } else {
+
+
+
+                    }
+
+                    commit('setLoggedIn', true)
+
+                }
+            })
+    },
     editUser({}, payload) {
 
         axios
@@ -506,6 +538,8 @@ const actions = {
     },
     removeMailBox({}, payload) {
 
+        console.log(payload);
+
         axios
             .get('/mailbox_delete/' + payload)
             .then(res => {
@@ -542,10 +576,10 @@ const actions = {
     },
     getMailNotif({ commit }) {
 
-        const pseudo = localStorage.getItem('pseudo')
+        const userId = localStorage.getItem('userId')
 
         axios
-            .get('/mailNotif/' + pseudo)
+            .get('/mailNotif/' + userId)
             .then(res => {
                 commit('setMailNotif', res.data.notif)
             })

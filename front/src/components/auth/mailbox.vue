@@ -1,13 +1,8 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-12 col-xs-12">
-        <div class="column absolute-right text-center bg-transparent">
-          <q-avatar size="96px" class="q-ma-md shadow-10">
-            <img :src="userData.avatar" />
-          </q-avatar>
-        </div>
 
-        <div class="absolute-center bg-transparent" style="width: 700px">
+    <div class="absolute-center bg-transparent form-mobile">
 
 
   <div class="q-pa-md">
@@ -41,7 +36,7 @@
                Voir le message
                 </q-tooltip>
           </q-btn>
-           <q-btn type="button" dense round flat color="red-10" icon="delete" @click="submitDeleteMail(`${mail._id}`)">
+           <q-btn type="button" dense round flat color="red-10" icon="delete" @click="submitDeleteMail(mail._id)">
               <q-tooltip anchor="top middle" self="center middle">
                Supprimer le message
                 </q-tooltip>

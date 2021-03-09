@@ -12,7 +12,8 @@ const userController = require('./users/userController'),
     SessionController = require('./users/SessionController'),
     resetpasswordController = require('./users/resetpasswordController'),
     newsController = require('./news/newsController'),
-    almanaxController = require('./general/almanaxController')
+    almanaxController = require('./general/almanaxController'),
+    encyclopedieController = require('./general//encyclopedieController')
 
 
 // Multer gestion image
@@ -56,7 +57,7 @@ router.route('/profil_edit_avatar/:id')
     .post(userController.editProfilAvatar)
 
 // Mail
-router.route('/mailNotif/:pseudo')
+router.route('/mailNotif/:id')
     .get(userController.mailNotif)
 
 router.route('/mailbox/:pseudo')
@@ -100,6 +101,11 @@ router.route('/almanax')
 
 router.route('/almanax2')
     .get(almanaxController.get2)
+
+
+// Encyclopedie
+router.route('/encyclopedie')
+    .get(encyclopedieController.get)
 
 /***********
  * / Router

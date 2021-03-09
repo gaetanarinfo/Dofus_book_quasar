@@ -62,7 +62,7 @@
 
             <q-card-actions>
             <q-btn flat color="white" label="Partager" />
-            <q-btn flat color="warning" label="Lire la suite" type="a" @click="showArticle(props.row._id)" />
+            <q-btn flat color="warning" label="Lire la suite" type="a" :href="props.row.url" target="_blank" />
             <q-btn v-if='adminIn === true' flat color="green" label="Editer" type="button" @click="showModalEditNews(props.row)" />
             <q-btn v-if='adminIn === true' flat color="yellow-9" icon="delete" type="button" @click="showModalDeleteGeneral(props.row._id)">
              <q-tooltip anchor="top middle" self="center middle">

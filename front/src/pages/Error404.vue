@@ -187,6 +187,12 @@
   </div>
 </template>
 
+<style lang="css">
+.dofus {
+    background-color: #482472!important;
+}
+</style>
+
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 import '../../public/css/404.css'

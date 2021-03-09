@@ -1,14 +1,8 @@
 <template>
   <div class="row">
     <div class="col-12 col-md-12 col-xs-12">
- 
-        <div class="column absolute-right text-center bg-transparent">
-          <q-avatar size="96px" class="q-ma-md shadow-10">
-            <img :src="userData.avatar" />
-          </q-avatar>
-        </div>
 
-        <div class="absolute-center bg-transparent" style="width: 700px">
+        <div class="absolute-center bg-transparent form-mobile">
 
         <q-form
         transition="flip-left"
@@ -17,37 +11,7 @@
     >
 
     <div class="col-sm-9 col-12 text-h4 font-bebas text-center text-white" style="padding: 20px 0 0 0;">Envoyer un message</div>
-
-        <q-input
-        disable
-        bg-color="grey-2"
-        style="padding: 0 0 10px 0;"
-            filled
-            v-model="formEdit.lastname"
-            label="Nom *"
-            hint="Nom"
-        />
-
-        <q-input
-        disable
-        bg-color="grey-2"
-        style="padding: 16px 0 10px 0;"
-            filled
-            v-model="formEdit.firstname"
-            label="Prénom *"
-            hint="Prénom"
-        />
-
-        <q-input
-        disable
-        bg-color="grey-2"
-        style="padding: 16px 0 10px 0;"
-            filled
-            v-model="formEdit.author"
-            label="Pseudo *"
-            hint="Pseudo"
-        />
-
+      
         <div class="q-gutter-md row items-start">
       <q-select
       bg-color="grey-2"

@@ -52,11 +52,11 @@ export default {
   },
   methods: {
     checkAuth () {
-      this.logged()
+      this.loggedAuth()
       setTimeout(this.checkAuth, 2500)
     },
     ...mapActions("auth", ["getProfil"]),
-    ...mapActions('auth', ['logged']),
+    ...mapActions('auth', ['loggedAuth']),
     ...mapActions('auth', ['getListMail'])
   },
   computed: {

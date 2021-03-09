@@ -23,6 +23,10 @@
     background-color: #5b2409 !important;
   }
 }
+
+.dofus {
+    background-color: #5b2409 !important;
+  }
 </style>
 
 <script lang="ts">

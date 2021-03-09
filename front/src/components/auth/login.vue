@@ -26,10 +26,13 @@
 
       <q-toggle v-model="accept" label="J'accepte la licence et les termes" />
 
-      <div>
+      <div class="text-center q-mt-md col-12 col-md-12 col-sm-12">
         <q-btn color="deep-orange" type="submit" glossy label="Valider"/>
         <q-btn label="Effacer" type="reset" color="red" glossy class="q-ml-sm" />
-        <q-btn type="a" href="#/password_reset" glossy label="Mot de passe oublié" push color="orange-6" class="q-ml-sm" />
+      </div>
+
+      <div class="col-12 col-md-12 col-sm-12 text-center q-mt-md">
+         <q-btn type="a" href="#/password_reset" glossy label="Mot de passe oublié" push color="orange-6" class="q-ml-sm" />
       </div>
       
     </q-form>

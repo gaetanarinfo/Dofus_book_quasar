@@ -100,7 +100,7 @@
         <q-separator />
          <div style="display: block">
      
-        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable to="/encyclopedia">
+        <q-item style="display: inline-block;margin: 0 0 0 0;width: 100% !important;" clickable to="/encyclopedie">
           <q-avatar>
             <img src="images/dofus/126025.w40h40.png" style="width: 40px;height: auto;">
           </q-avatar>
@@ -407,6 +407,36 @@
                 Contactez-moi
               </q-item-section>
             </q-item>
+
+            <q-separator />
+
+            <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+
+              <q-btn class="glossy" color="brown-9" push type="a" href="http://dofus-book.fr/apps/Dofus_Book_linux_x64.tar.gz" target="_blank">
+              <div class="row items-center no-wrap">
+                <q-icon left name="fab fa-linux" />
+                <div class="text-center">
+                  Dofus Book
+                </div>
+              </div>
+            </q-btn>
+
+            </div>
+
+            <q-separator />
+
+            <div class="q-pt-sm q-pb-sm q-ml-auto q-mr-auto text-center">
+
+              <q-btn class="glossy text-blue-8" color="yellow-5" push type="a" href="http://dofus-book.fr/apps/extension/chrome/dofus_book.crx" target="_blank">
+              <div class="row items-center no-wrap">
+                <q-icon left name="fab fa-chrome" />
+                <div class="text-center">
+                  Dofus Book
+                </div>
+              </div>
+            </q-btn>
+
+            </div>
 
             <q-separator />
 
