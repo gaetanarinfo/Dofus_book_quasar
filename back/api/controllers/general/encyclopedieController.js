@@ -22,6 +22,21 @@ module.exports = {
             dataClasses = JSON.parse(files2)
 
         res.send({ classes: dataClasses })
+    },
+    getClassesId: (req, res) => {
+
+        let files2 = fs.readFileSync(__dirname + '/json/classesId.json'),
+            dataClasses = JSON.parse(files2)
+
+        dataClasses.forEach(data => {
+
+            if (data.name == req.params.title) {
+
+                res.send({ classesId: data })
+
+            }
+
+        });
     }
 
 }

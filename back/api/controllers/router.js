@@ -111,6 +111,9 @@ router.route('/encyclopedie')
 router.route('/encyclopedie/classes')
     .get(encyclopedieController.getClasses)
 
+router.route('/encyclopedie/classesId/:title')
+    .get(encyclopedieController.getClassesId)
+
 /***********
  * / Router
  */

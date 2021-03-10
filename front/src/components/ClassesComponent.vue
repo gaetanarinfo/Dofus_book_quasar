@@ -10,26 +10,36 @@
     </div>
 
       <div class="row bloc-f">
-        <div class="col col-xs-6 col-sm-3 col-md-2 q-mr-md q-ml-md" v-for="classes in listClasses" :key="classes.id">
-          <a :href="`${classes.url}`" class="dof-item">
+        <div class="col col-xs-5 col-sm-5 col-md-5 q-mr-md q-ml-md" style="width: 427px !important;" v-for="classes in listClasses" :key="classes.id">
+          <a @click="showModalClasses(classes.order)" class="dof-item">
             <div class="dof-block-img">
               <div class="">
-                <img :src="classes.maleImg">
+                <img style="max-width: 413px;" :src="classes.image">
               </div>
             </div>
-            <div class="dof-title">{{ classes.name }}</div>
+            <div class="dof-title">{{ classes.title }}</div>
           </a>
         </div>
       </div>
   </div>
   </div>
+
+  <!-- Modal Classes Id -->
+  <modalClasses
+    v-if='modalClasses'
+    :data="newsModalClasses"
+    :modalClasses.sync='modalClasses'
+    @closeModalClasses='closeModalClasses()'
+  />
+  <!-- / Modal Classes Id -->
+
 </div>  
 </template>
 
 <style lang="css">
 .bloc {
   margin: 0 auto;
-  max-width: 1146px;
+  max-width: 952px;
 }
 
 .bloc-d {
@@ -38,7 +48,7 @@
   padding: 12px 12px 12px 12px;
   background: none repeat scroll 0 0 rgba(255, 255, 255, 0.3);
   min-height: 450px;
-  max-width: 1146px;
+  max-width: 952px;
 }
 
 .bloc-g {
@@ -112,13 +122,25 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+import modalClasses from '../components/modal/modalClasses.vue'
 import { log } from "util";
 
 export default {
   data() {
-    return {};
+    return {
+      modalClasses: false
+    };
   },
-  methods: {},
+  methods: {
+     showModalClasses (data) {
+      this.newsModalClasses = data;
+      this.modalClasses = true
+    },
+    closeModalClasses () {
+      this.modalClasses = false
+    }
+  },
+  components: { modalClasses }, 
   props: {
     listClasses: Array
   }

@@ -7,7 +7,8 @@ import axios from 'axios'
 
 const state = {
     listEncyclopedie: [],
-    listClasses: []
+    listClasses: [],
+    listClassesId: []
 }
 
 const mutations = {
@@ -16,6 +17,9 @@ const mutations = {
     },
     setListClasses(state, value) {
         state.listClasses = value
+    },
+    setListClassesId(state, value) {
+        state.listClassesId = value
     },
 }
 
@@ -31,8 +35,15 @@ const actions = {
         axios
             .get('/encyclopedie/classes')
             .then(res => {
-                console.log(res.data.classes);
                 commit('setListClasses', res.data.classes)
+            })
+    },
+    getClassesId({ commit }, payload) {
+
+        axios
+            .get('/encyclopedie/classesId/' + payload)
+            .then(res => {
+                commit('setListClassesId', res.data.classesId)
             })
     }
 }
@@ -42,6 +53,9 @@ const getters = {
         state.listEncyclopedie
     },
     setListClasses(state, value) {
+        state.listClasses
+    },
+    setListClassesId(state, value) {
         state.listClasses
     }
 }
