@@ -1,4 +1,5 @@
-const Encyclopedie = require('../../database/models/Encyclopedie')
+const Encyclopedie = require('../../database/models/Encyclopedie'),
+    fs = require('fs')
 
 /*
  * Controller
@@ -15,5 +16,12 @@ module.exports = {
                 })
 
             })
+    },
+    getClasses: (req, res) => {
+        let files2 = fs.readFileSync(__dirname + '/json/classes.json'),
+            dataClasses = JSON.parse(files2)
+
+        res.send({ classes: dataClasses })
     }
+
 }

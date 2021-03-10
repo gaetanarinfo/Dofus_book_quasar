@@ -218,29 +218,33 @@ const actions = {
 
         const token = localStorage.getItem('token')
 
-        axios
-            .get('/session/', { token })
-            .then((res) => {
+        if (token !== null) {
 
-                const sess = localStorage.getItem('status')
-                const admin = localStorage.getItem('admin')
+            axios
+                .get('/session/', { token })
+                .then((res) => {
 
-                if (sess === 'user') {
+                    const sess = localStorage.getItem('status')
+                    const admin = localStorage.getItem('admin')
 
-                    if (admin === 'true') {
+                    if (sess === 'user') {
 
-                        commit('setAdminIn', true)
+                        if (admin === 'true') {
 
-                    } else {
+                            commit('setAdminIn', true)
+
+                        } else {
 
 
+
+                        }
+
+                        commit('setLoggedIn', true)
 
                     }
+                })
 
-                    commit('setLoggedIn', true)
-
-                }
-            })
+        }
     },
     logoutUser({ commit }, payload) {
         axios
@@ -392,21 +396,25 @@ const actions = {
 
         const userToken = localStorage.getItem('token')
 
-        axios
-            .get('/profil/' + userToken)
-            .then((res) => {
+        if (userToken !== null) {
 
-                commit('setListUser', res.data.userData)
+            axios
+                .get('/profil/' + userToken)
+                .then((res) => {
 
-            })
+                    commit('setListUser', res.data.userData)
 
-        // axios
-        //     .get('/profilUser/' + payload)
-        //     .then((res) => {
+                })
 
-        //         commit('setListUser', res.data.userData)
+            // axios
+            //     .get('/profilUser/' + payload)
+            //     .then((res) => {
 
-        //     })
+            //         commit('setListUser', res.data.userData)
+
+            //     })
+
+        }
 
     },
     loggedAuth({ commit }) {
@@ -574,15 +582,17 @@ const actions = {
 
             })
     },
-    getMailNotif({ commit }) {
+    getMailNotif({ commit }, payload) {
 
-        const userId = localStorage.getItem('userId')
+        if (payload !== undefined) {
 
-        axios
-            .get('/mailNotif/' + userId)
-            .then(res => {
-                commit('setMailNotif', res.data.notif)
-            })
+            axios
+                .get('/mailNotif/' + payload)
+                .then(res => {
+                    commit('setMailNotif', res.data.notif)
+                })
+
+        }
     },
     removeAccount({}, payload) {
 

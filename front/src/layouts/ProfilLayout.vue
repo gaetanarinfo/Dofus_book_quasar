@@ -189,8 +189,9 @@ export default defineComponent({
 
     },
     checkNotif () {
-      this.getMailNotif()
-      setTimeout(this.checkNotif, 2500)
+      this.userPseudo = this.listUser.pseudo
+      this.getMailNotif(this.listUser._id)
+      setTimeout(this.checkNotif, 500)
     },
     showModalDelete (data : any) {
       this.user = data
@@ -206,7 +207,7 @@ export default defineComponent({
       this.modalCreateNews = false
     },
     logout () {
-      this.logoutUser(this.listUser.pseudo)
+      this.logoutUser(this.userPseudo)
     },
     ...mapActions("auth", ["getProfil"]),
     ...mapActions('auth', ['loggedDataUser']),

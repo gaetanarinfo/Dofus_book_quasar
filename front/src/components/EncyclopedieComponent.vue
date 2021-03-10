@@ -12,7 +12,7 @@
 
       <div class="row bloc-f">
         <div class="col col-xs-6 col-sm-3 col-md-2 q-mr-md q-ml-md" v-for="encycl in listEncyclopedie" :key="encycl.id">
-          <a href class="dof-item">
+          <a :href="`${encycl.url}`" class="dof-item">
             <div class="dof-block-img">
               <div class="dof-img dof-icon-big dof-breeds" :style="`background-position: ${encycl.imgPos} !important;`"></div>
             </div>
@@ -21,8 +21,6 @@
         </div>
       </div>
     </div>
-    
-    <classes-component></classes-component>
 
   </div>
 </template>
@@ -115,7 +113,6 @@
 <script>
 import { mapActions, mapState } from "vuex";
 import { log } from "util";
-import ClassesComponent from "components/ClassesComponent.vue";
 
 export default {
   data() {
@@ -124,9 +121,6 @@ export default {
   methods: {},
   props: {
     listEncyclopedie: Array
-  },
-  components: {
-    ClassesComponent
-  },
+  }
 };
 </script>

@@ -107,6 +107,10 @@ router.route('/almanax2')
 router.route('/encyclopedie')
     .get(encyclopedieController.get)
 
+// Classe
+router.route('/encyclopedie/classes')
+    .get(encyclopedieController.getClasses)
+
 /***********
  * / Router
  */

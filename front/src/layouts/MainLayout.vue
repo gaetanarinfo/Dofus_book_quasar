@@ -591,6 +591,7 @@ import modalCreateNews from '../components/modal/admin/modalCreateNews.vue'
 import modalAlmanax from '../components/modal/modalAlmanax.vue'
 import { mapState, mapActions } from 'vuex'
 import { AnyARecord } from 'dns';
+import { log } from 'util';
 
 export default defineComponent({
   name: 'MainLayout',
@@ -622,7 +623,6 @@ export default defineComponent({
      mountedData () {
 
       this.userId = this.listUser._id
-      this.userPseudo = this.listUser.pseudo
 
     },
     open (position : any) {
@@ -630,8 +630,9 @@ export default defineComponent({
       this.dialog = true
     },
     checkNotif () {
-      this.getMailNotif()
-      setTimeout(this.checkNotif, 2500)
+      this.userPseudo = this.listUser.pseudo
+      this.getMailNotif(this.listUser._id)
+      setTimeout(this.checkNotif, 500)
     },
     ...mapActions('auth', ['getMailNotif']),
     logout () {

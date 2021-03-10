@@ -14,7 +14,8 @@ const routes: RouteConfig[] = [
       { path: '/news', name: 'News', component: () => import('pages/News.vue') },
       { path: '/article/:id', name: 'articleId', component: () => import('pages/Article.vue') },
       { path: '/contact/', name: 'contact', component: () => import('pages/Contact.vue') },
-      { path: '/encyclopedie', name: 'encyclopedie', component: () => import('pages/Encyclopedie.vue')}
+      { path: '/encyclopedie', name: 'encyclopedie', component: () => import('pages/Encyclopedie.vue')},
+      { path: '/classes', name: 'classes', component: () => import('pages/Classes.vue')}
     ]
    },
   {
