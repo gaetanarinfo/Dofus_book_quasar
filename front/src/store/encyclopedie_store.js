@@ -56,7 +56,7 @@ const getters = {
         state.listClasses
     },
     setListClassesId(state, value) {
-        state.listClasses
+        state.listClassesId
     }
 }
 
