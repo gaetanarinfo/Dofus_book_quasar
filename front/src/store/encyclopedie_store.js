@@ -8,7 +8,7 @@ import axios from 'axios'
 const state = {
     listEncyclopedie: [],
     listClasses: [],
-    listClassesId: []
+    classesId: []
 }
 
 const mutations = {
@@ -19,7 +19,7 @@ const mutations = {
         state.listClasses = value
     },
     setListClassesId(state, value) {
-        state.listClassesId = value
+        state.classesId = value
     },
 }
 
@@ -55,8 +55,8 @@ const getters = {
     setListClasses(state, value) {
         state.listClasses
     },
-    setListClassesId(state, value) {
-        state.listClassesId
+    classesId: (state) => {
+        return state.classesId
     }
 }
 

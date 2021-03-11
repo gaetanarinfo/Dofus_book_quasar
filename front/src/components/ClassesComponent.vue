@@ -11,7 +11,7 @@
 
       <div class="row bloc-f">
         <div class="col col-xs-5 col-sm-5 col-md-5 q-mr-md q-ml-md" style="width: 427px !important;" v-for="classes in listClasses" :key="classes.id">
-          <a @click="showModalClasses(classes.order, classes.image, classes.title)" class="dof-item">
+          <a @click="showModalClasses(classes.order, classes.image, classes.title, classes.api)" class="dof-item">
             <div class="dof-block-img">
               <div class="">
                 <img style="max-width: 413px;" :src="classes.image">
@@ -30,6 +30,7 @@
     :data="newsModalClasses"
     :data2="newsModalClasses2"
     :data3="newsModalClasses3"
+    :data4="newsModalClasses4"
     :modalClasses.sync='modalClasses'
     @closeModalClasses='closeModalClasses()'
   />
@@ -134,10 +135,11 @@ export default {
     };
   },
   methods: {
-     showModalClasses (data, data2, data3) {
+     showModalClasses (data, data2, data3, data4) {
       this.newsModalClasses = data;
       this.newsModalClasses2 = data2;
       this.newsModalClasses3 = data3;
+      this.newsModalClasses4 = data4;
       this.modalClasses = true
     },
     closeModalClasses () {
