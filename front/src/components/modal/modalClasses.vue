@@ -27,7 +27,8 @@
               ></iframe>
             </div>
           </div>
-          <!-- <div class="dof-breed-roles">
+
+          <div class="dof-breed-roles">
             <span class="dof-breed-role text-center">Rôles</span>
             <div class="dof-breed-roles-illu">
               <span
@@ -42,26 +43,27 @@
                 :class="'dof-breed-role-icon dof-breed-third-role dof-' + classesId.roles[2]"
               >{{ classesId.roles[2] }}</span>
             </div>
-          </div> -->
+          </div>
 
           <div class="text-center">
-            <img
+            <q-img
               id="maleImg"
               style="z-index: 2;"
               class="dof-entitylook"
               width="250px"
               height="250px"
-              src="https://static.ankama.com/renderer/look/7b317c36302c323039327c313d31363338303633342c323d31333732363031322c333d31363733353737382c343d323738363138362c353d31363736313930347c3135307d/full/1/250_250-10_100.png"
+              :src="img"
             />
 
-             <img
+             <q-img
               id="femaleImg"
               style="z-index: 2; display: none;"
               class="dof-entitylook"
               width="250px"
               height="250px"
-              :src="classesId.femaleImg"
+              :src="img2"
             />
+
             <div :class="'dof-body-breed-' + classesId._id + ' dof-breed-pedestral'"></div>
           </div>
 
@@ -77,7 +79,7 @@
               <q-item-label>Fermer</q-item-label>
             </q-item-section>
           </q-btn>
-        </q-card-actions>
+        </q-card-actions>&
       </q-card>
     </q-dialog>
   </div>
@@ -262,13 +264,13 @@
   background-size: 85%;
 }
 .dof-breed-pedestral {
-  height: 200px;
-  left: 50%;
-  top: 120%;
-  z-index: 1;
-  margin-left: -100px;
-  position: absolute;
-  width: 200px;
+    height: 200px;
+    left: 50%;
+    top: 101%;
+    z-index: 1;
+    margin-left: -100px;
+    position: absolute;
+    width: 200px;
 }
 
 .dof-entitylook {
@@ -361,6 +363,15 @@ export default {
     };
   },
   methods: {
+    CheckImg () {
+      setTimeout(() => {
+
+      console.log(this.classesId.maleImg);
+
+      this.img = this.classesId.maleImg
+        
+      }, 20);
+    },
     ShowFemal() {
       document.getElementById('male').classList.remove('dof-breed-sex-selected')
       document.getElementById('female').classList.add('dof-breed-sex-selected')
@@ -376,18 +387,16 @@ export default {
       document.getElementById('maleImg').style.display = ''
       this.male = true
       this.femal = false
-    }, 
-    checkClasses() {
-      this.getClassesId(this.data);
-    },
-    ...mapActions("encyclopedie", ["getClassesId"])
+    }
   },
   computed: {
     ...mapGetters('encyclopedie', ['classesId'])
   },
   mounted() {
-    this.checkClasses();
-    console.log('eIERJGIJDFI', this.classesId)
+
+    localStorage.setItem('imgMale', this.classesId.maleImg)
+    localStorage.setItem('imgFemale', this.classesId.femaleImg)
+
   },
   props: {
     modalClasses: {
@@ -404,6 +413,14 @@ export default {
     },
     data4: {
       type: String
+    },
+    img: {
+      type: String,
+      default: localStorage.getItem('imgMale')
+    },
+    img2: {
+      type: String,
+      default: localStorage.getItem('imgFemale')
     }
   }
 };

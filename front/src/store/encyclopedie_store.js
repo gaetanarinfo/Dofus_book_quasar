@@ -8,7 +8,7 @@ import axios from 'axios'
 const state = {
     listEncyclopedie: [],
     listClasses: [],
-    classesId: []
+    classesId: {}
 }
 
 const mutations = {
@@ -21,6 +21,9 @@ const mutations = {
     setListClassesId(state, value) {
         state.classesId = value
     },
+    ClassesId(state, value) {
+        state.classesIdImg = value
+    }
 }
 
 const actions = {
@@ -50,10 +53,10 @@ const actions = {
 
 const getters = {
     setListEncyclopedie(state, value) {
-        state.listEncyclopedie
+        return state.listEncyclopedie
     },
     setListClasses(state, value) {
-        state.listClasses
+        return state.listClasses
     },
     classesId: (state) => {
         return state.classesId

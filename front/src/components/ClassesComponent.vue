@@ -124,7 +124,7 @@
 </style>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState, mapGetters } from "vuex";
 import modalClasses from '../components/modal/modalClasses.vue'
 import { log } from "util";
 
@@ -136,14 +136,18 @@ export default {
   },
   methods: {
      showModalClasses (data, data2, data3, data4) {
+      this.getClassesId(data);
       this.newsModalClasses = data;
       this.newsModalClasses2 = data2;
       this.newsModalClasses3 = data3;
       this.newsModalClasses4 = data4;
       this.modalClasses = true
     },
+    ...mapActions("encyclopedie", ["getClassesId"]),
     closeModalClasses () {
       this.modalClasses = false
+      localStorage.removeItem('imgMale')
+      localStorage.removeItem('imgFemale')
     }
   },
   components: { modalClasses }, 
