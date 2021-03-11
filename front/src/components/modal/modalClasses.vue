@@ -45,16 +45,16 @@
           </div> -->
 
           <div class="text-center">
-            <q-img
+            <img
               id="maleImg"
               style="z-index: 2;"
               class="dof-entitylook"
               width="250px"
               height="250px"
-              :src="classesId.maleImg"
+              src="https://static.ankama.com/renderer/look/7b317c36302c323039327c313d31363338303633342c323d31333732363031322c333d31363733353737382c343d323738363138362c353d31363736313930347c3135307d/full/1/250_250-10_100.png"
             />
 
-             <q-img
+             <img
               id="femaleImg"
               style="z-index: 2; display: none;"
               class="dof-entitylook"
@@ -364,7 +364,7 @@ export default {
     ShowFemal() {
       document.getElementById('male').classList.remove('dof-breed-sex-selected')
       document.getElementById('female').classList.add('dof-breed-sex-selected')
-      // document.getElementById('maleImg').style.display = 'none'
+      document.getElementById('maleImg').style.display = 'none'
       document.getElementById('femaleImg').style.display = ''
       this.male = false
       this.femal = true
@@ -372,7 +372,7 @@ export default {
     ShowMale() {
       document.getElementById('male').classList.add('dof-breed-sex-selected')
       document.getElementById('female').classList.remove('dof-breed-sex-selected')
-      // document.getElementById('femaleImg').style.display = 'none'
+      document.getElementById('femaleImg').style.display = 'none'
       document.getElementById('maleImg').style.display = ''
       this.male = true
       this.femal = false
