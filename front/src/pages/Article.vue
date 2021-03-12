@@ -173,7 +173,7 @@
 <script>
 import { mapActions, mapState, mapMutations, mapGuetters } from "vuex";
 import { date } from "quasar";
-import { log } from "util";
+
 import moment from "moment";
 import { title } from 'process';
 

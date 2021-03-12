@@ -8,7 +8,10 @@ import axios from 'axios'
 const state = {
     listEncyclopedie: [],
     listClasses: [],
-    classesId: {}
+    classesId: {},
+    classesIdRoles: null,
+    classesIdRoles2: null,
+    classesIdRoles3: null
 }
 
 const mutations = {
@@ -21,8 +24,14 @@ const mutations = {
     setListClassesId(state, value) {
         state.classesId = value
     },
-    ClassesId(state, value) {
-        state.classesIdImg = value
+    setListClassesIdRoles(state, value) {
+        state.classesIdRoles = value
+    },
+    setListClassesIdRoles2(state, value) {
+        state.classesIdRoles2 = value
+    },
+    setListClassesIdRoles3(state, value) {
+        state.classesIdRoles3 = value
     }
 }
 
@@ -47,6 +56,9 @@ const actions = {
             .get('/encyclopedie/classesId/' + payload)
             .then(res => {
                 commit('setListClassesId', res.data.classesId)
+                commit('setListClassesIdRoles', res.data.classesId.roles[0])
+                commit('setListClassesIdRoles2', res.data.classesId.roles[1])
+                commit('setListClassesIdRoles3', res.data.classesId.roles[2])
             })
     }
 }
@@ -60,7 +72,16 @@ const getters = {
     },
     classesId: (state) => {
         return state.classesId
-    }
+    },
+    classesIdRoles: (state) => {
+        return state.classesIdRoles
+    },
+    classesIdRoles2: (state) => {
+        return state.classesIdRoles2
+    },
+    classesIdRoles3: (state) => {
+        return state.classesIdRoles3
+    },
 }
 
 export default {

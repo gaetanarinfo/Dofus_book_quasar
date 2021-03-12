@@ -11,9 +11,9 @@
 
       <div class="row bloc-f">
         <div class="col col-xs-5 col-sm-5 col-md-5 q-mr-md q-ml-md" style="width: 427px !important;" v-for="classes in listClasses" :key="classes.id">
-          <a @click="showModalClasses(classes.order, classes.image, classes.title, classes.api)" class="dof-item">
+          <a style="cursor: pointer;" @click="showModalClasses(classes.order, classes.image, classes.title, classes.api)" class="dof-item">
             <div class="dof-block-img">
-              <div class="">
+              <div>
                 <img style="max-width: 413px;" :src="classes.image">
               </div>
             </div>
@@ -33,7 +33,11 @@
     :data4="newsModalClasses4"
     :modalClasses.sync='modalClasses'
     @closeModalClasses='closeModalClasses()'
-  />
+  >
+  <template v-slot:loading>
+          <q-spinner-gears color="white" />
+        </template>
+  </modalClasses>
   <!-- / Modal Classes Id -->
 
 </div>  
@@ -126,7 +130,7 @@
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
 import modalClasses from '../components/modal/modalClasses.vue'
-import { log } from "util";
+
 
 export default {
   data() {

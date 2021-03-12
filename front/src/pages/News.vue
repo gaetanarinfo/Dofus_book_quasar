@@ -154,7 +154,7 @@ import { mapActions, mapState, mapMutations, mapGetters } from "vuex";
 import modalEditNews from "../components/modal/admin/modalEditNews";
 import modalDeleteGeneral from "../components/modal/admin/modalDeleteGeneral";
 import { type } from "os";
-import { log } from "util";
+
 
 export default {
   name: "news",

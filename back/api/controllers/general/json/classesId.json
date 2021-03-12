@@ -74,8 +74,8 @@
         "name": "Bouclier Féca ",
         "variant": "Inertie "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c31302c323031327c313d31363736353536342c323d373039383135372c333d31353937323931322c343d353436383235342c353d373039383135377c3132357d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c31312c323032307c313d31363130333737352c323d363833333138342c333d31333636313139302c343d31333636313139302c353d363936333436327c3132357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Feca_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Feca_2_250_250-10_100.png"
 }, {
     "_id": 2,
     "ankamaId": 2,
@@ -152,8 +152,8 @@
         "name": "Bénédiction Animale ",
         "variant": "Sixte "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c32302c323032387c313d31353937333437302c323d31363737373136362c333d343833363537332c343d323832373032372c353d31363736313930347c3133307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c32312c323033367c313d31363735393337362c323d31363737373136342c333d323732363539342c343d323832373032372c353d323732363539347c3132357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Osamodas_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Osamodas_2_250_250-10_100.png"
 }, {
     "_id": 3,
     "ankamaId": 3,
@@ -230,8 +230,8 @@
         "name": "Coffre Animé ",
         "variant": "Coffre Régénérant "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c33302c323034347c313d31353937333437302c323d31363737373136362c333d343430343235372c343d31363736373238362c353d31303930343332397c3132307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c33312c323035327c313d31353338343637342c323d31353938323735362c333d343430343235372c343d31363737373136342c353d31313337333838317c39357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Enutrof_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Enutrof_2_250_250-10_100.png"
 }, {
     "_id": 4,
     "ankamaId": 4,
@@ -306,8 +306,8 @@
     }, {
         "name": "Poisse "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c34302c323036307c313d31353931393239342c323d333130313831342c333d333130313831342c343d333130313831342c353d383734383632387c3134307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c34312c323036387c313d31353338343637342c323d31363737373139382c333d343135373835342c343d343135373835342c353d31343837323530357c3135357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Sram_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Sram_2_250_250-10_100.png"
 }, {
     "_id": 5,
     "ankamaId": 5,
@@ -384,8 +384,8 @@
         "name": "Désynchronisation ",
         "variant": "Glas "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c35302c323037367c313d373935373332302c323d363137383038322c333d323737353635342c343d31343532333935342c353d343333363635387c3131307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c35312c323038347c313d373935373332302c323d31363737373136362c333d323531323939382c343d31333934353530392c353d323531323939387c3131307d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Xelor_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Xelor_2_250_250-10_100.png"
 }, {
     "_id": 6,
     "ankamaId": 6,
@@ -462,8 +462,8 @@
         "name": "Destin d'Ecaflip ",
         "variant": "Audace d'Ecaflip "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c36302c323039327c313d31363338303633342c323d31333732363031322c333d31363733353737382c343d323738363138362c353d31363736313930347c3135307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c36312c323130307c313d31363338303633342c323d31343337383736392c333d31343536383733352c343d31333230313138312c353d323035373034367c3135307d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Ecaflip_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Ecaflip_2_250_250-10_100.png"
 }, {
     "_id": 7,
     "ankamaId": 7,
@@ -540,8 +540,8 @@
         "name": "Mot de Reconstitution ",
         "variant": "Mot de Solidarité "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c37302c323130387c313d31363736353536342c323d373336303534352c333d31343435333533322c343d363034383831362c353d343733343030377c3131307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c37312c323131367c313d31343738353333372c323d31363730373737322c333d31363730373737322c343d31313934313134342c353d31353338383737387c3131357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Eniripsa_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Eniripsa_2_250_250-10_100.png"
 }, {
     "_id": 8,
     "ankamaId": 8,
@@ -618,8 +618,8 @@
         "name": "Colère de Iop ",
         "variant": "Fureur "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c38302c323132347c313d31363736353536342c323d31363335353838332c333d31363737373138352c343d323931303036342c353d31343536313739397c3134307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c38312c323133327c313d31363130333737352c323d31353433303431392c333d31363737373138352c343d31343433323738362c353d31343433323738367c3134307d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Iop_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Iop_2_250_250-10_100.png"
 }, {
     "_id": 9,
     "ankamaId": 9,
@@ -696,8 +696,8 @@
         "name": "Maîtrise de l'Arc ",
         "variant": "Sentinelle "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c39302c323134307c313d31363736323938332c323d31343737343534322c333d353739323736382c343d353834353737362c353d31363432323135397c3134307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c39312c323134387c313d31363736313730332c323d31343737353331322c333d383039313930342c343d31343035333839352c353d363936333436327c3133357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Cra_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Cra_2_250_250-10_100.png"
 }, {
     "_id": 10,
     "ankamaId": 10,
@@ -774,8 +774,8 @@
         "name": "Surpuissante ",
         "variant": "Surpuissante Transmutée "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c3130302c323135362c313235337c313d383533373838372c323d383136343039392c333d31343430323636392c343d31343430323636392c353d31313936303839327c3135307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c3130312c323136347c313d383533373838372c323d383535373832362c333d31363131343539362c343d31363131343539362c353d31353132383437387c3134357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Sadida_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Sadida_2_250_250-10_100.png"
 }, {
     "_id": 11,
     "ankamaId": 11,
@@ -852,8 +852,8 @@
         "name": "Punition ",
         "variant": "Folie Sanguinaire "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c3131302c323137327c313d31363736353536342c323d31363735333433342c333d393830393730342c343d353636343830322c353d31363737313133387c3134357d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c3131312c323138307c313d31363536353130352c323d31363735333433342c333d353939323438322c343d363030333533302c353d31363736393334307c3134307d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Sacrieur_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Sacrieur_2_250_250-10_100.png"
 }, {
     "_id": 12,
     "ankamaId": 12,
@@ -930,8 +930,8 @@
         "name": "Lien Spiritueux ",
         "variant": "Bambou "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c3132302c323138387c313d31353435373938342c323d353139373130382c333d373637333131302c343d31353435373938342c353d343031353931357c3136307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c3132312c323139367c313d31363338303633342c323d343533383932352c333d393731313838392c343d31353435373938342c353d393731313838397c3134357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Pandawa_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Pandawa_2_250_250-10_100.png"
 }, {
     "_id": 13,
     "ankamaId": 13,
@@ -1008,8 +1008,8 @@
         "name": "Kaboom ",
         "variant": "Imposture "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c313430352c323230347c313d31343738353333372c323d323536373731332c333d323536373731332c343d333431393431392c353d31363737373136347c3136307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c313430372c323231327c313d31343738353333372c323d3637373436322c333d323536373731332c343d333431393431392c353d333431393431397c3135357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Roublard_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Roublard_250_250-10_100.png"
 }, {
     "_id": 14,
     "ankamaId": 14,
@@ -1086,8 +1086,8 @@
         "name": "Grimace ",
         "variant": "Diffraction "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c313433372c323232307c313d31363736313730332c323d31343432383436352c333d343836333532332c343d313835353832342c353d31353236323933317c3135307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c313433382c323232387c313d31363736313730332c323d31343432383436352c333d343836333532332c343d313835353832342c353d31353236323933317c3134357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Zobal_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Zobal_2_250_250-10_100.png"
 }, {
     "_id": 15,
     "ankamaId": 15,
@@ -1164,8 +1164,8 @@
         "name": "Piston ",
         "variant": "Récursivité "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c313636332c323233367c313d31363639393739342c323d31363531313432332c333d333431373838322c343d31363337373735392c353d31313234323036347c3136307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c313636342c323234347c313d31363639393739342c323d31363531313432332c333d333431373838322c343d31363337373735392c353d31313234323036347c3136307d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Steamer_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Steamer_2_250_250-10_100.png"
 }, {
     "_id": 16,
     "ankamaId": 16,
@@ -1242,8 +1242,8 @@
         "name": " Entraide ",
         "variant": "Coalition "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c333137392c333138337c313d234535453345342c323d233741413041302c333d234132363132412c343d233239384341392c353d234438433839347c3134357d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c333138302c333139317c313d234535453345342c323d233741413041302c333d234132363132412c343d233239384341392c353d234438433839347c3134357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Eliotrope_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Eliotrope_2_250_250-10_100.png"
 }, {
     "_id": 17,
     "ankamaId": 17,
@@ -1320,8 +1320,8 @@
         "name": "Tribut ",
         "variant": "Torrent Arcanique "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c333238352c333238397c313d234639454244302c323d233436324232302c333d233239353635352c343d233434384539312c353d234630463345397c3134307d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c333238362c333239377c313d234639454244302c323d234646464144412c333d233239353635352c343d233434384539312c353d234630463345397c3133357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Huppermage_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Huppermage_2_250_250-10_100.png"
 }, {
     "_id": 18,
     "ankamaId": 18,
@@ -1398,6 +1398,6 @@
         "name": "Canal Canin ",
         "variant": "Appel de la Meute "
     }],
-    "maleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c333439382c333530327c313d363234373232362c323d383830353637332c333d31313330303838352c343d333535313030372c353d383733333435397c3135357d/full/1/250_250-10_100.png",
-    "femaleImg": "https://s.ankama.com/www/static.ankama.com/dofus/renderer/look/7b317c333439392c333531307c313d393739353636302c323d31343139363531312c333d31313330303838352c343d333535313030372c353d31333339353439307c3134357d/full/1/250_250-10_100.png"
+    "maleImg": "../../images/dofus/Personnages/Ouginak_250_250-10_100.png",
+    "femaleImg": "../../images/dofus/Personnages/Ouginak_2_250_250-10_100.png"
 }]
