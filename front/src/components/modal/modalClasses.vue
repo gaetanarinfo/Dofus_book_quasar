@@ -163,14 +163,6 @@ export default {
     },
     data4: {
       type: String
-    },
-    img: {
-      type: String,
-      default: localStorage.getItem("imgMale")
-    },
-    img2: {
-      type: String,
-      default: localStorage.getItem("imgFemale")
     }
   }
 };

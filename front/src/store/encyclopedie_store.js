@@ -11,7 +11,8 @@ const state = {
     classesId: {},
     classesIdRoles: null,
     classesIdRoles2: null,
-    classesIdRoles3: null
+    classesIdRoles3: null,
+    listClassesRoles: []
 }
 
 const mutations = {
@@ -32,7 +33,10 @@ const mutations = {
     },
     setListClassesIdRoles3(state, value) {
         state.classesIdRoles3 = value
-    }
+    },
+    setlistClassesRoles(state, value) {
+        state.listClassesRoles = value
+    },
 }
 
 const actions = {
@@ -51,7 +55,6 @@ const actions = {
             })
     },
     getClassesId({ commit }, payload) {
-
         axios
             .get('/encyclopedie/classesId/' + payload)
             .then(res => {
@@ -59,6 +62,13 @@ const actions = {
                 commit('setListClassesIdRoles', res.data.classesId.roles[0])
                 commit('setListClassesIdRoles2', res.data.classesId.roles[1])
                 commit('setListClassesIdRoles3', res.data.classesId.roles[2])
+            })
+    },
+    getClassesRoles({ commit }, payload) {
+        axios
+            .get('/encyclopedie/classesRoles/' + payload)
+            .then(res => {
+                commit('setlistClassesRoles', res.data.classesRoles)
             })
     }
 }
@@ -81,6 +91,9 @@ const getters = {
     },
     classesIdRoles3: (state) => {
         return state.classesIdRoles3
+    },
+    setListClassesRoles(state, value) {
+        return state.listClassesRoles
     },
 }
 

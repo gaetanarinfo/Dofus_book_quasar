@@ -1,46 +1,95 @@
 <template>
-<div class="justify-center bloc">
-<div class="bloc-d">
-  <div class="bloc-i">
-    <div class="bloc-h">
-      <div class="bloc-g">
-        <div class="dof-img" style="display: inline-block; background-position: 0px -10px; !important;"></div>
-        <h4 class="text-white font-bebas h4-perso">Classes</h4>
+  <div class="justify-center bloc row">
+    <div class="bloc-d col-md-12" style="width: 100%;">
+      <div class="bloc-i">
+        <q-select
+          v-model="search"
+          :options="options"
+          :dense="dense"
+          :options-dense="denseOpts"
+          style="width: 298px;"
+          class="q-mb-md"
+          @input="searchForm()"
+        >
+          <template v-slot:append>
+            <q-avatar>
+              <img src="images/dofus/search.png" />
+            </q-avatar>
+          </template>
+        </q-select>
+
+        <div class="bloc-h">
+          <div class="bloc-g">
+            <div
+              class="dof-img"
+              style="display: inline-block; background-position: 0px -10px; !important;"
+            ></div>
+            <h4 class="text-white font-bebas h4-perso">Classes</h4>
+          </div>
+        </div>
+
+        <div class="row bloc-f" id="classesRoles" style="display:none;">
+          <div
+            class="col col-xs-5 col-sm-5 col-md-5 q-mr-md q-ml-md"
+            style="width: 427px !important;"
+            v-for="classesRole in data"
+            :key="classesRole.id"
+          >
+            <a
+              style="cursor: pointer;"
+              @click="showModalClasses(classesRole.order, classesRole.image, classesRole.title, classesRole.api)"
+              class="dof-item"
+            >
+              <div class="dof-block-img">
+                <div>
+                  <img style="max-width: 413px;" :src="classesRole.image" />
+                </div>
+              </div>
+              <div class="dof-title">{{ classesRole.title }}</div>
+            </a>
+          </div>
+        </div>
+
+        <div class="row bloc-f" id="classesAll">
+          <div
+            class="col col-xs-5 col-sm-5 col-md-5 q-mr-md q-ml-md"
+            style="width: 427px !important;"
+            v-for="classes in listClasses"
+            :key="classes.id"
+          >
+            <a
+              style="cursor: pointer;"
+              @click="showModalClasses(classes.order, classes.image, classes.title, classes.api)"
+              class="dof-item"
+            >
+              <div class="dof-block-img">
+                <div>
+                  <img style="max-width: 413px;" :src="classes.image" />
+                </div>
+              </div>
+              <div class="dof-title">{{ classes.title }}</div>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
 
-      <div class="row bloc-f">
-        <div class="col col-xs-5 col-sm-5 col-md-5 q-mr-md q-ml-md" style="width: 427px !important;" v-for="classes in listClasses" :key="classes.id">
-          <a style="cursor: pointer;" @click="showModalClasses(classes.order, classes.image, classes.title, classes.api)" class="dof-item">
-            <div class="dof-block-img">
-              <div>
-                <img style="max-width: 413px;" :src="classes.image">
-              </div>
-            </div>
-            <div class="dof-title">{{ classes.title }}</div>
-          </a>
-        </div>
-      </div>
+    <!-- Modal Classes Id -->
+    <modalClasses
+      v-if="modalClasses"
+      :data="newsModalClasses"
+      :data2="newsModalClasses2"
+      :data3="newsModalClasses3"
+      :data4="newsModalClasses4"
+      :modalClasses.sync="modalClasses"
+      @closeModalClasses="closeModalClasses()"
+    >
+      <template v-slot:loading>
+        <q-spinner-gears color="white" />
+      </template>
+    </modalClasses>
+    <!-- / Modal Classes Id -->
   </div>
-  </div>
-
-  <!-- Modal Classes Id -->
-  <modalClasses
-    v-if='modalClasses'
-    :data="newsModalClasses"
-    :data2="newsModalClasses2"
-    :data3="newsModalClasses3"
-    :data4="newsModalClasses4"
-    :modalClasses.sync='modalClasses'
-    @closeModalClasses='closeModalClasses()'
-  >
-  <template v-slot:loading>
-          <q-spinner-gears color="white" />
-        </template>
-  </modalClasses>
-  <!-- / Modal Classes Id -->
-
-</div>  
 </template>
 
 <style lang="css">
@@ -124,37 +173,98 @@
   transition: all 0.3s;
   text-decoration: none;
 }
-
 </style>
 
 <script>
 import { mapActions, mapState, mapGetters } from "vuex";
-import modalClasses from '../components/modal/modalClasses.vue'
-
+import modalClasses from "../components/modal/modalClasses.vue";
 
 export default {
   data() {
     return {
-      modalClasses: false
+      modalClasses: false,
+      search: null,
+      data: {},
+      classesAll: document.getElementById("classesAll"),
+      classesRoles: document.getElementById("classesRoles"),
+      options: [
+        {
+          label: "Tout voir",
+          value: "All"
+        },
+        {
+          label: "Amélioration",
+          value: "Amélioration"
+        },
+        {
+          label: "Dégâts",
+          value: "Dégâts"
+        },
+        {
+          label: "Entrave",
+          value: "Entrave"
+        },
+        {
+          label: "Invocation",
+          value: "Invocation"
+        },
+        {
+          label: "Placement",
+          value: "Placement"
+        },
+        {
+          label: "Protection",
+          value: "Protection"
+        },
+        {
+          label: "Soin",
+          value: "Soin"
+        },
+        {
+          label: "Tank",
+          value: "Tank"
+        }
+      ],
+      denseOpts: true,
+      dense: true
     };
   },
   methods: {
-     showModalClasses (data, data2, data3, data4) {
+    searchForm() {
+      const searchValue = this.search.value;
+
+      this.getClassesRoles(searchValue);
+
+      setTimeout(() => {
+        this.data = this.listClassesRoles;
+        classesAll.style.display = "none";
+        classesRoles.style.display = "";
+      }, 2500);
+
+      if (searchValue === "All") {
+        classesAll.style.display = "";
+      }
+    },
+    showModalClasses(data, data2, data3, data4) {
       this.getClassesId(data);
       this.newsModalClasses = data;
       this.newsModalClasses2 = data2;
       this.newsModalClasses3 = data3;
       this.newsModalClasses4 = data4;
-      this.modalClasses = true
+      this.modalClasses = true;
     },
     ...mapActions("encyclopedie", ["getClassesId"]),
-    closeModalClasses () {
-      this.modalClasses = false
-      localStorage.removeItem('imgMale')
-      localStorage.removeItem('imgFemale')
+    ...mapActions("encyclopedie", ["getClassesRoles"]),
+    closeModalClasses() {
+      this.modalClasses = false;
+      localStorage.removeItem("imgMale");
+      localStorage.removeItem("imgFemale");
     }
   },
-  components: { modalClasses }, 
+  computed: {
+    ...mapState("encyclopedie", ["listClassesRoles"])
+  },
+  components: { modalClasses },
   props: {
     listClasses: Array
   }

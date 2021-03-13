@@ -1,9 +1,14 @@
 const Encyclopedie = require('../../database/models/Encyclopedie'),
-    fs = require('fs')
+    fs = require('fs'),
+    JsonFind = require("json-find");
 
-/*
- * Controller
- *************/
+let files = fs.readFileSync(__dirname + '/json/classes.json'),
+    files2 = fs.readFileSync(__dirname + '/json/classesId.json'),
+    dataClasses = JSON.parse(files),
+    dataClasses2 = JSON.parse(files2)
+    /*
+     * Controller
+     *************/
 module.exports = {
     get: (req, res) => {
         Encyclopedie
@@ -18,17 +23,10 @@ module.exports = {
             })
     },
     getClasses: (req, res) => {
-        let files2 = fs.readFileSync(__dirname + '/json/classes.json'),
-            dataClasses = JSON.parse(files2)
-
         res.send({ classes: dataClasses })
     },
     getClassesId: (req, res) => {
-
-        let files2 = fs.readFileSync(__dirname + '/json/classesId.json'),
-            dataClasses = JSON.parse(files2)
-
-        dataClasses.forEach(data => {
+        dataClasses2.forEach(data => {
 
             if (data.name == req.params.title) {
 
@@ -37,6 +35,21 @@ module.exports = {
             }
 
         });
+    },
+    getClassesRoles: (req, res) => {
+
+        let dataArray = [];
+
+        for (let i = 0; i < dataClasses.length; i++) {
+
+            if (dataClasses[i].roles1 == req.params.roles) {
+                dataArray.push(dataClasses[i]);
+            }
+
+        }
+
+        res.send({ classesRoles: dataArray })
+
     }
 
 }

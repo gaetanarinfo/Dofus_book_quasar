@@ -6,7 +6,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-ecaflip.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/6-ecaflip",
     "order": "Ecaflip",
-    "api": "JAhil1C--8w"
+    "api": "JAhil1C--8w",
+    "roles1": "Dégâts",
+    "roles2": "Amélioration",
+    "roles3": "Soins"
 }, {
     "title": "Les mains d'Eniripsa",
     "cat": "Guérisseur",
@@ -15,7 +18,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-eniripsa.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/7-eniripsa",
     "order": "Eniripsa",
-    "api": "RL28MJKZnZQ"
+    "api": "RL28MJKZnZQ",
+    "roles1": "Soins",
+    "roles2": "Amélioration",
+    "roles3": "Entrave"
 }, {
     "title": "Le cœur d'Iop",
     "cat": "Guerrier téméraire",
@@ -24,7 +30,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-iop.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/8-iop",
     "order": "Iop",
-    "api": "EaOZNYoZBms"
+    "api": "EaOZNYoZBms",
+    "roles1": "Dégâts",
+    "roles2": "Amélioration",
+    "roles3": "Placement"
 }, {
     "title": "L'étendue de Crâ",
     "cat": "Archer",
@@ -33,7 +42,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-cra.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/9-cra",
     "order": "Crâ",
-    "api": "SXwZCdTAfWc"
+    "api": "SXwZCdTAfWc",
+    "roles1": "Dégâts",
+    "roles2": "Entrave",
+    "roles3": "Amélioration"
 }, {
     "title": "Le bouclier Féca",
     "cat": "Protecteur",
@@ -42,7 +54,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-feca.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/1-feca",
     "order": "Feca",
-    "api": "Qbdjrv5lp58"
+    "api": "Qbdjrv5lp58",
+    "roles1": "Protection",
+    "roles2": "Tank",
+    "roles3": "Entrave"
 }, {
     "title": "Le sang de Sacrieur",
     "cat": "Berserk",
@@ -51,7 +66,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-sacrieur.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/11-sacrieur",
     "order": "Sacrieur",
-    "api": "D4MS1VNDyz4"
+    "api": "D4MS1VNDyz4",
+    "roles1": "Tank",
+    "roles2": "Placement",
+    "roles3": "Dégâts"
 }, {
     "title": "Le soulier de Sadida",
     "cat": "Sorcier sylvestre",
@@ -60,7 +78,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-sadida.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/10-sadida",
     "order": "Sadida",
-    "api": "5CrLx8uHN-U"
+    "api": "5CrLx8uHN-U",
+    "roles1": "Invocation",
+    "roles2": "Entrave",
+    "roles3": "Soins"
 }, {
     "title": "Le fouet d'Osamodas",
     "cat": "Invocateur de créatures",
@@ -69,7 +90,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-osamodas.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/2-osamodas",
     "order": "Osamodas",
-    "api": "dRfW1YQGLW4"
+    "api": "dRfW1YQGLW4",
+    "roles1": "Invocation",
+    "roles2": "Soins",
+    "roles3": "Amélioration"
 }, {
     "title": "Les doigts d'Enutrof",
     "cat": "Chasseur de trésors",
@@ -78,7 +102,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-enutrof.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/3-enutrof",
     "order": "Enutrof",
-    "api": "a8TLMsyA89o"
+    "api": "a8TLMsyA89o",
+    "roles1": "Entrave",
+    "roles2": "Invocation",
+    "roles3": "Amélioration"
 }, {
     "title": "L'ombre de Sram",
     "cat": "Assassin",
@@ -87,7 +114,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-sram.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/4-sram",
     "order": "Sram",
-    "api": "Lx4fUSRgqAY"
+    "api": "Lx4fUSRgqAY",
+    "roles1": "Dégâts",
+    "roles2": "Entrave",
+    "roles3": "Placement"
 }, {
     "title": "La chopine de Pandawa",
     "cat": "Bagarreur assoiffé",
@@ -96,7 +126,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-pandawa.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/12-pandawa",
     "order": "Pandawa",
-    "api": "hhVoMRdF3qg"
+    "api": "hhVoMRdF3qg",
+    "roles1": "Placement",
+    "roles2": "Dégâts",
+    "roles3": "Tank"
 }, {
     "title": "La ruse du Roublard",
     "cat": "Expert en explosifs",
@@ -105,7 +138,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-roublard.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/13-roublard",
     "order": "Roublard",
-    "api": "GtguUNDxl9Q"
+    "api": "GtguUNDxl9Q",
+    "roles1": "Dégâts",
+    "roles2": "Entrave",
+    "roles3": "Placement"
 }, {
     "title": "Le masque du Zobal",
     "cat": "Guerrier lunatique",
@@ -114,7 +150,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-zobal.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/14-zobal",
     "order": "Zobal",
-    "api": "HTG0ubzSYpo"
+    "api": "HTG0ubzSYpo",
+    "roles1": "Tank",
+    "roles2": "Protection",
+    "roles3": "Dégâts"
 }, {
     "title": "La vapeur du Steamer",
     "cat": "Tacticien technomage",
@@ -123,7 +162,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-steamer.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/15-steamer",
     "order": "Steamer",
-    "api": "NilZno8Nycw"
+    "api": "NilZno8Nycw",
+    "roles1": "Soins",
+    "roles2": "Placement",
+    "roles3": "Dégâts"
 }, {
     "title": "Le portail Eliotrope",
     "cat": "Créateur de portails",
@@ -132,7 +174,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-eliotrope.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/16-eliotrope",
     "order": "Eliotrope",
-    "api": "qXDhqKxb2Gw"
+    "api": "qXDhqKxb2Gw",
+    "roles1": "Placement",
+    "roles2": "Dégâts",
+    "roles3": "Soins"
 }, {
     "title": "La rune de l'Huppermage",
     "cat": "Mage élémentaliste",
@@ -141,7 +186,10 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-huppermage.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/17-huppermage",
     "order": "Huppermage",
-    "api": "0PMLM_Noc7A"
+    "api": "0PMLM_Noc7A",
+    "roles1": "Dégâts",
+    "roles2": "Placement",
+    "roles3": "Amélioration"
 }, {
     "title": "La rage d'Ouginak",
     "cat": "NSP",
@@ -150,5 +198,8 @@
     "image2": "https://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/breeds/assets/logo-ouginak.png",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/classes/18-ouginak",
     "order": "Ouginak",
-    "api": "vL-hKRlyPUg"
+    "api": "vL-hKRlyPUg",
+    "roles1": "Dégâts",
+    "roles2": "Tank",
+    "roles3": "Entrave"
 }]
