@@ -42,7 +42,9 @@ module.exports = {
 
         for (let i = 0; i < dataClasses.length; i++) {
 
-            if (dataClasses[i].roles1 == req.params.roles) {
+            if (dataClasses[i].roles1 == req.params.roles || dataClasses[i].roles2 == req.params.roles || dataClasses[i].roles3 == req.params.roles) {
+                dataArray.push(dataClasses[i]);
+            } else if (req.params.roles === "All") {
                 dataArray.push(dataClasses[i]);
             }
 
