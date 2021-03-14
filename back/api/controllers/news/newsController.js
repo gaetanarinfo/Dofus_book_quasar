@@ -1,7 +1,7 @@
 /*
  * Import Module
  ****************/
-const News = require('../../database/models/news')
+const News = require('../../database/models/News')
 
 /*
  * Controller

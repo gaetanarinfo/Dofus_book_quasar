@@ -58,9 +58,9 @@
           <div class="bloc-g">
             <div
               class="dof-img"
-              style="display: inline-block; background-position: 0px -10px; !important;"
+              style="display: inline-block; background-position: 0px -344px; !important;"
             ></div>
-            <h4 class="text-white font-bebas h4-perso">Classes</h4>
+            <h4 class="text-white font-bebas h4-perso">Métiers</h4>
           </div>
         </div>
 

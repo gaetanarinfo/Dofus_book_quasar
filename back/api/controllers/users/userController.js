@@ -3,13 +3,15 @@
  ****************/
 const bcrypt = require('bcrypt'),
     jwt = require('jsonwebtoken'),
-    User = require('../../database/models/users'),
+    User = require('../../database/models/Users'),
     Mailbox = require('../../database/models/Mailbox'),
     nodemailer = require('nodemailer'),
     templateNewUser = require('../../template/templateNewUser'),
     formidable = require('formidable'),
     path = require('path'),
-    folder = path.join(__dirname, '../../../public/avatar')
+    folder = path.join(__dirname, '../../../public/avatar'),
+    extIP = require("ext-ip")(),
+    moment = require('moment')
 
 // Déclaration de notre transporter
 // C'est en quelque sorte notre connexion à notre boite mail
@@ -40,51 +42,67 @@ module.exports = {
                 error
             })
 
-            res.redirect('/login')
-
         } else {
             const { email } = req.body
 
-            User.findOne({ email }, (err, User) => {
+            User.findOne({ email }, (err, user) => {
 
                 const password = req.body.password,
-                    banned = User.isBanned
+                    banned = user.isBanned
 
                 if (!banned) {
 
-                    bcrypt.compare(password, User.password, (error, same) => {
+                    bcrypt.compare(password, user.password, (error, same) => {
                         if (same) {
 
                             if (err) {
                                 //console.log(err)
 
                                 // eslint-disable-next-line padded-blocks
-                            } else if (User) {
+                            } else if (user) {
                                 // eslint-disable-next-line padded-blocks
 
-                                const payload = {
-                                    _id: User._id,
-                                    status: User.status,
-                                    admin: User.isAdmin,
-                                    email: User.email,
-                                    pseudo: User.pseudo,
-                                    lastname: User.lastname,
-                                    firstname: User.firstname,
-                                    avatar: User.avatar
-                                }
+                                extIP.get((err, ip) => {
+                                    if (err) {
+                                        //console.error("callback error: " + err);
+                                    } else {
 
-                                let token = jwt.sign(payload, 'token', {
-                                    expiresIn: 6000
+                                        moment.locale('fr')
+
+                                        User
+                                            .findOneAndUpdate({ '_id': user.id }, {
+                                                isLog: moment().format('LLLL'),
+                                                isLogout: moment().add(1, 'hours').format('LLLL'),
+                                                ip: ip
+                                            }, (error) => {});
+
+                                        const payload = {
+                                            _id: user._id,
+                                            status: user.status,
+                                            admin: user.isAdmin,
+                                            email: user.email,
+                                            pseudo: user.pseudo,
+                                            lastname: user.lastname,
+                                            firstname: user.firstname,
+                                            avatar: user.avatar
+                                        }
+
+                                        let token = jwt.sign(payload, 'token', {
+                                            expiresIn: 6000
+                                        })
+
+                                        var decoded = jwt.decode(token, { complete: true });
+
+                                        const sess = decoded.payload
+
+                                        res.send({
+                                            token,
+                                            sess
+                                        })
+
+                                    }
                                 })
 
-                                var decoded = jwt.decode(token, { complete: true });
-
-                                const sess = decoded.payload
-
-                                res.send({
-                                    token,
-                                    sess
-                                })
                             } else {
                                 //console.log(err)
                             }
@@ -187,6 +205,14 @@ module.exports = {
         if (decoded != null) {
 
             User.findOne({ _id: decoded.payload._id }, (err, data) => {
+
+                moment.locale('fr')
+
+                const dateNow = moment().format('LLLL');
+
+                if (dateNow > data.isLogout) {
+                    console.log('C\'est l\'heure de partir');
+                }
 
                 res.send({
                     userData: data

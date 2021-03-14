@@ -48,6 +48,15 @@ const UsersShema = new mongoose.Schema({
     name: {
         type: String,
         default: 'default'
+    },
+    ip: {
+        type: String
+    },
+    isLog: {
+        type: String
+    },
+    isLogout: {
+        type: String
     }
 });
 

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken'),
-    User = require('../../database/models/users')
+    User = require('../../database/models/Users')
 
 module.exports = {
     get: async(req, res) => {

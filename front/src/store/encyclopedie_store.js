@@ -4,6 +4,7 @@
  *************/
 
 import axios from 'axios'
+import { Notify } from 'quasar'
 
 const state = {
     listEncyclopedie: [],
@@ -36,7 +37,7 @@ const mutations = {
     },
     setlistClassesRoles(state, value) {
         state.listClassesRoles = value
-    },
+    }
 }
 
 const actions = {
@@ -70,7 +71,7 @@ const actions = {
             .then(res => {
                 commit('setlistClassesRoles', res.data.classesRoles)
             })
-    }
+    },
 }
 
 const getters = {
@@ -92,9 +93,9 @@ const getters = {
     classesIdRoles3: (state) => {
         return state.classesIdRoles3
     },
-    setListClassesRoles(state, value) {
+    setListClassesRoles(state) {
         return state.listClassesRoles
-    },
+    }
 }
 
 export default {

@@ -402,6 +402,39 @@ const actions = {
                 .get('/profil/' + userToken)
                 .then((res) => {
 
+                    const logout = res.data.userData.isLogout,
+                        moment = require('moment')
+
+                    moment.locale('fr')
+
+                    const dateNow = moment().format('LLLL');
+
+                    if (dateNow > logout) {
+
+                        axios
+                            .get('/logout')
+                            .then((res) => {
+
+                                Notify.create({
+                                    color: 'green-5',
+                                    textColor: 'white',
+                                    icon: 'cloud_done',
+                                    message: `Merci de ta visite à bientôt !`
+                                })
+
+                                setTimeout(function() {
+                                    localStorage.removeItem('sess', null)
+                                    localStorage.removeItem('token', null)
+                                    localStorage.removeItem('status', null)
+                                    localStorage.removeItem('admin', null)
+                                    localStorage.removeItem('userId', null)
+                                    commit('setLoggedIn', false)
+                                    document.location.href = "/";
+                                }, 2000);
+                            })
+
+                    }
+
                     commit('setListUser', res.data.userData)
 
                 })
@@ -697,23 +730,23 @@ const actions = {
 }
 
 const getters = {
-    setListMail(state, value) {
-        state.listMail
+    setListMail(state) {
+        return state.listMail
     },
-    setListUser(state, value) {
-        state.listUser
+    setListUser(state) {
+        return state.listUser
     },
-    setLoggedIn(state, value) {
-        state.loggedIn
+    setLoggedIn(state) {
+        return state.loggedIn
     },
-    setAdminIn(state, value) {
-        state.adminIn
+    setAdminIn(state) {
+        return state.adminIn
     },
-    setListRecipient(state, value) {
-        state.listRecipient
+    setListRecipient(state) {
+        return state.listRecipient
     },
-    setMailNotif(state, value) {
-        state.listNotif
+    setMailNotif(state) {
+        return state.listNotif
     }
 }
 

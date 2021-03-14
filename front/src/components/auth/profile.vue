@@ -113,7 +113,7 @@
 
 <script>
 
-import { mapActions, mapState } from 'vuex'
+import { mapActions, mapState, mapGetters } from 'vuex'
 import { log } from 'util'
 
 export default {
@@ -138,12 +138,12 @@ export default {
     methods: { 
       mountedData () {
 
-      this.formEdit.pseudo = this.listUser.pseudo
-      this.formEdit.lastname = this.listUser.lastname
-      this.formEdit.firstname = this.listUser.firstname
-      this.formEdit.email = this.listUser.email
-      this.userData.avatar = this.listUser.avatar
-      this.formEdit.userId = this.listUser._id
+      this.formEdit.pseudo = this.setListUser.pseudo
+      this.formEdit.lastname = this.setListUser.lastname
+      this.formEdit.firstname = this.setListUser.firstname
+      this.formEdit.email = this.setListUser.email
+      this.userData.avatar = this.setListUser.avatar
+      this.formEdit.userId = this.setListUser._id
 
     },
     onRejected (rejectedEntries) {
@@ -170,12 +170,13 @@ export default {
     ...mapActions('auth', ['editAvatars']),
     checkAuth () {
       this.loggedDataUser()
-      setTimeout(this.checkAuth, 2500)
+       this.mountedData();
+      setTimeout(this.checkAuth, 1500)
     },
     ...mapActions('auth', ['loggedDataUser'])
   },
   computed: {
-    ...mapState("auth", ["listUser"])
+    ...mapGetters("auth", ["setListUser"])
   },
   mounted () {
     this.checkAuth()

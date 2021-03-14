@@ -616,7 +616,10 @@
         <q-card style="width: 450px; background: #31303096;">
           <q-linear-progress :value="1.0" color="green" />
 
-          <div class="text-h5 text-white" style="padding: 10px 10px 0 10px;text-align: center;">Tu aime ? Alors vote pour Dofus-Book.</div>
+          <div
+            class="text-h5 text-white"
+            style="padding: 10px 10px 0 10px;text-align: center;"
+          >Tu aime ? Alors vote pour Dofus-Book.</div>
 
           <q-card-section class="row items-center no-wrap" style="text-align: center;">
             <div style="width: 100%;background: transparent;">
@@ -648,6 +651,7 @@ import { defineComponent, ref } from "@vue/composition-api";
 import modalCreateNews from "../components/modal/admin/modalCreateNews.vue";
 import modalAlmanax from "../components/modal/modalAlmanax.vue";
 import { mapState, mapActions } from "vuex";
+import { log } from "util";
 
 export default defineComponent({
   name: "MainLayout",
@@ -687,10 +691,19 @@ export default defineComponent({
       // hiding in 2s
       this.timer = setTimeout(() => {
         this.$q.loading.hide();
-        let ratingNumber = this.ratingModel.valueOf();
-        this.getRating(ratingNumber);
+        fetch("https://api64.ipify.org?format=json")
+          .then(x => x.json())
+          .then(({ ip }) => {
+            const dataRating = [
+              {
+                ratingNumber: this.ratingModel.valueOf(),
+                ip: ip
+              }
+            ];
+            this.postRating(dataRating);
+          });
         this.timer = void 0;
-      }, 2500);
+      }, 1500);
     },
     beforeDestroy() {
       if (this.timer !== void 0) {
@@ -698,7 +711,7 @@ export default defineComponent({
         this.$q.loading.hide();
       }
     },
-    ...mapActions("encyclopedie", ["getRating"]),
+    ...mapActions("general", ["postRating"]),
     mountedData() {
       this.userId = this.listUser._id;
     },
@@ -715,7 +728,19 @@ export default defineComponent({
       this.getMailNotif(this.listUser._id);
       setTimeout(this.checkNotif, 500);
     },
+    checkRating() {
+      this.getRating();
+
+      if (this.listRatings === null) {  
+  
+      } else {
+        this.ratingModel = this.listRatings;
+      }
+
+      setTimeout(this.checkRating, 500);
+    },
     ...mapActions("auth", ["getMailNotif"]),
+    ...mapActions("general", ["getRating"]),
     logout() {
       this.logoutUser(this.userPseudo);
     },
@@ -738,11 +763,13 @@ export default defineComponent({
     ...mapState("auth", ["loggedIn"]),
     ...mapState("auth", ["adminIn"]),
     ...mapState("auth", ["listNotif"]),
+    ...mapState("general", ["listRatings"]),
     ...mapState("auth", ["listUser"])
   },
   setup() {},
   mounted() {
     this.checkNotif();
+    this.checkRating();
     this.mountedData();
   }
 });

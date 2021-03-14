@@ -13,7 +13,8 @@ const userController = require('./users/userController'),
     resetpasswordController = require('./users/resetpasswordController'),
     newsController = require('./news/newsController'),
     almanaxController = require('./general/almanaxController'),
-    encyclopedieController = require('./general//encyclopedieController')
+    encyclopedieController = require('./general/encyclopedieController'),
+    ratingController = require('./general/ratingController')
 
 
 // Multer gestion image
@@ -116,6 +117,11 @@ router.route('/encyclopedie/classesId/:title')
 
 router.route('/encyclopedie/classesRoles/:roles')
     .get(encyclopedieController.getClassesRoles)
+
+// Rating
+router.route('/ratings')
+    .post(ratingController.post)
+    .get(ratingController.get)
 
 /***********
  * / Router

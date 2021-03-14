@@ -2,7 +2,7 @@
  * Import Module
  ****************/
 const bcrypt = require('bcrypt'),
-    User = require('../../database/models/users'),
+    User = require('../../database/models/Users'),
     nodemailer = require('nodemailer'),
     templateRecoverPassword = require('../../template/templateRecoverPassword'),
     randtoken = require('rand-token')
