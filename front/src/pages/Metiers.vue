@@ -64,7 +64,7 @@
       </div>
     </div>
 
-    <metiers-component :listClasses='listClasses'></metiers-component>
+    <metiers-component :listMetiers='listMetiers'></metiers-component>
 
   </q-page>
 </template>
@@ -97,17 +97,16 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapActions('encyclopedie', ['getClasses'])
+    ...mapActions('encyclopedie', ['getMetiers'])
   },
   computed: {
-    ...mapState('encyclopedie', ['listClasses'])
+    ...mapState('encyclopedie', ['listMetiers'])
   },
   components: {
     MetiersComponent
   },
   mounted () {
-    this.getClasses()
-
+    this.getMetiers()
   }
 });
 </script>

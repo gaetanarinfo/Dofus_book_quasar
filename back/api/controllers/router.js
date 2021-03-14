@@ -118,6 +118,10 @@ router.route('/encyclopedie/classesId/:title')
 router.route('/encyclopedie/classesRoles/:roles')
     .get(encyclopedieController.getClassesRoles)
 
+// Metiers
+router.route('/encyclopedie/metiers')
+    .get(encyclopedieController.getMetiers)
+
 // Rating
 router.route('/ratings')
     .post(ratingController.post)
