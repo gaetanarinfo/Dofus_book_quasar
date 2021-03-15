@@ -58,6 +58,20 @@ module.exports = {
     },
     getMetiers: (req, res) => {
         res.send({ metiers: dataMetiers })
+    },
+    getMetiersId: (req, res) => {
+
+        dataMetiers.forEach(data => {
+
+            if (data._id == req.params.id) {
+
+                console.log(data);
+
+                res.send({ metiersId: data })
+
+            }
+
+        });
     }
 
 }

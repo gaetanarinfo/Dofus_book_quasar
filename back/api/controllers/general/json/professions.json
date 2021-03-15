@@ -3,7 +3,7 @@
     "ankamaId": 2,
     "name": "Bûcheron",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/2.jpg",
+    "imgUrl": "../../images/dofus/metiers/2.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/2-bucheron",
     "description": "Le bûcheron coupe les arbres. Il peut également fabriquer des planches et des substrats qui sont utilisés pour confectionner d'autres objets.",
     "harvests": [{
@@ -145,7 +145,7 @@
     "ankamaId": 11,
     "name": "Forgeron",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/11.jpg",
+    "imgUrl": "../../images/dofus/metiers/11.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/11-forgeron",
     "description": "Le forgeron peut fabriquer des épées, des pelles, des marteaux, des haches et des dagues.",
     "harvests": []
@@ -154,7 +154,7 @@
     "ankamaId": 13,
     "name": "Sculpteur",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/13.jpg",
+    "imgUrl": "../../images/dofus/metiers/13.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/13-sculpteur",
     "description": "Le sculpteur fabrique des baguettes, des arcs et des bâtons.",
     "harvests": []
@@ -163,7 +163,7 @@
     "ankamaId": 15,
     "name": "Cordonnier",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/15.jpg",
+    "imgUrl": "../../images/dofus/metiers/15.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/15-cordonnier",
     "description": "Le cordonnier fabrique des bottes et des ceintures.",
     "harvests": []
@@ -172,7 +172,7 @@
     "ankamaId": 16,
     "name": "Bijoutier",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/16.jpg",
+    "imgUrl": "../../images/dofus/metiers/16.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/16-bijoutier",
     "description": "Le bijoutier confectionne des anneaux et des amulettes.",
     "harvests": []
@@ -181,7 +181,7 @@
     "ankamaId": 24,
     "name": "Mineur",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/24.jpg",
+    "imgUrl": "../../images/dofus/metiers/24.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/24-mineur",
     "description": "Le mineur récolte les filons de minerais. Il peut également fabriquer des alliages et polir des pierres.",
     "harvests": [{
@@ -281,7 +281,7 @@
     "ankamaId": 26,
     "name": "Alchimiste",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/26.jpg",
+    "imgUrl": "../../images/dofus/metiers/26.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/26-alchimiste",
     "description": "L'alchimiste cueille des plantes qui peuvent être utilisées pour fabriquer des potions permettant de regagner des points de vie, de l'énergie ou de se téléporter.",
     "harvests": [{
@@ -374,7 +374,7 @@
     "ankamaId": 27,
     "name": "Tailleur",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/27.jpg",
+    "imgUrl": "../../images/dofus/metiers/27.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/27-tailleur",
     "description": "Le tailleur confectionne des capes, des chapeaux et des sacs à dos.",
     "harvests": []
@@ -383,7 +383,7 @@
     "ankamaId": 28,
     "name": "Paysan",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/28.jpg",
+    "imgUrl": "../../images/dofus/metiers/28.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/28-paysan",
     "description": "Le paysan récolte les céréales et peut fabriquer du pain qui permet de récupérer des points de vie ou de l'énergie.",
     "harvests": [{
@@ -483,7 +483,7 @@
     "ankamaId": 36,
     "name": "Pêcheur",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/36.jpg",
+    "imgUrl": "../../images/dofus/metiers/36.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/36-pecheur",
     "description": "Le pêcheur pêche les poissons qui peuvent être préparés pour permettre de regagner des points de vie ou de l'énergie.",
     "harvests": [{
@@ -646,7 +646,7 @@
     "ankamaId": 41,
     "name": "Chasseur",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/41.jpg",
+    "imgUrl": "../../images/dofus/metiers/41.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/41-chasseur",
     "description": "Le chasseur récupère de la viande en affrontant des créatures. Après avoir été préparées, ces viandes permettent de récupérer des points de vie ou de l'énergie.",
     "harvests": []
@@ -655,7 +655,7 @@
     "ankamaId": 44,
     "name": "Forgemage",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/44.jpg",
+    "imgUrl": "../../images/dofus/metiers/44.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/44-forgemage",
     "description": "Le forgemage peut modifier les effets des épées, des haches, des marteaux, des pelles et des dagues en utilisant des runes de forgemagie.",
     "harvests": []
@@ -664,7 +664,7 @@
     "ankamaId": 48,
     "name": "Sculptemage",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/48.jpg",
+    "imgUrl": "../../images/dofus/metiers/48.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/48-sculptemage",
     "description": "Le sculptemage peut modifier les effets des baguettes, des arcs et des bâtons avec des runes de forgemagie.",
     "harvests": []
@@ -673,7 +673,7 @@
     "ankamaId": 60,
     "name": "Façonneur",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/60.jpg",
+    "imgUrl": "../../images/dofus/metiers/60.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/60-faconneur",
     "description": "Le façonneur fabrique des trophées, des idoles et des boucliers.",
     "harvests": []
@@ -682,7 +682,7 @@
     "ankamaId": 62,
     "name": "Cordomage",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/62.jpg",
+    "imgUrl": "../../images/dofus/metiers/62.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/62-cordomage",
     "description": "Le cordomage peut modifier les effets des ceintures et des bottes en utilisant des runes de forgemagie.",
     "harvests": []
@@ -691,7 +691,7 @@
     "ankamaId": 63,
     "name": "Joaillomage",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/63.jpg",
+    "imgUrl": "../../images/dofus/metiers/63.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/63-joaillomage",
     "description": "Le joaillomage peut modifier les effets des anneaux et des amulettes en utilisant des runes de forgemagie.",
     "harvests": []
@@ -700,7 +700,7 @@
     "ankamaId": 64,
     "name": "Costumage",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/64.jpg",
+    "imgUrl": "../../images/dofus/metiers/64.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/64-costumage",
     "description": "Le costumage peut modifier les effets des capes, des chapeaux et des sacs à dos en utilisant des runes de forgemagie.",
     "harvests": []
@@ -709,7 +709,7 @@
     "ankamaId": 65,
     "name": "Bricoleur",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/65.jpg",
+    "imgUrl": "../../images/dofus/metiers/65.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/65-bricoleur",
     "description": "Le bricoleur peut fabriquer le matériel nécessaire à l'élevage des montures et les clefs de donjons.",
     "harvests": []
@@ -718,7 +718,7 @@
     "ankamaId": 74,
     "name": "Façomage",
     "level": null,
-    "imgUrl": "http://static.ankama.com/dofus/ng/modules/mmorpg/encyclopedia/jobs/assets/images/74.jpg",
+    "imgUrl": "../../images/dofus/metiers/74.jpg",
     "url": "https://www.dofus.com/fr/mmorpg/encyclopedie/metiers/74-facomage",
     "description": "Le façomage peut modifier les effets des boucliers en utilisant des runes de forgemagie.",
     "harvests": []

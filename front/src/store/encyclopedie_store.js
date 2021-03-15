@@ -14,7 +14,8 @@ const state = {
     classesIdRoles2: null,
     classesIdRoles3: null,
     listClassesRoles: [],
-    listMetiers: []
+    listMetiers: [],
+    metiersId: []
 }
 
 const mutations = {
@@ -42,6 +43,9 @@ const mutations = {
     setListMetiers(state, value) {
         state.listMetiers = value
     },
+    setListMetiersId(state, value) {
+        state.metiersId = value
+    }
 }
 
 const actions = {
@@ -83,6 +87,14 @@ const actions = {
                 commit('setListMetiers', res.data.metiers)
             })
     },
+    getMetiersId({ commit }, payload) {
+        axios
+            .get('/encyclopedie/metiers/' + payload)
+            .then(res => {
+                console.log(res.data.metiersId);
+                commit('setListMetiersId', res.data.metiersId)
+            })
+    },
 }
 
 const getters = {
@@ -109,6 +121,9 @@ const getters = {
     },
     setListMetiers(state) {
         return state.listMetiers
+    },
+    metiersId: (state) => {
+        return state.metiersId
     }
 }
 

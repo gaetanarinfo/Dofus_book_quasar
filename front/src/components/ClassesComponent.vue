@@ -207,8 +207,6 @@ export default {
     ...mapActions("encyclopedie", ["getClassesRoles"]),
     closeModalClasses() {
       this.modalClasses = false;
-      localStorage.removeItem("imgMale");
-      localStorage.removeItem("imgFemale");
     },
     beforeDestroy() {
       if (this.timer !== void 0) {
