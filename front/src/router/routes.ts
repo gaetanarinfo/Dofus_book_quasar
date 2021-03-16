@@ -16,7 +16,8 @@ const routes: RouteConfig[] = [
       { path: '/contact/', name: 'contact', component: () => import('pages/Contact.vue') },
       { path: '/encyclopedie', name: 'encyclopedie', component: () => import('pages/Encyclopedie.vue')},
       { path: '/classes', name: 'classes', component: () => import('pages/Classes.vue')},
-      { path: '/metiers', name: 'metiers', component: () => import('pages/Metiers.vue')}
+      { path: '/metiers', name: 'metiers', component: () => import('pages/Metiers.vue')},
+      { path: '/monstres', name: 'monstres', component: () => import('pages/Monstres.vue')}
     ]
    },
   {

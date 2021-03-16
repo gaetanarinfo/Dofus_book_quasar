@@ -79,7 +79,7 @@ export default defineComponent({
   meta() {
     return {
       // optional; sets final title as "Index Page - My Website", useful for multiple level meta
-      title: "Dofus Book - Classes",
+      title: "Dofus Book - Classes - Encyclopédie",
       description: {
         name: "description",
         content:

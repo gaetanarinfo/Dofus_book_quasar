@@ -5,9 +5,11 @@ const Encyclopedie = require('../../database/models/Encyclopedie'),
 let files = fs.readFileSync(__dirname + '/json/classes.json'),
     files2 = fs.readFileSync(__dirname + '/json/classesId.json'),
     files3 = fs.readFileSync(__dirname + '/json/professions.json'),
+    files4 = fs.readFileSync(__dirname + '/json/monsters.json'),
     dataClasses = JSON.parse(files),
     dataClasses2 = JSON.parse(files2),
-    dataMetiers = JSON.parse(files3)
+    dataMetiers = JSON.parse(files3),
+    dataMonstres = JSON.parse(files4)
 
 /*
  * Controller
@@ -72,6 +74,9 @@ module.exports = {
             }
 
         });
+    },
+    getMonstres: (req, res) => {
+        res.send({ monstres: dataMonstres })
     }
 
 }

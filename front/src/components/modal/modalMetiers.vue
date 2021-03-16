@@ -43,13 +43,12 @@
             style="font-weight: 600;"
             hide-pagination
           >
-
-           <template v-slot:no-data="{ icon, message, filter }">
-          <div class="full-width row flex-center text-accent q-gutter-sm">
-            <q-icon size="2em" name="sentiment_dissatisfied" ></q-icon>
-            <span>{{ message }}</span>
-          </div>
-        </template>
+            <template v-slot:no-data="{ icon, message }">
+              <div class="full-width row flex-center text-accent q-gutter-sm">
+                <q-icon size="3em" class="text-orange-9" name="sentiment_dissatisfied"></q-icon>
+                <span class="text-orange-9">{{ message }}</span>
+              </div>
+            </template>
 
             <template v-slot:header="props">
               <q-tr :props="props">
@@ -72,35 +71,41 @@
                     color="green"
                     glossy
                     dense
-                    @click="props.expand = !props.expand"
+                    @click="show(props.row.location, props.row.ankamaId), props.expand = !props.expand"
                     :icon="props.expand ? 'fas fa-minus' : 'fas fa-plus'"
-                    style="font-size: 7px;font-weight: normal !important;padding: 5px 5px;"
+                    style="font-weight: normal !important;padding: 2px 2px;"
                   />
                 </q-td>
 
                 <q-td auto-width>
-                    <q-avatar size='35px' class='shadow-10 row'>
-                      <img :src='props.row.imgUrl' />
-                    </q-avatar>
-                  </q-td>
+                  <q-avatar size="35px" class="shadow-10 row">
+                    <img width="40px" height="40px" :src="props.row.imgUrl" :alt="props.row.name" />
+                  </q-avatar>
+                </q-td>
 
-                <q-td v-for="col in props.cols" :key="col.name" :props="props">
-
-                  {{ col.value }}   
-
-                </q-td>  
-                  
+                <q-td v-for="col in props.cols" :key="col.name" :props="props">{{ col.value }}</q-td>
               </q-tr>
               <q-tr v-show="props.expand" :props="props">
                 <q-td colspan="100%">
-                  <div class="text-left">This is expand slot for row above: {{ props.row.name }}.</div>
+                  <div
+                    class="text-left"
+                    style="white-space: normal; font-weight: normal;font-size: 15px;"
+                  >
+                    <span class="dof-detail-inner" style="font-weight: 600;"><a class="dof-detail-a" :href="props.row.url" target="_blank">Localisation :</a></span>
+                    {{ dataLocation }}
+                  </div>
                 </q-td>
               </q-tr>
             </template>
           </q-table>
 
           <div class="row justify-center q-mt-md q-mb-md" v-if="metiersId.harvests">
-            <q-pagination  v-model="pagination.page" color="orange-10" :max="Math.ceil(metiersId.harvests.length / pagination.rowsPerPage)" size="md" />
+            <q-pagination
+              v-model="pagination.page"
+              color="orange-10"
+              :max="Math.ceil(metiersId.harvests.length / pagination.rowsPerPage)"
+              size="md"
+            />
           </div>
         </div>
 
@@ -125,6 +130,27 @@
 </template>
 
 <style lang="css">
+
+.dof-detail-a{
+  color: #9c9999;
+  text-decoration: none;
+}
+
+.dof-detail-a:hover {
+  color: #9c9999;
+}
+
+.dof-detail-inner:before {
+  background: url("/../../images/dofus/sprite_common.png");
+  background-position: -150px 0;
+  display: inline-block;
+  width: 10px;
+  height: 20px;
+  margin-right: 3px;
+  margin-right: 0.3rem;
+  content: " ";
+}
+
 .q-table__bottom {
   color: #ff832b !important;
   font-weight: 500 !important;
@@ -232,6 +258,7 @@ import "../../../public/css/classes.css";
 export default {
   data() {
     return {
+      dataLocation: null,
       pagination: {
         sortBy: "level",
         descending: false,
@@ -247,7 +274,7 @@ export default {
           format: val => `${val}`,
           sortable: true,
           sortBy: "name",
-          align: 'left'
+          align: "left"
         },
         {
           label: "Niveau",
@@ -258,7 +285,7 @@ export default {
           sortable: true,
           sortBy: "level",
           descending: false,
-          align: 'left'
+          align: "left"
         }
       ],
       Recettes: [
@@ -272,9 +299,12 @@ export default {
   computed: {
     ...mapGetters("encyclopedie", ["metiersId"])
   },
-  mounted() {
-    console.log(this.metiersId.harvests)
+  methods: {
+    show(dataHarv) {
+      this.dataLocation = dataHarv.join(", \n");
+    }
   },
+  mounted() {},
   props: {
     modalMetiers: {
       default: false

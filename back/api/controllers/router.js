@@ -125,6 +125,10 @@ router.route('/encyclopedie/metiers')
 router.route('/encyclopedie/metiers/:id')
     .get(encyclopedieController.getMetiersId)
 
+// Monstres
+router.route('/encyclopedie/monstres')
+    .get(encyclopedieController.getMonstres)
+
 // Rating
 router.route('/ratings')
     .post(ratingController.post)

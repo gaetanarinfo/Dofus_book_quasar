@@ -72,6 +72,11 @@ module.exports = configure(function( /* ctx */ ) {
             https: false,
             port: 8080,
             open: true,
+            historyApiFallback: false,
+            allowedHosts: [
+                'https://dofus.com/',
+                'https://static.ankama.com/',
+            ],
             headers: {
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, PATCH, DELETE, OPTIONS',
                 'Access-Control-Allow-Headers': 'Content-Type, Authorization',

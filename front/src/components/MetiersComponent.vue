@@ -129,8 +129,25 @@ export default {
     };
   },
   methods: {
+    menuForm() {
+
+      const menuValue = this.menu.value;
+
+      this.$q.loading.show({
+        spinner: QSpinnerHourglass,
+        spinnerColor: "red",
+        spinnerSize: 200
+      });
+
+      // hiding in 2s
+      this.timer = setTimeout(() => {
+        this.$q.loading.hide();
+        document.location.href = '#/' + menuValue
+        this.timer = void 0;
+      }, 2500);
+
+    },
     showModalMetiers(data) {
-      console.log(data);
       this.getMetiersId(data);
       this.modalMetiers = true;
     },
