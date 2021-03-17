@@ -111,7 +111,7 @@
                       <img style="width: 127px;" :src="props.row.imgUrl" />
                     </div>
                     <div class="dof-title dof-title-metier">{{ props.row.name }}</div>
-                     <div class="dof-title dof-title-metier">{{ props.row.type }}</div>
+                    <div class="dof-title dof-title-metier">{{ props.row.type }}</div>
                   </a>
                 </div>
               </template>
@@ -242,6 +242,17 @@
         </div>
       </div>
     </div>
+    <!-- Modal Monstres Id -->
+    <modalMonstres
+      v-if="modalMonstres"
+      :modalMonstres.sync="modalMonstres"
+      @closeModalMonstres="closeModalMonstres()"
+    >
+      <template v-slot:loading>
+        <q-spinner-gears color="white" />
+      </template>
+    </modalMonstres>
+    <!-- / Modal Monstres Id -->
   </div>
 </template>
 
@@ -285,10 +296,12 @@ import { mapActions, mapState, mapGetters } from "vuex";
 import { QSpinnerHearts, QSpinnerHourglass } from "quasar";
 import "../../public/css/classes-component.css";
 import selectClasses from "../components/select/classes.vue";
+import modalMonstres from "../components/modal/modalMonstres.vue";
 
 export default {
   data() {
     return {
+      modalMonstres: false,
       mode: true,
       inFullscreen: false,
       loading: false,
@@ -347,6 +360,14 @@ export default {
     };
   },
   methods: {
+    showModalMonstres(data) {
+      this.getMonstresId(data);
+      this.modalMonstres = true;
+    },
+    closeModalMonstres() {
+      this.modalMonstres = false;
+    },
+    ...mapActions("encyclopedie", ["getMonstresId"]),
     showList() {
       this.mode = false;
     },
@@ -371,11 +392,10 @@ export default {
     },
     orderByAff() {
       this.pagination.rowsPerPage = this.order.value;
-    },
-    resultLength() {
-      this.dataResult = this.listMonstres.length;
-      setTimeout(this.checkNotif, 500);
     }
+  },
+  components: {
+    modalMonstres
   },
   props: {
     listMonstres: Array

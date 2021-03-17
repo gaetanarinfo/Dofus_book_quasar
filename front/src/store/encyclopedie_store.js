@@ -16,7 +16,8 @@ const state = {
     listClassesRoles: [],
     listMetiers: [],
     metiersId: [],
-    listMonstres: []
+    listMonstres: [],
+    monstresId: []
 }
 
 const mutations = {
@@ -49,7 +50,10 @@ const mutations = {
     },
     setListMonstres(state, value) {
         state.listMonstres = value
-    }
+    },
+    setListMonstresId(state, value) {
+        state.monstresId = value
+    },
 }
 
 const actions = {
@@ -102,8 +106,15 @@ const actions = {
         axios
             .get('/encyclopedie/monstres')
             .then(res => {
-                console.log(res.data.monstres);
                 commit('setListMonstres', res.data.monstres)
+            })
+    },
+    getMonstresId({ commit }, payload) {
+        axios
+            .get('/encyclopedie/monstres/' + payload)
+            .then(res => {
+                console.log(res.data.monstresId);
+                commit('setListMonstresId', res.data.monstresId)
             })
     },
 }
@@ -138,7 +149,10 @@ const getters = {
     },
     setListMonstres: (state) => {
         return state.listMonstres
-    }
+    },
+    monstresId: (state) => {
+        return state.monstresId
+    },
 }
 
 export default {

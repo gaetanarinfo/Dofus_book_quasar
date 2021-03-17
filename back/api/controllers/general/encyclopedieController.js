@@ -67,8 +67,6 @@ module.exports = {
 
             if (data._id == req.params.id) {
 
-                console.log(data);
-
                 res.send({ metiersId: data })
 
             }
@@ -77,6 +75,18 @@ module.exports = {
     },
     getMonstres: (req, res) => {
         res.send({ monstres: dataMonstres })
-    }
+    },
+    getMonstresId: (req, res) => {
+
+        dataMonstres.forEach(data => {
+
+            if (data._id == req.params.id) {
+
+                res.send({ monstresId: data })
+
+            }
+
+        });
+    },
 
 }
