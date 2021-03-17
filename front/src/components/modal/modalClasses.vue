@@ -109,9 +109,8 @@
 </template>
 
 <script>
+import '../../../public/css/classes.sass'
 import { mapActions, mapState, mapGetters } from "vuex";
-import '../../../public/css/classes.css'
-
 
 export default {
   data() {

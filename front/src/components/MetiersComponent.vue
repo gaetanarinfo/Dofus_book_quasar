@@ -75,45 +75,11 @@
   </div>
 </template>
 
-<style lang="css">
-.dof-mosaic-item-illu {
-  padding: 15px;
-  padding: 1.5rem;
-  border: 4px inset;
-  position: relative;
-  text-align: center;
-  border-radius: 0;
-  overflow: hidden;
-}
-
-.dof-metiers-item {
-  border-color: #c9c6bb;
-  background: url("../../public/images/dofus/bg-item.jpg") center center
-    no-repeat;
-  background-size: cover;
-  color: #c9c6bb;
-  width: 206px !important;
-  height: 208px !important;
-  padding: 10px 0;
-}
-
-.dof-title-metier {
-  font-weight: 500;
-  letter-spacing: 1px;
-}
-
-.dof-metiers-item:hover {
-  cursor: pointer;
-  background: url("../../public/images/dofus/bg-item-hover.jpg") center center
-    no-repeat;
-  background-size: cover;
-}
-</style>
-
 <script>
+import "../../public/css/component.sass";
+import "../../public/css/component-metiers.sass"
 import { mapActions, mapState, mapGetters } from "vuex";
 import { QSpinnerHearts, QSpinnerHourglass } from "quasar";
-import "../../public/css/classes-component.css";
 import selectClasses from "../components/select/classes.vue";
 import modalMetiers from "../components/modal/modalMetiers.vue";
 

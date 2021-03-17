@@ -250,7 +250,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import { mapActions, mapState } from "vuex";
-import '../../public/css/download.css'
+import '../../public/css/download.sass'
 
 export default defineComponent({
   name: "Download",

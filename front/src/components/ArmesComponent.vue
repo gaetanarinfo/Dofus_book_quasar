@@ -37,9 +37,9 @@
           <div class="bloc-g">
             <div
               class="dof-img"
-              style="display: inline-block; background-position: 0px -435px; !important;"
+              style="display: inline-block; background-position: 0px -860px; !important;"
             ></div>
-            <h4 class="text-white font-bebas h4-perso">Bestiaire</h4>
+            <h4 class="text-white font-bebas h4-perso">Armes</h4>
           </div>
         </div>
 
@@ -49,7 +49,7 @@
               v-if="mode === true"
               grid
               :loading="loading"
-              :data="listMonstres"
+              :data="listArmes"
               row-key="name"
               hide-header
               no-data-label="Désoler il n'y a pas de résultat !"
@@ -69,7 +69,7 @@
                   dense
                   debounce="300"
                   v-model="filter"
-                  placeholder="Rechercher un monstre..."
+                  placeholder="Rechercher une arme..."
                 >
                   <template v-slot:append>
                     <q-icon name="search" />
@@ -94,7 +94,7 @@
                   @input="orderByAff()"
                 />
                 <div class="q-mt-md text-grey-1" style="letter-spacing: 1px;">
-                  <span class="text-orange-10">{{ listMonstres.length }}</span> éléments correspondent à tes critères
+                  <span class="text-orange-10">{{ listArmes.length }}</span> éléments correspondent à tes critères
                 </div>
               </template>
 
@@ -104,7 +104,7 @@
                   style="width: 206px !important; height: 206px !important;"
                 >
                   <a
-                    @click="showModalMonstres(props.row._id)"
+                    @click="showModalArmes(props.row._id)"
                     style="cursor: pointer; width: 154px;"
                   >
                     <div>
@@ -118,11 +118,11 @@
             </q-table>
           </div>
 
-          <div class="row justify-center q-mt-md q-mb-md" v-if="listMonstres && mode === true">
+          <div class="row justify-center q-mt-md q-mb-md" v-if="listArmes && mode === true">
             <q-pagination
               v-model="pagination.page"
               color="grey-10"
-              :max="Math.ceil(listMonstres.length / pagination.rowsPerPage)"
+              :max="Math.ceil(listArmes.length / pagination.rowsPerPage)"
               size="md"
               :boundary-links="true"
               :direction-links="true"
@@ -135,7 +135,7 @@
             grid-header
             :filter="filter"
             v-else-if="mode === false"
-            :data="listMonstres"
+            :data="listArmes"
             row-key="name"
             :no-data-label="`Désoler ! Aucune récolte n'a été trouver pour `"
             :pagination.sync="pagination"
@@ -154,7 +154,7 @@
                 dense
                 debounce="300"
                 v-model="filter"
-                placeholder="Rechercher un monstre..."
+                placeholder="Rechercher une arme..."
               >
                 <template v-slot:append>
                   <q-icon name="search" />
@@ -179,7 +179,7 @@
                 @input="orderByAff()"
               />
               <div class="q-mt-md text-grey-1" style="letter-spacing: 1px; margin-bottom: 0px">
-                <span class="text-orange-10">{{ listMonstres.length }}</span> éléments correspondent à tes critères
+                <span class="text-orange-10">{{ listArmes.length }}</span> éléments correspondent à tes critères
               </div>
             </template>
 
@@ -211,7 +211,7 @@
                     color="blue-10"
                     glossy
                     dense
-                    @click="showModalMonstres(props.row._id)"
+                    @click="showModalArmes(props.row._id)"
                     icon="fas fa-check"
                     style="font-weight: normal !important;padding: 2px 2px;"
                   >
@@ -230,11 +230,11 @@
             </template>
           </q-table>
 
-          <div class="row justify-center q-mt-md q-mb-md" v-if="listMonstres && mode === false">
+          <div class="row justify-center q-mt-md q-mb-md" v-if="listArmes && mode === false">
             <q-pagination
               v-model="pagination.page"
               color="grey-10"
-              :max="Math.ceil(listMonstres.length / pagination.rowsPerPage)"
+              :max="Math.ceil(listArmes.length / pagination.rowsPerPage)"
               size="md"
               :boundary-links="true"
               :direction-links="true"
@@ -245,31 +245,31 @@
       </div>
     </div>
     <!-- Modal Monstres Id -->
-    <modalMonstres
-      v-if="modalMonstres"
-      :modalMonstres.sync="modalMonstres"
-      @closeModalMonstres="closeModalMonstres()"
+    <modalArmes
+      v-if="modalArmes"
+      :modalArmes.sync="modalArmes"
+      @closeModalArmes="closeModalArmes()"
     >
       <template v-slot:loading>
         <q-spinner-gears color="white" />
       </template>
-    </modalMonstres>
+    </modalArmes>
     <!-- / Modal Monstres Id -->
   </div>
 </template>
 
 <script>
 import "../../public/css/component.sass";
-import "../../public/css/component-monstres.sass"
+import "../../public/css/component-armes.sass"
 import { mapActions, mapState, mapGetters } from "vuex";
 import { QSpinnerHearts, QSpinnerHourglass } from "quasar";
 import selectClasses from "../components/select/classes.vue";
-import modalMonstres from "../components/modal/modalMonstres.vue";
+import modalArmes from "../components/modal/modalArmes.vue";
 
 export default {
   data() {
     return {
-      modalMonstres: false,
+      modalArmes: false,
       mode: true,
       inFullscreen: false,
       loading: false,
@@ -298,7 +298,7 @@ export default {
       denseOpts: true,
       dense: true,
       pagination: {
-        sortBy: "nom",
+        sortBy: "level",
         descending: false,
         page: 1,
         rowsPerPage: 24
@@ -324,18 +324,28 @@ export default {
           sortBy: "name",
           align: "left"
         },
+        {
+          label: "Niveau",
+          name: "niveau",
+          required: true,
+          field: row => row.level,
+          format: val => `${val}`,
+          sortable: true,
+          sortBy: "level",
+          align: "left"
+        },
       ]
     };
   },
   methods: {
-    showModalMonstres(data) {
-      this.getMonstresId(data);
-      this.modalMonstres = true;
+    showModalArmes(data) {
+      this.getArmesId(data);
+      this.modalArmes = true;
     },
-    closeModalMonstres() {
-      this.modalMonstres = false;
+    closemodalArmes() {
+      this.modalArmes = false;
     },
-    ...mapActions("encyclopedie", ["getMonstresId"]),
+    ...mapActions("encyclopedie", ["getArmesId"]),
     showList() {
       this.mode = false;
     },
@@ -363,10 +373,10 @@ export default {
     }
   },
   components: {
-    modalMonstres
+    modalArmes
   },
   props: {
-    listMonstres: Array
+    listArmes: Array
   }
 };
 </script>

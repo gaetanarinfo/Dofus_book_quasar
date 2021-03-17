@@ -28,7 +28,7 @@
 <script>
 import { mapActions, mapState } from "vuex";
 
-import '../../public/css/encyclopedie.css'
+import '../../public/css/encyclopedie.sass'
 
 export default {
   data() {

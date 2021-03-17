@@ -129,10 +129,10 @@
 </template>
 
 <script>
+import "../../public/css/component.sass"
 import { mapActions, mapState, mapGetters } from "vuex";
 import modalClasses from "../components/modal/modalClasses.vue";
 import { QSpinnerHearts, QSpinnerHourglass } from "quasar";
-import "../../public/css/classes-component.css"
 import selectClasses from "../components/select/classes.vue";
 
 export default {

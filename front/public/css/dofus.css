@@ -21,7 +21,7 @@
 }
 
 .dofus {
-    background: url(../background/1023606.jpg);
+    background: url("../background/1023606.jpg");
     background-position: top;
     background-attachment: fixed !important;
     background-color: #5b2409!important;

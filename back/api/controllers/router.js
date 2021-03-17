@@ -132,6 +132,13 @@ router.route('/encyclopedie/monstres')
 router.route('/encyclopedie/monstres/:id')
     .get(encyclopedieController.getMonstresId)
 
+// Armes
+router.route('/encyclopedie/armes')
+    .get(encyclopedieController.getArmes)
+
+// router.route('/encyclopedie/armes/:id')
+//     .get(encyclopedieController.getMonstresId)    
+
 // Rating
 router.route('/ratings')
     .post(ratingController.post)

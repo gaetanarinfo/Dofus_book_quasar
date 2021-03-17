@@ -17,7 +17,8 @@ const state = {
     listMetiers: [],
     metiersId: [],
     listMonstres: [],
-    monstresId: []
+    monstresId: [],
+    listArmes: []
 }
 
 const mutations = {
@@ -53,6 +54,9 @@ const mutations = {
     },
     setListMonstresId(state, value) {
         state.monstresId = value
+    },
+    setListArmes(state, value) {
+        state.listArmes = value
     },
 }
 
@@ -117,6 +121,13 @@ const actions = {
                 commit('setListMonstresId', res.data.monstresId)
             })
     },
+    getArmes({ commit }) {
+        axios
+            .get('/encyclopedie/armes')
+            .then(res => {
+                commit('setListArmes', res.data.armes)
+            })
+    },
 }
 
 const getters = {
@@ -153,6 +164,9 @@ const getters = {
     monstresId: (state) => {
         return state.monstresId
     },
+    setListArmes: (state) => {
+        return state.listArmes
+    }
 }
 
 export default {

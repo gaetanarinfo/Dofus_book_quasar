@@ -195,7 +195,7 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
-import '../../public/css/404.css'
+import '../../public/css/404.sass'
 
 export default defineComponent({
   name: "Error404",

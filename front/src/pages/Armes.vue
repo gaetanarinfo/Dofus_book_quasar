@@ -56,7 +56,7 @@
                   role="presentation"
                   class="q-breadcrumbs__el-icon material-icons q-icon notranslate q-breadcrumbs__el-icon--with-label"
                 >navigation</i>
-               Bestiaire
+               Armes
               </span>
             </div>
           </div>
@@ -64,22 +64,22 @@
       </div>
     </div>
 
-    <monstres-component :listMonstres='listMonstres'></monstres-component>
+    <armes-component :listArmes='listArmes'></armes-component>
 
   </q-page>
 </template>
 
 <script lang="ts">
-import MonstresComponent from "components/MonstresComponent.vue";
+import ArmesComponent from "components/ArmesComponent.vue";
 import { defineComponent, ref } from "@vue/composition-api";
 import { mapActions, mapState } from "vuex";
 
 export default defineComponent({
-  name: "monstres",
+  name: "armes",
   meta() {
     return {
       // optional; sets final title as "Index Page - My Website", useful for multiple level meta
-      title: "Dofus Book - Bestiaire - Encyclopédie",
+      title: "Dofus Book - Armes - Encyclopédie",
       description: {
         name: "description",
         content:
@@ -97,16 +97,16 @@ export default defineComponent({
     };
   },
   methods: {
-    ...mapActions('encyclopedie', ['getMonstres'])
+    ...mapActions('encyclopedie', ['getArmes'])
   },
   computed: {
-    ...mapState('encyclopedie', ['listMonstres'])
+    ...mapState('encyclopedie', ['listArmes'])
   },
   components: {
-    MonstresComponent
+    ArmesComponent
   },
   mounted () {
-    this.getMonstres()
+    this.getArmes()
   }
 });
 </script>

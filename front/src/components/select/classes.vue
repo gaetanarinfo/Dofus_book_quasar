@@ -51,7 +51,7 @@ export default {
         },
         {
           label: "Bestiaire",
-          value: "bestiaire",
+          value: "monstres",
           position: "0px -266px"
         },
         {

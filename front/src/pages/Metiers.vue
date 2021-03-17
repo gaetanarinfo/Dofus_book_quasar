@@ -75,7 +75,7 @@ import { defineComponent, ref } from "@vue/composition-api";
 import { mapActions, mapState } from "vuex";
 
 export default defineComponent({
-  name: "classes",
+  name: "metiers",
   meta() {
     return {
       // optional; sets final title as "Index Page - My Website", useful for multiple level meta

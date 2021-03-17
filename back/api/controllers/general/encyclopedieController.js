@@ -6,10 +6,12 @@ let files = fs.readFileSync(__dirname + '/json/classes.json'),
     files2 = fs.readFileSync(__dirname + '/json/classesId.json'),
     files3 = fs.readFileSync(__dirname + '/json/professions.json'),
     files4 = fs.readFileSync(__dirname + '/json/monsters.json'),
+    files5 = fs.readFileSync(__dirname + '/json/weapons.json'),
     dataClasses = JSON.parse(files),
     dataClasses2 = JSON.parse(files2),
     dataMetiers = JSON.parse(files3),
-    dataMonstres = JSON.parse(files4)
+    dataMonstres = JSON.parse(files4),
+    dataArmes = JSON.parse(files5)
 
 /*
  * Controller
@@ -87,6 +89,9 @@ module.exports = {
             }
 
         });
+    },
+    getArmes: (req, res) => {
+        res.send({ armes: dataArmes })
     },
 
 }
