@@ -10,7 +10,8 @@ const state = {
     listNews: [],
     listNews2: [],
     listNewsId: [],
-    listNewsIdTitle: null
+    listNewsIdTitle: null,
+    listNews3: []
 }
 
 const mutations = {
@@ -25,6 +26,9 @@ const mutations = {
     },
     setListNewsIdTitle(state, value) {
         state.listNewsIdTitle = value
+    },
+    setListNews3(state, value) {
+        state.listNews3 = value
     }
 }
 
@@ -43,12 +47,18 @@ const actions = {
                 commit('setListNews2', res.data.listNews2)
             })
     },
+    getNews3({ commit }, payload) {
+        axios
+            .get('/news3/' + payload)
+            .then(res => {
+                commit('setListNews3', res.data.listNews3)
+            })
+    },
     getNewsId({ commit }, payload) {
 
         axios
             .get('/article/' + payload)
             .then(res => {
-
                 commit('setListNewsId', res.data.articleId)
                 commit('setListNewsIdTitle', res.data.articleId.title)
 
@@ -163,6 +173,9 @@ const getters = {
     listNewsIdTitle: state => {
         return state.listNewsIdTitle
     },
+    setListNews3: state => {
+        return state.listNews3
+    }
 }
 
 export default {

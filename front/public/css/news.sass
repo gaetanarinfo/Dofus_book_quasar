@@ -1,0 +1,53 @@
+.q-field__native,
+.q-field__prefix,
+.q-field__suffix,
+.q-field__input
+  background: none
+  color: rgba(240, 232, 232, 0.87)
+
+.q-table__bottom
+  color: #ff832b !important
+  font-weight: 500 !important
+  letter-spacing: 0.5px !important
+
+.q-field--auto-height.q-field--dense .q-field__control,
+.q-field--auto-height.q-field--dense .q-field__native
+  color: #ff832b !important
+  font-weight: 500 !important
+
+.q-position-engine
+  background: #ffffffad !important
+
+.my-card
+  width: 100%
+  max-width: 350px
+
+.grid-masonry
+  flex-direction: column
+  height: 300vh
+  &--2
+    > div
+      &:nth-child(2n + 1)
+        order: 1
+      &:nth-child(2n)
+        order: 2
+
+    &:before
+      content: ''
+      flex: 1 0 100% !important
+      width: 0 !important
+      order: 1
+  &--3
+    > div
+      &:nth-child(3n + 1)
+        order: 1
+      &:nth-child(3n + 2)
+        order: 2
+      &:nth-child(3n)
+        order: 3
+    &:before,
+    &:after
+      content: ''
+      flex: 1 0 100% !important
+      width: 0 !important
+      order: 2

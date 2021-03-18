@@ -4,7 +4,7 @@
 
     <div class="row items-start q-gutter-md justify-center">
       <div
-        style="background-image: url('background/bg-news-dofus-2.jpg');background-position: center;background-size: cover;background-repeat: no-repeat;"
+        style="background-image: url('background/bg-news-dofus-2.jpg');background-position: center;background-size: cover;background-repeat: no-repeat; background-attachment: fixed; width: 100%;"
       >
         <div
           class="col-sm-9 col-12 text-h4 font-bebas text-center text-white"
@@ -13,7 +13,17 @@
 
         <news-component :listNews="listNews"></news-component>
       </div>
+
+      <div
+        style="background-image: url('background/bg-launcher.jpg');background-position: center;background-size: cover;background-repeat: no-repeat; background-attachment: fixed; margin: 0; width:100%;"
+      >
+        <launcher-component></launcher-component>
+      </div>
+
     </div>
+
+    <footer-component></footer-component>
+    
   </q-page>
 </template>
 
@@ -25,13 +35,15 @@
 }
 
 .dofus {
-    background-color: #5b2409 !important;
-  }
+  background-color: #5b2409 !important;
+}
 </style>
 
 <script lang="ts">
 import NewsComponent from "components/NewsComponent.vue";
 import VideoComponent from "components/VideoComponent.vue";
+import LauncherComponent from "components/LauncherComponent.vue";
+import FooterComponent from "components/FooterComponent.vue";
 import { defineComponent, ref } from "@vue/composition-api";
 import { mapActions, mapState } from "vuex";
 
@@ -59,7 +71,9 @@ export default defineComponent({
   },
   components: {
     NewsComponent,
-    VideoComponent
+    VideoComponent,
+    LauncherComponent,
+    FooterComponent
   },
   methods: {
     ...mapActions("news", ["getNews"])

@@ -85,6 +85,9 @@ router.route('/news2')
     .get(newsController.get2)
     .post(upload.array('files', 1), newsController.post)
 
+router.route('/news3/:cat')
+    .get(newsController.get3)
+
 router.route('/news/:id')
     // .get(newsController.get)
     .post(upload.array('files', 1), newsController.editId)

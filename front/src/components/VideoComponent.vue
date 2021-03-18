@@ -2,7 +2,7 @@
   <div class="video">
 
 <video autoplay="" muted="" loop="loop">
-                <source src="http://dofus-book.fr/video/keyart.mp4" type="video/mp4">
+                <source src="/../videos/keyart.mp4" type="video/mp4">
             </video>
 </div>
 

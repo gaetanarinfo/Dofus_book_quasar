@@ -39,6 +39,26 @@ module.exports = {
             })
 
     },
+    get3: (req, res) => {
+
+        const cat = req.params.cat
+
+        News
+            .find({ cat: cat })
+            .lean()
+            .exec((err, data) => {
+
+                if (data === undefined) {
+
+                } else {
+
+                    res.send({ listNews3: data })
+
+                }
+
+            })
+
+    },
     post: (req, res) => {
 
         const url = req.protocol + '://' + req.get('host')

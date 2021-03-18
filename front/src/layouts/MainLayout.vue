@@ -277,7 +277,7 @@
 
         <q-toolbar
           class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy"
-          style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: -14px;"
+          style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: 0;"
         >
           <q-btn flat round dense icon="favorite" @click="rating('top')">
             <q-tooltip anchor="bottom middle" self="center middle">Voté pour Dofus book</q-tooltip>
