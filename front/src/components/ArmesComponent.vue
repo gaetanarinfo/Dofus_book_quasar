@@ -18,7 +18,7 @@
               <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
                 <q-item-section avatar>
                   <div
-                    :style="'background-image: url(/../images/dofus/sprite.png); background-repeat: no-repeat !important; background-size: 76px auto !important; background-position: ' + scope.opt.position + ' !important; height: 35px; width: 35px;'"
+                    :style="'background-image: url(.../../images/dofus/sprite.png); background-repeat: no-repeat !important; background-size: 76px auto !important; background-position: ' + scope.opt.position + ' !important; height: 35px; width: 35px;'"
                   />
                 </q-item-section>
                 <q-item-section>
@@ -226,6 +226,7 @@
                 </q-td>
 
                 <q-td v-for="col in props.cols" :key="col.name" :props="props">{{ col.value }}</q-td>
+
               </q-tr>
             </template>
           </q-table>
@@ -244,7 +245,8 @@
         </div>
       </div>
     </div>
-    <!-- Modal Monstres Id -->
+
+    <!-- Modal Armes Id -->
     <modalArmes
       v-if="modalArmes"
       :modalArmes.sync="modalArmes"
@@ -254,7 +256,8 @@
         <q-spinner-gears color="white" />
       </template>
     </modalArmes>
-    <!-- / Modal Monstres Id -->
+    <!-- / Modal Armes Id -->
+
   </div>
 </template>
 
@@ -321,7 +324,7 @@ export default {
           field: row => row.type,
           format: val => `${val}`,
           sortable: true,
-          sortBy: "name",
+          sortBy: "type",
           align: "left"
         },
         {
@@ -342,7 +345,7 @@ export default {
       this.getArmesId(data);
       this.modalArmes = true;
     },
-    closemodalArmes() {
+    closeModalArmes() {
       this.modalArmes = false;
     },
     ...mapActions("encyclopedie", ["getArmesId"]),

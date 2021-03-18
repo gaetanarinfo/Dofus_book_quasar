@@ -93,5 +93,17 @@ module.exports = {
     getArmes: (req, res) => {
         res.send({ armes: dataArmes })
     },
+    getArmesId: (req, res) => {
+
+        dataArmes.forEach(data => {
+
+            if (data._id == req.params.id) {
+
+                res.send({ armesId: data })
+
+            }
+
+        });
+    },
 
 }

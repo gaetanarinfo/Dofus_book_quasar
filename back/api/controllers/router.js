@@ -136,8 +136,8 @@ router.route('/encyclopedie/monstres/:id')
 router.route('/encyclopedie/armes')
     .get(encyclopedieController.getArmes)
 
-// router.route('/encyclopedie/armes/:id')
-//     .get(encyclopedieController.getMonstresId)    
+router.route('/encyclopedie/armes/:id')
+    .get(encyclopedieController.getArmesId)
 
 // Rating
 router.route('/ratings')
