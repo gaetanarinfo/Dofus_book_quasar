@@ -1,14 +1,12 @@
 <template>
   <q-page style="min-height: 482px;padding-top: 0 !important;margin-top: -36px;">
     <video-component></video-component>
-
-    <div class="row items-start q-gutter-md justify-center">
       <div
         style="background-image: url('background/bg-news-dofus-2.jpg');background-position: center;background-size: cover;background-repeat: no-repeat; background-attachment: fixed; width: 100%;"
       >
         <div
           class="col-sm-9 col-12 text-h4 font-bebas text-center text-white"
-          style="margin: 18px 0px 11px 0;"
+          style="padding: 49px 0 0 0;margin: 0px 0px 20px;"
         >Bienvenue dans le jeu en ligne multijoueur gratuit DOFUS !</div>
 
         <news-component :listNews="listNews"></news-component>
@@ -20,10 +18,20 @@
         <launcher-component></launcher-component>
       </div>
 
-    </div>
+      <div
+        style="background-image: url('bloc-games/bg-block10.jpg');background-position: center;background-repeat: no-repeat; background-size: cover; margin: 0; width:100%;"
+      >
+        <system-component></system-component>
+      </div>
 
-    <footer-component></footer-component>
-    
+      <div
+        style="background-image: url('bloc-games/bg-block11.jpg');background-position: center;background-repeat: no-repeat; background-size: cover; margin: 0; width:100%;"
+      >
+        <system2-component></system2-component>
+      </div>
+
+      <footer-component></footer-component>
+  
   </q-page>
 </template>
 
@@ -43,6 +51,8 @@
 import NewsComponent from "components/NewsComponent.vue";
 import VideoComponent from "components/VideoComponent.vue";
 import LauncherComponent from "components/LauncherComponent.vue";
+import SystemComponent from "components/SystemComponent.vue"
+import System2Component from "components/System2Component.vue"
 import FooterComponent from "components/FooterComponent.vue";
 import { defineComponent, ref } from "@vue/composition-api";
 import { mapActions, mapState } from "vuex";
@@ -73,6 +83,8 @@ export default defineComponent({
     NewsComponent,
     VideoComponent,
     LauncherComponent,
+    SystemComponent,
+    System2Component,
     FooterComponent
   },
   methods: {

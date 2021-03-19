@@ -1,5 +1,5 @@
 <template>
-  <div class="row items-start q-gutter-md justify-center" style="margin-bottom: 33px;">
+  <div class="row items-start q-gutter-md justify-center" style="margin-bottom: 13px;padding: 0 0 35px 0;">
     <q-card class="my-card" flat bordered v-for="news in listNews" :key="news.id">
       <img :src="news.image" />
 

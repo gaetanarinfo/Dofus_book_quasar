@@ -7,9 +7,9 @@
     </q-toolbar>
     <q-toolbar class="justify-center">
       <div>
-        <q-btn class="glossy q-mr-md" round color="blue-6" icon="fab fa-facebook-f" />
-        <q-btn class="glossy q-mr-md" round color="red-6" icon="fab fa-twitter" />
-        <q-btn class="glossy" round color="green-6" icon="fas fa-share-alt" />
+        <q-btn class="glossy q-mr-md" color="blue-6" icon="fab fa-facebook-f" />
+        <q-btn class="glossy q-mr-md" color="red-6" icon="fab fa-twitter" />
+        <q-btn class="glossy" color="green-6" icon="fas fa-share-alt" />
       </div>
     </q-toolbar>
   </q-footer>
