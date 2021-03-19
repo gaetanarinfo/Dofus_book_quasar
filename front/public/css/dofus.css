@@ -1,9 +1,4 @@
 @media only screen and (max-width:600px) {
-    .dofus {
-        background-color: #5b2409!important;
-        background-size: auto !important;
-        background-attachment: fixed !important;
-    }
     form {
         background-color: hsla(0, 0%, 100%, 0.12941176470588237) !important;
         padding: 0px 8px 17px 8px !important;
@@ -24,7 +19,7 @@
     background: url("../background/1023606.jpg");
     background-position: top;
     background-attachment: fixed !important;
-    background-color: #5b2409!important;
+    background-color: #000!important;
     background-repeat: no-repeat;
     background-size: cover !important;
 }
@@ -129,4 +124,15 @@ form {
 
 .list-item-dofus {
     background: hsla(0, 0%, 100%, 0.5098039215686274)!important
+}
+
+@media only screen and (max-width: 600px) {
+    .bar-mobile {
+        margin-right: 15px !important;
+        margin-left: 0px !important;
+    }
+}
+
+.bar-mobile {
+    margin-left: 20px;
 }

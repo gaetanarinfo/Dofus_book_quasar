@@ -8,16 +8,11 @@
 
 <style lang="css">
 
-@media only screen and (max-width: 600px) {
-  .dofus {
-    background-image: none !important;
-  }
-}
-
 .dofus {
     background-image: 'https://www.wallpaperflare.com/static/540/819/705/wakfu-artwork-digital-art-video-games-wallpaper.jpg';
     background-repeat: no-repeat !important;
     background-size: cover !important;
+    background-attachment: fixed !important;
     background-color: none !important;
 }
 

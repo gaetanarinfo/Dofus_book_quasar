@@ -1,5 +1,5 @@
 <template>
-  <div class="row items-start q-gutter-md justify-center" style="margin-bottom: 0;">
+  <div class="row items-start q-gutter-md justify-center q-mb-md">
     <div class="dof-table-config" style="">
       <table>
         <tbody>
@@ -76,60 +76,8 @@
   </div>
 </template>    
 
-<style lang="css">
-.dof-table-config table {
-    border-spacing: 2px;
-    border-collapse: separate;
-    margin: 0 auto;
-    position: relative;
+<script>
+export default {
+  name: 'system2'
 }
-
-.dof-table-config table th {
-    background: rgba(0,0,0,0.3);
-    text-align: center;
-    height: 70px;
-}
-
-.dof-table-config table td {
-    padding: 6px;
-    width: 170px;
-    color: #b4b4b2;
-    font-size: 14px;
-    line-height: 22px;
-}
-
-.dof-table-config table td.dof-green {
-    color: #799f8d;
-    text-align: left;
-    font-weight: bold;
-    position: relative;
-    padding-left: 60px;
-}
-
-.dof-table-config table td {
-    background: rgba(0,0,0,0.2);
-    height: 50px;
-}
-
-.dof-table-config table th {
-    padding: 6px;
-    width: 170px;
-    color: #b4b4b2;
-    font-size: 14px;
-    line-height: 22px;
-}
-
-.dof-table-config {
-    background: url('/../images/dofus/bg-table-config.png') center center no-repeat transparent;
-    background-size: 100% 100%;
-    padding: 15px;
-    display: inline-block;
-    margin: 24px 0;
-}
-
-.dof-table-config table td.dof-green img {
-    position: absolute;
-    left: 0;
-    top: 0;
-}
-</style>
+</script>

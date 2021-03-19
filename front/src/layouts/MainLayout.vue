@@ -276,7 +276,7 @@
         </div>
 
         <q-toolbar
-          class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy"
+          class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy bar-mobile"
           style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: 0;"
         >
           <q-btn flat round dense icon="favorite" @click="rating('top')">
@@ -566,11 +566,7 @@
       </q-list>
     </q-drawer>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-
-    <!-- Modal Create News -->
+     <!-- Modal Create News -->
     <modalCreateNews
       v-if="adminIn === true || modalCreateNews"
       :modal2.sync="modalCreateNews"
@@ -642,11 +638,15 @@
       </q-dialog>
     </div>
     <!-- Rating / -->
+
+    <q-page-container>
+      <router-view />
+    </q-page-container>
+
   </q-layout>
 </template>
 
 <script lang="ts">
-import EssentialLink from "components/EssentialLink.vue";
 import { defineComponent, ref } from "@vue/composition-api";
 import modalCreateNews from "../components/modal/admin/modalCreateNews.vue";
 import modalAlmanax from "../components/modal/modalAlmanax.vue";
@@ -758,7 +758,7 @@ export default defineComponent({
       this.modalAlmanax = false;
     }
   },
-  components: { EssentialLink, modalCreateNews, modalAlmanax },
+  components: { modalCreateNews, modalAlmanax },
   computed: {
     ...mapState("auth", ["loggedIn"]),
     ...mapState("auth", ["adminIn"]),

@@ -1,15 +1,19 @@
 <template>
-  <div class="video">
-
+<div class="video" style="padding-top: 0px !important; margin-top: -80px !important;">
 <video autoplay="" muted="" loop="loop">
-                <source src="/../videos/keyart.mp4" type="video/mp4">
-            </video>
-</div>
-
+    <source src="videos/keyart.mp4" type="video/mp4">
+</video>
+</div>            
 </template>
 
+<script>
+export default {
+    name: 'videos'
+}
+</script>
+
 <style lang="css">
-    .video {
+.video {
         height: auto;
         top: 0;
         position: relative;
@@ -22,5 +26,5 @@
         max-width: 100%;
         text-align: center;
         width: 100%;
-    }
+}
 </style>

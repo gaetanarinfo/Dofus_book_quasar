@@ -7,12 +7,16 @@ import axios from 'axios'
 import { Notify } from 'quasar'
 
 const state = {
-    listRatings: []
+    listRatings: [],
+    listImage: []
 }
 
 const mutations = {
     setRatings(state, value) {
         state.listRatings = value
+    },
+    setListImage(state, value) {
+        state.listImage = value
     }
 }
 
@@ -55,15 +59,25 @@ const actions = {
         axios
             .get('/ratings')
             .then((res) => {
-
                 commit('setRatings', res.data.dataRating)
+            })
+    },
+    getImage({ commit }) {
+        axios
+            .get('/galerie')
+            .then((res) => {
+                console.log(res.data.galerie);
+                commit('setListImage', res.data.galerie)
             })
     }
 }
 
 const getters = {
-    setRatings(state) {
+    setRatings: state => {
         return state.listRatings
+    },
+    setListImage: state => {
+        return state.listImage
     }
 }
 
