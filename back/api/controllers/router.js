@@ -152,6 +152,9 @@ router.route('/ratings')
 router.route('/galerie')
     .get(galerieController.get)
 
+router.route('/galerie/:id')
+    .get(galerieController.getId)
+
 /***********
  * / Router
  */

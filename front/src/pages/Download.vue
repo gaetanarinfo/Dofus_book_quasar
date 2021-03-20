@@ -8,10 +8,8 @@
         push
         glossy
         style="width: 254px;height: 72px;margin-left: 9px;"
-        type="a"
         class="btn-download-mobile"
-        href="http://dofus-book.fr/games/Ankama Launcher-Setup-x86_64.AppImage"
-        target="_blank"
+        @click="getInstall1"
       >
         <div class="row items-center no-wrap">
           <q-icon left name="download" />
@@ -27,10 +25,8 @@
         push
         glossy
         style="width: 254px;height: 72px; margin-left: 10px;"
-        type="a"
         class="btn-download-mobile"
-        href="http://dofus-book.fr/games/Ankama Launcher-Setup.exe"
-        target="_blank"
+        @click="getInstall2"
       >
         <div class="row items-center no-wrap">
           <q-icon left name="download" />
@@ -46,10 +42,8 @@
         push
         glossy
         style="width: 254px;height: 72px; margin-left: 10px;"
-        type="a"
         class="btn-download-mobile"
-        href="http://dofus-book.fr/games/Ankama Launcher-Setup.dmg"
-        target="_blank"
+        @click="getInstall3"
       >
         <div class="row items-center no-wrap">
           <q-icon left name="download" />
@@ -65,9 +59,7 @@
         push
         glossy
         style="width: 254px;height: 72px; margin-left: 10px;"
-        type="a"
-        href="http://dofus-book.fr/games/Ankama Launcher-Setup-i386.AppImage"
-        target="_blank"
+        @click="getInstall4"
       >
         <div class="row items-center no-wrap">
           <q-icon left name="download" />
@@ -77,6 +69,15 @@
           </div>
         </div>
       </q-btn>
+
+      <div class="row col-md-12 col-12 col-sm-12 q-mt-lg q-mb-md" v-if="progressBar === true">
+        <q-linear-progress
+          :value="progress"
+          :buffer="buffer"
+          color="warning"
+          style="max-width: 500px !important; margin: 0 auto;"
+        />
+      </div>
 
       <div
         class="block-dofus text-center q-pa-md col-sm-12 col-12 col-md-12"
@@ -118,14 +119,20 @@
       <div class="dofus-separator"></div>
       <p>
         Dans ce jeu de
-        <span style="color:#fda90c;font-weight:bold;">combats tactiques au tour par tour</span>, gérez vos déplacements et attaques via des points de mouvement (PM) et des points d'action (PA) dans le temps imparti, pour des affrontements aussi stratégiques que dynamiques.
+        <span
+          style="color:#fda90c;font-weight:bold;"
+        >combats tactiques au tour par tour</span>, gérez vos déplacements et attaques via des points de mouvement (PM) et des points d'action (PA) dans le temps imparti, pour des affrontements aussi stratégiques que dynamiques.
         <br />Façonnez votre héros à partir des 18 classes de personnage, de leurs gameplays et de leurs statistiques. Partez en quête des Dofus, œufs de dragon qui confèrent des pouvoirs et bonus à votre personnage et atteignez le prestigieux niveau 200.
         <br />
         <br />Ce
         <span style="color:#fda90c;font-weight:bold;">jeu de stratégie gratuit</span> à télécharger est aussi jouable via navigateur. Dans ce
-        <span style="color:#fda90c;font-weight:bold;">MMORPG tactique</span>, vous pouvez exercer de multiples métiers pour vendre vos services et ressources contre des "kamas", la monnaie du jeu. La Bourse aux Kamas et les Hôtels de Vente permettent aux joueurs de contrôler l'économie du jeu.
+        <span
+          style="color:#fda90c;font-weight:bold;"
+        >MMORPG tactique</span>, vous pouvez exercer de multiples métiers pour vendre vos services et ressources contre des "kamas", la monnaie du jeu. La Bourse aux Kamas et les Hôtels de Vente permettent aux joueurs de contrôler l'économie du jeu.
         <br />Donjons, chasses aux trésors, monstres, boss, familiers, compagnons, mode joueur contre joueur (JcJ / PvP), guildes, nations et même un serveur héroïque (où l'XP et le drop sont doublés, mais la mort y est définitive) vous attendent dans
-        <span style="color:#fda90c;font-weight:bold;">ce jeu gratuit en ligne</span>.
+        <span
+          style="color:#fda90c;font-weight:bold;"
+        >ce jeu gratuit en ligne</span>.
       </p>
     </div>
 
@@ -250,7 +257,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import { mapActions, mapState } from "vuex";
-import '../../public/css/download.sass'
+import "../../public/css/download.sass";
 
 export default defineComponent({
   name: "Download",
@@ -276,13 +283,115 @@ export default defineComponent({
   },
   data() {
     return {
+      progressBar: false,
       install1: false,
       install2: false,
-      install3: false
+      install3: false,
+      progress: 0.01,
+      buffer: 0.01
     };
   },
-  components: {},
-  methods: {},
-  computed: {}
+  methods: {
+    getInstall1() {
+      const interval = setInterval(() => {
+        this.progressBar = true;
+        if (this.progress >= 1) {
+          this.progress = 0.01;
+          this.buffer = 0.01;
+          return;
+        }
+
+        if (this.progress === 0.9099999999999999) {
+          this.progressBar = false;
+          clearInterval(interval);
+          clearInterval(bufferInterval);
+          window.open("http://dofus-book.fr/games/Ankama Launcher-Setup-x86_64.AppImage", "_blank");
+        }
+
+        this.progress = Math.min(1, this.buffer, this.progress + 0.1);
+      }, 300 + Math.random() * 1000);
+
+      const bufferInterval = setInterval(() => {
+        if (this.buffer < 1) {
+          this.buffer = Math.min(1, this.buffer + Math.random() * 0.2);
+        }
+      }, 100);
+    },
+    getInstall2() {
+      const interval = setInterval(() => {
+        this.progressBar = true;
+        if (this.progress >= 1) {
+          this.progress = 0.01;
+          this.buffer = 0.01;
+          return;
+        }
+
+        if (this.progress === 0.9099999999999999) {
+          this.progressBar = false;
+          clearInterval(interval);
+          clearInterval(bufferInterval);
+          window.open("http://dofus-book.fr/games/Ankama%20Launcher-Setup.exe", "_blank");
+        }
+
+        this.progress = Math.min(1, this.buffer, this.progress + 0.1);
+      }, 300 + Math.random() * 1000);
+
+      const bufferInterval = setInterval(() => {
+        if (this.buffer < 1) {
+          this.buffer = Math.min(1, this.buffer + Math.random() * 0.2);
+        }
+      }, 100);
+    },
+    getInstall3() {
+      const interval = setInterval(() => {
+        this.progressBar = true;
+        if (this.progress >= 1) {
+          this.progress = 0.01;
+          this.buffer = 0.01;
+          return;
+        }
+
+        if (this.progress === 0.9099999999999999) {
+          this.progressBar = false;
+          clearInterval(interval);
+          clearInterval(bufferInterval);
+          window.open("http://dofus-book.fr/games/Ankama%20Launcher-Setup.dmg", "_blank");
+        }
+
+        this.progress = Math.min(1, this.buffer, this.progress + 0.1);
+      }, 300 + Math.random() * 1000);
+
+      const bufferInterval = setInterval(() => {
+        if (this.buffer < 1) {
+          this.buffer = Math.min(1, this.buffer + Math.random() * 0.2);
+        }
+      }, 100);
+    },
+    getInstall4() {
+      const interval = setInterval(() => {
+        this.progressBar = true;
+        if (this.progress >= 1) {
+          this.progress = 0.01;
+          this.buffer = 0.01;
+          return;
+        }
+
+        if (this.progress === 0.9099999999999999) {
+          this.progressBar = false;
+          clearInterval(interval);
+          clearInterval(bufferInterval);
+          window.open("http://dofus-book.fr/games/Ankama%20Launcher-Setup-i386.AppImage", "_blank");
+        }
+
+        this.progress = Math.min(1, this.buffer, this.progress + 0.1);
+      }, 300 + Math.random() * 1000);
+
+      const bufferInterval = setInterval(() => {
+        if (this.buffer < 1) {
+          this.buffer = Math.min(1, this.buffer + Math.random() * 0.2);
+        }
+      }, 100);
+    }
+  }
 });
 </script>

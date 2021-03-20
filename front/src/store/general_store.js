@@ -8,7 +8,8 @@ import { Notify } from 'quasar'
 
 const state = {
     listRatings: [],
-    listImage: []
+    listImage: [],
+    imagesId: []
 }
 
 const mutations = {
@@ -17,7 +18,10 @@ const mutations = {
     },
     setListImage(state, value) {
         state.listImage = value
-    }
+    },
+    imagesId(state, value) {
+        state.imagesId = value
+    },
 }
 
 const actions = {
@@ -66,10 +70,16 @@ const actions = {
         axios
             .get('/galerie')
             .then((res) => {
-                console.log(res.data.galerie);
                 commit('setListImage', res.data.galerie)
             })
-    }
+    },
+    getImageId({ commit }, payload) {
+        axios
+            .get('/galerie/' + payload)
+            .then((res) => {
+                commit('imagesId', res.data.imagesId)
+            })
+    },
 }
 
 const getters = {
@@ -78,7 +88,10 @@ const getters = {
     },
     setListImage: state => {
         return state.listImage
-    }
+    },
+    imagesId: state => {
+        return state.imagesId
+    },
 }
 
 export default {

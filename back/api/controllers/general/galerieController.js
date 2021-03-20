@@ -12,6 +12,23 @@ module.exports = {
 
             })
 
+    },
+    getId: (req, res) => {
+
+        Galerie
+            .findOne({ _id: req.params.id })
+            .lean()
+            .exec((err, data) => {
+
+                if (data === undefined) {
+
+                } else {
+
+                    res.send({ imagesId: data })
+
+                }
+
+            })
     }
 
 }

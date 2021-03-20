@@ -279,6 +279,21 @@
           class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy bar-mobile"
           style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: 0;"
         >
+          <q-btn
+            flat
+            round
+            dense
+            @click="$q.fullscreen.toggle()"
+            :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+          >
+            <q-tooltip anchor="bottom middle" self="center middle">Plein écran</q-tooltip>
+          </q-btn>
+        </q-toolbar>
+
+        <q-toolbar
+          class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy bar-mobile"
+          style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: 0;"
+        >
           <q-btn flat round dense icon="favorite" @click="rating('top')">
             <q-tooltip anchor="bottom middle" self="center middle">Voté pour Dofus book</q-tooltip>
           </q-btn>
@@ -566,7 +581,7 @@
       </q-list>
     </q-drawer>
 
-     <!-- Modal Create News -->
+    <!-- Modal Create News -->
     <modalCreateNews
       v-if="adminIn === true || modalCreateNews"
       :modal2.sync="modalCreateNews"
@@ -642,7 +657,6 @@
     <q-page-container>
       <router-view />
     </q-page-container>
-
   </q-layout>
 </template>
 
@@ -731,8 +745,7 @@ export default defineComponent({
     checkRating() {
       this.getRating();
 
-      if (this.listRatings === null) {  
-  
+      if (this.listRatings === null) {
       } else {
         this.ratingModel = this.listRatings;
       }
