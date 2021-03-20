@@ -3,71 +3,24 @@
     <div class="title-dofus">TELECHARGER DOFUS</div>
 
     <div class="q-pa-md col-sm-12 col-12 col-md-12 text-center">
-      <q-btn
-        color="green-9"
-        push
-        glossy
-        style="width: 254px;height: 72px;margin-left: 9px;"
-        class="btn-download-mobile"
-        @click="getInstall1"
-      >
-        <div class="row items-center no-wrap">
-          <q-icon left name="download" />
-          <div class="text-center">
-            Télécharger
-            <br />Version : Linux 64 bits*
-          </div>
-        </div>
+      <q-btn style="margin-left: 9px;" @click="getInstall1">
+        <img src="/images/dofus/23002.w40h40.png" />
+        <q-tooltip anchor="top middle" self="center middle">Télécharger Version : Linux 64 bits*</q-tooltip>
       </q-btn>
 
-      <q-btn
-        color="green-9"
-        push
-        glossy
-        style="width: 254px;height: 72px; margin-left: 10px;"
-        class="btn-download-mobile"
-        @click="getInstall2"
-      >
-        <div class="row items-center no-wrap">
-          <q-icon left name="download" />
-          <div class="text-center">
-            Télécharger
-            <br />Version : Windows
-          </div>
-        </div>
+      <q-btn style="margin-left: 9px;" @click="getInstall2">
+        <img src="/images/dofus/23004.w40h40.png" />
+        <q-tooltip anchor="top middle" self="center middle">Télécharger Version : Windows</q-tooltip>
       </q-btn>
 
-      <q-btn
-        color="green-9"
-        push
-        glossy
-        style="width: 254px;height: 72px; margin-left: 10px;"
-        class="btn-download-mobile"
-        @click="getInstall3"
-      >
-        <div class="row items-center no-wrap">
-          <q-icon left name="download" />
-          <div class="text-center">
-            Télécharger
-            <br />Version : Mac OS
-          </div>
-        </div>
+      <q-btn style="margin-left: 9px;" @click="getInstall3">
+        <img src="/images/dofus/23024.w40h40.png" />
+        <q-tooltip anchor="top middle" self="center middle">Télécharger Version : Mac OS</q-tooltip>
       </q-btn>
 
-      <q-btn
-        color="green-9"
-        push
-        glossy
-        style="width: 254px;height: 72px; margin-left: 10px;"
-        @click="getInstall4"
-      >
-        <div class="row items-center no-wrap">
-          <q-icon left name="download" />
-          <div class="text-center">
-            Télécharger
-            <br />Version : Linux 32 bits*
-          </div>
-        </div>
+      <q-btn style="margin-left: 9px;" @click="getInstall4">
+        <img src="/images/dofus/23023.w40h40.png" />
+        <q-tooltip anchor="top middle" self="center middle">Télécharger Version : Linux 32 bits*</q-tooltip>
       </q-btn>
 
       <div class="row col-md-12 col-12 col-sm-12 q-mt-lg q-mb-md" v-if="progressBar === true">
@@ -305,7 +258,10 @@ export default defineComponent({
           this.progressBar = false;
           clearInterval(interval);
           clearInterval(bufferInterval);
-          window.open("http://dofus-book.fr/games/Ankama Launcher-Setup-x86_64.AppImage", "_blank");
+          window.open(
+            "http://dofus-book.fr/games/Ankama Launcher-Setup-x86_64.AppImage",
+            "_blank"
+          );
         }
 
         this.progress = Math.min(1, this.buffer, this.progress + 0.1);
@@ -330,7 +286,10 @@ export default defineComponent({
           this.progressBar = false;
           clearInterval(interval);
           clearInterval(bufferInterval);
-          window.open("http://dofus-book.fr/games/Ankama%20Launcher-Setup.exe", "_blank");
+          window.open(
+            "http://dofus-book.fr/games/Ankama%20Launcher-Setup.exe",
+            "_blank"
+          );
         }
 
         this.progress = Math.min(1, this.buffer, this.progress + 0.1);
@@ -355,7 +314,10 @@ export default defineComponent({
           this.progressBar = false;
           clearInterval(interval);
           clearInterval(bufferInterval);
-          window.open("http://dofus-book.fr/games/Ankama%20Launcher-Setup.dmg", "_blank");
+          window.open(
+            "http://dofus-book.fr/games/Ankama%20Launcher-Setup.dmg",
+            "_blank"
+          );
         }
 
         this.progress = Math.min(1, this.buffer, this.progress + 0.1);
@@ -380,7 +342,10 @@ export default defineComponent({
           this.progressBar = false;
           clearInterval(interval);
           clearInterval(bufferInterval);
-          window.open("http://dofus-book.fr/games/Ankama%20Launcher-Setup-i386.AppImage", "_blank");
+          window.open(
+            "http://dofus-book.fr/games/Ankama%20Launcher-Setup-i386.AppImage",
+            "_blank"
+          );
         }
 
         this.progress = Math.min(1, this.buffer, this.progress + 0.1);

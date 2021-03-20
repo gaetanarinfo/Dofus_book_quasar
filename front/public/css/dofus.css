@@ -131,8 +131,16 @@ form {
         margin-right: 15px !important;
         margin-left: 0px !important;
     }
+    .bar-mobile2 {
+        margin-right: 15px !important;
+        margin-left: 0px !important;
+    }
 }
 
 .bar-mobile {
-    margin-left: 20px;
+    margin-left: 0;
+}
+
+.bar-mobile2 {
+    margin-left: 26px;
 }

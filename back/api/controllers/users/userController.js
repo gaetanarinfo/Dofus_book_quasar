@@ -5,6 +5,7 @@ const bcrypt = require('bcrypt'),
     jwt = require('jsonwebtoken'),
     User = require('../../database/models/Users'),
     Mailbox = require('../../database/models/Mailbox'),
+    Notif = require('../../database/models/Notif'),
     nodemailer = require('nodemailer'),
     templateNewUser = require('../../template/templateNewUser'),
     formidable = require('formidable'),
@@ -211,7 +212,7 @@ module.exports = {
                 const dateNow = moment().format('LLLL');
 
                 if (dateNow > data.isLogout) {
-                    console.log('C\'est l\'heure de partir');
+
                 }
 
                 res.send({
@@ -440,6 +441,71 @@ module.exports = {
             res.send({ success })
 
         })
+    },
+    getNotification: (req, res) => {
+
+        User
+            .findById({ _id: req.params.id })
+            .exec((err, user) => {
+
+                if (user !== undefined) {
+
+                    Notif.find({ userId: user._id })
+                        .exec((err, data) => {
+                            if (err) console.log(err)
+
+                            Notif.countDocuments({ userId: user._id })
+                                .exec((err, count) => {
+
+                                    res.send({ notif: count })
+
+                                })
+
+                        })
+
+                }
+
+            })
+
+    },
+    getNotificationList: (req, res) => {
+
+        User
+            .findById({ _id: req.params.id })
+            .exec((err, user) => {
+
+                if (user !== undefined) {
+
+                    Notif
+                        .find({ userId: user._id })
+                        .exec((err, data) => {
+                            if (err) console.log(err)
+
+                            res.send({ notifList: data })
+
+                        })
+
+                }
+
+            })
+
+    },
+    getNotificationRemove: (req, res) => {
+
+        Notif
+            .findOneAndRemove({ _id: req.params.id }, (err, rep) => {
+
+                if (err) {
+                    let error = true
+                    res.send({ error })
+                }
+
+                let success = true
+
+                res.send({ success })
+
+            })
+
     }
 
 }

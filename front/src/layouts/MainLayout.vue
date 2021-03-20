@@ -276,7 +276,7 @@
         </div>
 
         <q-toolbar
-          class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy bar-mobile"
+          class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy bar-mobile2"
           style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: 0;"
         >
           <q-btn
@@ -328,8 +328,9 @@
           round
           icon="circle_notifications"
           class="q-ml-md"
+          @click="showNotif()"
         >
-          <q-badge color="brown-10" floating>0</q-badge>
+          <q-badge color="brown-10" floating>{{ listNotif2 }}</q-badge>
           <q-tooltip anchor="bottom middle" self="center middle">Notification(s)</q-tooltip>
         </q-btn>
       </q-toolbar>
@@ -416,6 +417,16 @@
 
           <q-item-section>Crée un article</q-item-section>
         </q-item>
+
+        <q-separator v-if="loggedIn === true" />
+
+         <q-item v-if="adminIn === true" clickable v-ripple @click="showModalCreateImage()">
+            <q-item-section avatar>
+              <q-icon name="add" color="green-8" />
+            </q-item-section>
+
+            <q-item-section>Ajouter une image</q-item-section>
+          </q-item>
 
         <q-separator v-if="loggedIn === true" />
 
@@ -581,6 +592,14 @@
       </q-list>
     </q-drawer>
 
+     <!-- Modal Create Image -->
+    <modalCreateImage
+      v-if="adminIn === true || modalCreateImage"
+      :modalCreateImage.sync="modalCreateImage"
+      @closeModalCreateImage="closeModalCreateImage()"
+    />
+    <!-- / Modal Create Image -->
+
     <!-- Modal Create News -->
     <modalCreateNews
       v-if="adminIn === true || modalCreateNews"
@@ -663,6 +682,7 @@
 <script lang="ts">
 import { defineComponent, ref } from "@vue/composition-api";
 import modalCreateNews from "../components/modal/admin/modalCreateNews.vue";
+import modalCreateImage from "../components/modal/admin/modalCreateImage.vue";
 import modalAlmanax from "../components/modal/modalAlmanax.vue";
 import { mapState, mapActions } from "vuex";
 import { log } from "util";
@@ -673,6 +693,7 @@ export default defineComponent({
     return {
       userId: "",
       userPseudo: "",
+      modalCreateImage: false,
       dialog: false,
       ratingDialog: false,
       modalCreateNews: false,
@@ -740,6 +761,7 @@ export default defineComponent({
     checkNotif() {
       this.userPseudo = this.listUser.pseudo;
       this.getMailNotif(this.listUser._id);
+      this.getNotif(this.listUser._id);
       setTimeout(this.checkNotif, 500);
     },
     checkRating() {
@@ -753,6 +775,7 @@ export default defineComponent({
       setTimeout(this.checkRating, 500);
     },
     ...mapActions("auth", ["getMailNotif"]),
+    ...mapActions("auth", ["getNotif"]),
     ...mapActions("general", ["getRating"]),
     logout() {
       this.logoutUser(this.userPseudo);
@@ -769,13 +792,52 @@ export default defineComponent({
     },
     closeModal5() {
       this.modalAlmanax = false;
+    },
+    showModalCreateImage() {
+      this.modalCreateImage = true;
+    },
+    closeModalCreateImage() {
+      this.modalCreateImage = false;
+    },
+    showNotif() {
+
+    const array = this.listNotifs2;
+
+    for(let i = 0; array.length > 0; i++) {
+
+      this.$q.notify({
+          color: `${array[i].color}`,
+          textColor: 'white',
+          progress: true,
+          icon: array[i].icon,
+          classes: 'glossy',
+          message: array[i].sujet,
+          caption: array[i].content,
+          avatar: '../images/dofus/little_logo.png',
+          actions: [
+          { label: 'Marquer comme lu', color: 'white', handler: () => { 
+            this.removeNotif(array[i]._id)
+           } }
+          ]
+    })
+
     }
+
   },
-  components: { modalCreateNews, modalAlmanax },
+  removeNotif(id: any) {
+
+    this.removeNotifList(id);
+    
+  },
+  ...mapActions("auth", ["removeNotifList"])
+  },
+  components: { modalCreateNews, modalAlmanax, modalCreateImage },
   computed: {
     ...mapState("auth", ["loggedIn"]),
     ...mapState("auth", ["adminIn"]),
     ...mapState("auth", ["listNotif"]),
+    ...mapState("auth", ["listNotif2"]),
+    ...mapState("auth", ["listNotifs2"]),
     ...mapState("general", ["listRatings"]),
     ...mapState("auth", ["listUser"])
   },

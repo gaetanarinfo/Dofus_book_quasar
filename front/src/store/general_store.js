@@ -80,6 +80,42 @@ const actions = {
                 commit('imagesId', res.data.imagesId)
             })
     },
+    postImage({}, payload) {
+
+        const formData = new FormData();
+
+        formData.append('files', payload.files[0])
+        formData.set('title', payload.title)
+
+        axios
+            .post('/galerie', formData)
+            .then((res) => {
+
+                const succ = res.data.success,
+                    err = res.data.error
+
+                if (err === true) {
+
+                    Notify.create({
+                        color: 'red-5',
+                        textColor: 'white',
+                        icon: 'warning',
+                        message: "Une erreur est survenue !"
+                    })
+                }
+
+                if (succ === true) {
+
+                    Notify.create({
+                        color: 'green-5',
+                        textColor: 'white',
+                        icon: 'check',
+                        message: "L'image à bien été ajouter !"
+                    })
+
+                }
+            })
+    },
 }
 
 const getters = {

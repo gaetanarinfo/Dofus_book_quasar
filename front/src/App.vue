@@ -2,14 +2,6 @@
   <div id="q-app">
     <router-view v-if="show === true" />
 
-    <q-ajax-bar
-      ref="bar"
-      position="bottom"
-      color="accent"
-      size="10px"
-      skip-hijack
-    />
-
     <q-dialog persistent v-model="cookie">
       <q-card style="background: #535658bf !important; color: white;">
         <q-card-section>

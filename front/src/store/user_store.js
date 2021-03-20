@@ -14,7 +14,9 @@ const state = {
     adminIn: false,
     logged: false,
     token: null,
-    listNotif: null
+    listNotif: null,
+    listNotif2: null,
+    listNotifs2: []
 }
 
 const mutations = {
@@ -35,7 +37,13 @@ const mutations = {
     },
     setMailNotif(state, value) {
         state.listNotif = value
-    }
+    },
+    setNotif(state, value) {
+        state.listNotif2 = value
+    },
+    setNotif2(state, value) {
+        state.listNotifs2 = value
+    },
 }
 
 const actions = {
@@ -727,6 +735,42 @@ const actions = {
                 }
             })
     },
+    getNotif({ commit }, payload) {
+
+        if (payload !== undefined) {
+
+            axios
+                .get('/notification/' + payload)
+                .then(res => {
+                    commit('setNotif', res.data.notif)
+                })
+
+        }
+    },
+    getListNotif({ commit }, payload) {
+
+        if (payload !== undefined) {
+
+            axios
+                .get('/notificationList/' + payload)
+                .then(res => {
+                    commit('setNotif2', res.data.notifList)
+                })
+
+        }
+    },
+    removeNotifList({ commit }, payload) {
+
+        if (payload !== undefined) {
+
+            axios
+                .get('/notificationRemove/' + payload)
+                .then(res => {
+
+                })
+
+        }
+    },
 }
 
 const getters = {
@@ -747,7 +791,13 @@ const getters = {
     },
     setMailNotif(state) {
         return state.listNotif
-    }
+    },
+    setNotif(state) {
+        return state.listNotif2
+    },
+    setNotif2: (state) => {
+        return state.listNotifs2
+    },
 }
 
 export default {

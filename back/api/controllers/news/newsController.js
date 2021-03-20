@@ -71,7 +71,7 @@ module.exports = {
             url: req.body.url,
             cat: req.body.cat,
             category: req.body.category,
-            image: url + '/public/news/' + req.files[0].filename
+            image: url + '/news/' + req.files[0].filename
         })
 
         news.save((err) => {

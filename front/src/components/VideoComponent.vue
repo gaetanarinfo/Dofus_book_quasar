@@ -1,5 +1,5 @@
 <template>
-<div class="video" style="padding-top: 0px !important; margin-top: -80px !important;">
+<div class="video" style="padding-top: 0px !important; margin-top: -98px !important;">
 <video autoplay="" muted="" loop="loop">
     <source src="videos/keyart.mp4" type="video/mp4">
 </video>

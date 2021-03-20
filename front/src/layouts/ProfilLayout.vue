@@ -15,7 +15,22 @@
           style="font-family: 'bebas';font-size: 23px;color: #d8ffe9;font-weight: 600;letter-spacing: 4px;padding: 7px 0px 0px 7px;"
         >Dofus Book</q-toolbar-title>
 
-         <q-toolbar
+        <q-toolbar
+          class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy bar-mobile2"
+          style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: 0;"
+        >
+          <q-btn
+            flat
+            round
+            dense
+            @click="$q.fullscreen.toggle()"
+            :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+          >
+            <q-tooltip anchor="bottom middle" self="center middle">Plein écran</q-tooltip>
+          </q-btn>
+        </q-toolbar>
+
+        <q-toolbar
           class="q-toolbar row no-wrap items-center col-md-1 col-xs-1 col-lg-1 text-white glossy"
           style="background-color: rgb(198, 79, 16) !important;align-items: center;place-content: center;width: 4.3333%;margin-right: -14px;"
         >
@@ -29,8 +44,15 @@
           <q-tooltip anchor="bottom middle" self="center middle">Boîte de réception</q-tooltip>
         </q-btn>
 
-        <q-btn dense color="blue-9" round icon="circle_notifications" class="q-ml-md">
-          <q-badge color="brown-10" floating>0</q-badge>
+        <q-btn
+          dense
+          color="blue-9"
+          round
+          icon="circle_notifications"
+          class="q-ml-md"
+          @click="showNotif()"
+        >
+          <q-badge color="brown-10" floating>{{ listNotif2 }}</q-badge>
           <q-tooltip anchor="bottom middle" self="center middle">Notification(s)</q-tooltip>
         </q-btn>
       </q-toolbar>
@@ -55,6 +77,8 @@
             <q-item-section avatar>Accueil</q-item-section>
           </q-item>
 
+          <q-separator />
+
           <q-item clickable v-ripple to="/profil_mailbox">
             <q-item-section avatar>
               <q-icon name="inbox" color="brown" />
@@ -62,6 +86,8 @@
 
             <q-item-section>Boite de réception</q-item-section>
           </q-item>
+
+          <q-separator />
 
           <q-item clickable v-ripple to="/send_mail">
             <q-item-section avatar>
@@ -71,6 +97,8 @@
             <q-item-section>Envoyer un message</q-item-section>
           </q-item>
 
+          <q-separator />
+
           <q-item clickable v-ripple to="/profil">
             <q-item-section avatar>
               <q-icon name="edit" color="blue" />
@@ -78,6 +106,8 @@
 
             <q-item-section>Modifier mon profil</q-item-section>
           </q-item>
+
+          <q-separator />
 
           <q-item v-if="adminIn === true" clickable v-ripple @click="showModalCreateNews()">
             <q-item-section avatar>
@@ -87,7 +117,17 @@
             <q-item-section>Crée un article</q-item-section>
           </q-item>
 
-          <q-separator />
+          <q-separator v-if="loggedIn === true" />
+
+          <q-item v-if="adminIn === true" clickable v-ripple @click="showModalCreateImage()">
+            <q-item-section avatar>
+              <q-icon name="add" color="green-8" />
+            </q-item-section>
+
+            <q-item-section>Ajouter une image</q-item-section>
+          </q-item>
+
+          <q-separator v-if="loggedIn === true" />
 
           <q-item clickable v-ripple @click="showModalDelete(`${userData.userId}`)">
             <q-item-section avatar>
@@ -96,6 +136,8 @@
 
             <q-item-section>Supprimer mon compte</q-item-section>
           </q-item>
+
+          <q-separator />
 
           <q-item clickable v-ripple @click="logout()">
             <q-item-section avatar>
@@ -125,6 +167,14 @@
     <q-page-container>
       <router-view />
     </q-page-container>
+
+    <!-- Modal Create Image -->
+    <modalCreateImage
+      v-if="adminIn === true || modalCreateImage"
+      :modalCreateImage.sync="modalCreateImage"
+      @closeModalCreateImage="closeModalCreateImage()"
+    />
+    <!-- / Modal Create Image -->
 
     <!-- Modal Create News -->
     <modalCreateNews
@@ -182,7 +232,10 @@
 import { defineComponent, ref } from "@vue/composition-api";
 import modalDeleteAccount from "../components/modal/modalConfirm.vue";
 import modalCreateNews from "../components/modal/admin/modalCreateNews.vue";
+import modalCreateImage from "../components/modal/admin/modalCreateImage.vue";
 import { mapState, mapActions, mapMutations, mapGetters } from "vuex";
+import { Notify } from 'quasar'
+import { forEach } from "app/src-cordova/platforms/android/platform_www/cordova_plugins";
 
 export default defineComponent({
   name: "ProfilLayout",
@@ -192,6 +245,7 @@ export default defineComponent({
       ratingModel: 0,
       modalDeleteAccount: false,
       modalCreateNews: false,
+      modalCreateImage: false,
       position: "top",
       user: null,
       userData: {
@@ -246,6 +300,8 @@ export default defineComponent({
     checkNotif() {
       this.userPseudo = this.setListUser.pseudo;
       this.getMailNotif(this.setListUser._id);
+      this.getNotif(this.setListUser._id);
+      this.getListNotif(this.setListUser._id);
       setTimeout(this.checkNotif, 500);
     },
     showModalDelete(data: any) {
@@ -272,7 +328,6 @@ export default defineComponent({
       this.getRating();
 
       if (this.listRatings === null) {
-  
       } else {
         this.ratingModel = this.listRatings;
       }
@@ -284,6 +339,8 @@ export default defineComponent({
     ...mapActions("auth", ["loggedDataUser"]),
     ...mapActions("auth", ["logoutUser"]),
     ...mapActions("auth", ["getMailNotif"]),
+    ...mapActions("auth", ["getNotif"]),
+    ...mapActions("auth", ["getListNotif"]),
     checkAuth() {
       this.handleAuthStateChange();
       this.mountedData();
@@ -291,11 +348,50 @@ export default defineComponent({
     },
     ...mapActions("auth", ["handleAuthStateChange"]),
     ...mapMutations("auth", ["setLoggedIn"]),
-    ...mapMutations("auth", ["setAdminIn"])
+    ...mapMutations("auth", ["setAdminIn"]),
+    showModalCreateImage() {
+      this.modalCreateImage = true;
+    },
+    closeModalCreateImage() {
+      this.modalCreateImage = false;
+    },
+    showNotif() {
+
+    const array = this.listNotifs2;
+
+    for(let i = 0; array.length > 0; i++) {
+
+      this.$q.notify({
+          color: `${array[i].color}`,
+          textColor: 'white',
+          progress: true,
+          icon: array[i].icon,
+          classes: 'glossy',
+          message: array[i].sujet,
+          caption: array[i].content,
+          avatar: '../images/dofus/little_logo.png',
+          actions: [
+          { label: 'Marquer comme lu', color: 'white', handler: () => { 
+            this.removeNotif(array[i]._id)
+           } }
+          ]
+    })
+
+    }
+
+  },
+  removeNotif(id: any) {
+
+    this.removeNotifList(id);
+    
+  },
+  ...mapActions("auth", ["removeNotifList"])
   },
   computed: {
     ...mapState("auth", ["loggedIn"]),
     ...mapState("auth", ["listNotif"]),
+    ...mapState("auth", ["listNotif2"]),
+    ...mapState("auth", ["listNotifs2"]),
     ...mapState("general", ["listRatings"]),
     ...mapState("auth", ["adminIn"]),
     ...mapGetters("auth", ["setListUser"])
@@ -313,7 +409,8 @@ export default defineComponent({
   },
   components: {
     modalDeleteAccount,
-    modalCreateNews
+    modalCreateNews,
+    modalCreateImage
   }
 });
 </script>

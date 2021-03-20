@@ -81,6 +81,13 @@
         >Dofus Book traite les données recueillies pour permettre la création, le traitement et le suivi de ta demande d’assistance. Pour en savoir plus sur la gestion de tes données et de tes droits, consulte ma Politique de confidentialité.</p>
       </div>
     </q-form>
+
+    <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[25, 25]">
+        <q-btn style="background: transparent;">
+          <img src="/images/dofus/little_logo.png" />
+          <q-tooltip anchor="top middle" self="center middle">Remonter en haut</q-tooltip>
+        </q-btn>
+     </q-page-scroller>
   </div>
 </template>
 

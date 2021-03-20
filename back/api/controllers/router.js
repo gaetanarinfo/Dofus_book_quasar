@@ -19,7 +19,8 @@ const userController = require('./users/userController'),
 
 
 // Multer gestion image
-const upload = require('../config/multer')
+const upload = require('../config/multer'),
+    upload2 = require('../config/multerGalerie')
 
 /*
  * Router
@@ -76,6 +77,16 @@ router.route('/mailbox_delete/:id')
 
 router.route('/contact')
     .post(userController.contact)
+
+// Notification
+router.route('/notification/:id')
+    .get(userController.getNotification)
+
+router.route('/notificationList/:id')
+    .get(userController.getNotificationList)
+
+router.route('/notificationRemove/:id')
+    .get(userController.getNotificationRemove)
 
 // News
 router.route('/news')
@@ -151,6 +162,7 @@ router.route('/ratings')
 // Galerie
 router.route('/galerie')
     .get(galerieController.get)
+    .post(upload2.array('files', 1), galerieController.post)
 
 router.route('/galerie/:id')
     .get(galerieController.getId)
