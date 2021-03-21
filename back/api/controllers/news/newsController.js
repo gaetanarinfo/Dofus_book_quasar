@@ -9,7 +9,7 @@ const News = require('../../database/models/News')
 module.exports = {
     get: (req, res) => {
 
-        var perPage = 6
+        var perPage = 4
 
         // La page que l'on veux récupéré si il y a en pas alors page 1
         var page = req.query.page || 1
