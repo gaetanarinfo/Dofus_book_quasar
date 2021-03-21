@@ -13,6 +13,13 @@
       </div>
 
       <div
+        style="background-image: url('images/dofus/bg-shop.jpg');background-position: center;background-size: cover;background-repeat: no-repeat; background-attachment: fixed; margin: 0; width:100%;"
+      >
+        <shop-component></shop-component>
+      </div>
+
+
+      <div
         style="background-image: url('images/dofus/bg-galerie.jpg');background-position: center;background-repeat: no-repeat; background-size: cover; margin: 0; width:100%;"
       >
       <galerie-component :listImage="listImage"></galerie-component>
@@ -56,6 +63,7 @@ import '../../public/css/system.sass'
 import '../../public/css/system2.sass'
 import NewsComponent from "components/NewsComponent.vue";
 import VideoComponent from "components/VideoComponent.vue";
+import ShopComponent from "components/ShopComponent.vue"
 import GalerieComponent from "components/GalerieComponent.vue";
 import LauncherComponent from "components/LauncherComponent.vue";
 import SystemComponent from "components/SystemComponent.vue"
@@ -74,7 +82,7 @@ export default defineComponent({
   meta() {
     return {
       // optional; sets final title as "Index Page - My Website", useful for multiple level meta
-      title: "Dofus Book",
+      title: "Dofus Book - Accueil - Fan Site",
       description: {
         name: "description",
         content:
@@ -94,6 +102,7 @@ export default defineComponent({
   components: {
     NewsComponent,
     VideoComponent,
+    ShopComponent,
     GalerieComponent,
     LauncherComponent,
     SystemComponent,

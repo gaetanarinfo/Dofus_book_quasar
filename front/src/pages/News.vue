@@ -1,5 +1,5 @@
 <template>
-  <div class="row items-start q-gutter-md justify-center q-mt-md">
+  <div class="row items-start q-gutter-md justify-center q-mt-md" style="margin-top: -50px;">
     <div
       class="col-sm-10 col-10 col-md-10 text-h4 font-bebas text-center text-white"
     >Actualités du jour</div>

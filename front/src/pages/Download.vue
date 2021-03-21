@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-md row items-start q-gutter-md justify-center">
+  <q-page class="q-pa-md row items-start q-gutter-md justify-center" style="margin-top: -50px;">
     <div class="title-dofus">TELECHARGER DOFUS</div>
 
     <div class="q-pa-md col-sm-12 col-12 col-md-12 text-center">

@@ -1,5 +1,5 @@
 <template>
-  <q-page class="q-pa-md">
+  <q-page class="q-pa-md" style="margin-top: -50px;">
 
      <register v-if='loggedIn === false'></register>
 

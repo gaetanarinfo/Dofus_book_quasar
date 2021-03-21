@@ -1,5 +1,5 @@
 <template>
-  <div class="row items-start q-gutter-md justify-center">
+  <div class="row items-start q-gutter-md justify-center" style="margin-top: -50px;">
     <q-form
       class="q-pa-md form-mobile"
       @submit="formContact"

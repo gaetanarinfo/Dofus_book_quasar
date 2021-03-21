@@ -78,16 +78,6 @@ router.route('/mailbox_delete/:id')
 router.route('/contact')
     .post(userController.contact)
 
-// Notification
-router.route('/notification/:id')
-    .get(userController.getNotification)
-
-router.route('/notificationList/:id')
-    .get(userController.getNotificationList)
-
-router.route('/notificationRemove/:id')
-    .get(userController.getNotificationRemove)
-
 // News
 router.route('/news')
     .get(newsController.get)

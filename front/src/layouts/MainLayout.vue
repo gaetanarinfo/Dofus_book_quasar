@@ -320,19 +320,6 @@
           <q-badge color="deep-purple-9" floating>{{ listNotif }}</q-badge>
           <q-tooltip anchor="bottom middle" self="center middle">Boîte de réception</q-tooltip>
         </q-btn>
-
-        <q-btn
-          v-if="loggedIn === true"
-          dense
-          color="blue-9"
-          round
-          icon="circle_notifications"
-          class="q-ml-md"
-          @click="showNotif()"
-        >
-          <q-badge color="brown-10" floating>{{ listNotif2 }}</q-badge>
-          <q-tooltip anchor="bottom middle" self="center middle">Notification(s)</q-tooltip>
-        </q-btn>
       </q-toolbar>
     </q-header>
 
@@ -761,7 +748,6 @@ export default defineComponent({
     checkNotif() {
       this.userPseudo = this.listUser.pseudo;
       this.getMailNotif(this.listUser._id);
-      this.getNotif(this.listUser._id);
       setTimeout(this.checkNotif, 500);
     },
     checkRating() {
@@ -775,7 +761,6 @@ export default defineComponent({
       setTimeout(this.checkRating, 500);
     },
     ...mapActions("auth", ["getMailNotif"]),
-    ...mapActions("auth", ["getNotif"]),
     ...mapActions("general", ["getRating"]),
     logout() {
       this.logoutUser(this.userPseudo);
@@ -799,45 +784,12 @@ export default defineComponent({
     closeModalCreateImage() {
       this.modalCreateImage = false;
     },
-    showNotif() {
-
-    const array = this.listNotifs2;
-
-    for(let i = 0; array.length > 0; i++) {
-
-      this.$q.notify({
-          color: `${array[i].color}`,
-          textColor: 'white',
-          progress: true,
-          icon: array[i].icon,
-          classes: 'glossy',
-          message: array[i].sujet,
-          caption: array[i].content,
-          avatar: '../images/dofus/little_logo.png',
-          actions: [
-          { label: 'Marquer comme lu', color: 'white', handler: () => { 
-            this.removeNotif(array[i]._id)
-           } }
-          ]
-    })
-
-    }
-
-  },
-  removeNotif(id: any) {
-
-    this.removeNotifList(id);
-    
-  },
-  ...mapActions("auth", ["removeNotifList"])
   },
   components: { modalCreateNews, modalAlmanax, modalCreateImage },
   computed: {
     ...mapState("auth", ["loggedIn"]),
     ...mapState("auth", ["adminIn"]),
     ...mapState("auth", ["listNotif"]),
-    ...mapState("auth", ["listNotif2"]),
-    ...mapState("auth", ["listNotifs2"]),
     ...mapState("general", ["listRatings"]),
     ...mapState("auth", ["listUser"])
   },
