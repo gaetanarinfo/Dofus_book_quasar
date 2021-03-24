@@ -18,7 +18,7 @@
               <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
                 <q-item-section avatar>
                   <div
-                    :style="'background-image: url(/../images/dofus/sprite.png); background-repeat: no-repeat !important; background-size: 76px auto !important; background-position: ' + scope.opt.position + ' !important; height: 35px; width: 35px;'"
+                    :style="'background-image: url(.../../images/dofus/sprite.png); background-repeat: no-repeat !important; background-size: 76px auto !important; background-position: ' + scope.opt.position + ' !important; height: 35px; width: 35px;'"
                   />
                 </q-item-section>
                 <q-item-section>
@@ -110,8 +110,8 @@
                     <div>
                       <img style="width: 127px;" :src="props.row.imgUrl" />
                     </div>
-                    <div class="dof-title dof-title-metier">{{ props.row.name }}</div>
-                    <div class="dof-title dof-title-metier">{{ props.row.type }}</div>
+                    <div class="dof-title dof-title-metier" style="font-size: 14px;line-height: 7px;">{{ props.row.name }}</div>
+                    <div class="dof-title dof-title-metier" style="font-size: 14px;line-height: 40px;">{{ props.row.type }}</div>
                   </a>
                 </div>
               </template>

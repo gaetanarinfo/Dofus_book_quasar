@@ -50,8 +50,8 @@
     </div>
     <q-page-scroller position="bottom-right" :scroll-offset="250" :offset="[25, 25]">
         <q-btn style="background: transparent;">
-          <img src="/images/dofus/little_logo.png" />
-          <q-tooltip anchor="top middle" self="center middle">Remonter en haut</q-tooltip>
+          <img src="images/dofus/little_logo.png" />
+          <q-tooltip anchor="top middle" self="center middle">Remonter</q-tooltip>
         </q-btn>
      </q-page-scroller>
   </q-page>

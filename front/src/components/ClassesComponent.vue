@@ -38,7 +38,7 @@
                 <q-item v-bind="scope.itemProps" v-on="scope.itemEvents">
                   <q-item-section avatar>
                     <div
-                      :style="'background-image: url(img/sprite.png); background-repeat: no-repeat !important; background-size: 76px auto !important; background-position: ' + scope.opt.position + ' !important; height: 35px; width: 35px;'"
+                      :style="'background-image: url(.../../images/dofus/sprite.png); background-repeat: no-repeat !important; background-size: 76px auto !important; background-position: ' + scope.opt.position + ' !important; height: 35px; width: 35px;'"
                     />
                   </q-item-section>
                   <q-item-section>
